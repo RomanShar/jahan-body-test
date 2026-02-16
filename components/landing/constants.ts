@@ -1,4 +1,4 @@
-import type { PainPoint, RetreatDay, Practice, Testimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueFeature, VenueRooms } from './types'
+import type { PainPoint, RetreatDay, Practice, Testimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueFeature, VenueRooms, GalleryImage } from './types'
 
 // ===== HERO =====
 export const hero = {
@@ -234,6 +234,7 @@ export const testimonials: Testimonial[] = [
     name: 'Пара, 30+',
     text: 'Приехали в Европу вместе. Стали жить как соседи — рядом, но контакта нет. У каждого своя «библиотека непроговорённого». После ретрита — заново научились быть рядом.',
     resultHighlight: 'Из соседей — обратно в пару',
+    image: '/images/landing/testimonials/pair.jpg',
   },
   {
     name: 'Участница',
@@ -390,6 +391,87 @@ export const targetAudienceNotAbout = {
 export const targetAudienceNotes = [
   'Можно участвовать без партнёра',
   'Физическая подготовка не нужна',
+]
+
+// ===== GALLERY SECTION =====
+export const gallerySection = {
+  headline: 'Как это выглядит',
+  description: 'Настоящие моменты с тренингов — от первых шагов к освобождению и близости',
+}
+
+export const galleryImages: GalleryImage[] = [
+  {
+    src: '/images/landing/gallery/moment-01-jahan-portrait.jpg',
+    alt: 'Джахан — ведущий тренинга, момент присутствия',
+    caption: 'Присутствие',
+    category: 'process',
+  },
+  {
+    src: '/images/landing/gallery/moment-02-sitting-presence.jpg',
+    alt: 'Участник в позе готовности, начало пути',
+    caption: 'Готовность',
+    category: 'process',
+  },
+  {
+    src: '/images/landing/gallery/moment-03-hands-face-release.jpg',
+    alt: 'Эмоциональное освобождение, руки на лице',
+    caption: 'Освобождение',
+    category: 'process',
+  },
+  {
+    src: '/images/landing/gallery/moment-04-breathwork.jpg',
+    alt: 'Парная практика дыхания',
+    caption: 'Дыхание вдвоем',
+    category: 'connection',
+  },
+  {
+    src: '/images/landing/gallery/moment-05-movement.jpg',
+    alt: 'Свободное движение с закрытыми глазами',
+    caption: 'Свободное движение',
+    category: 'process',
+  },
+  {
+    src: '/images/landing/gallery/moment-06-circle.jpg',
+    alt: 'Групповой круг — пространство безопасности',
+    caption: 'Безопасность группы',
+    category: 'connection',
+  },
+  {
+    src: '/images/landing/gallery/moment-07-beach-embrace.jpg',
+    alt: 'Объятие на пляже — доверие и контакт',
+    caption: 'Доверие',
+    category: 'connection',
+  },
+  {
+    src: '/images/landing/gallery/moment-08-hands-holding.jpg',
+    alt: 'Руки, поддержка через прикосновение',
+    caption: 'Поддержка',
+    category: 'connection',
+  },
+  {
+    src: '/images/landing/gallery/moment-09-eye-contact.jpg',
+    alt: 'Встреча глаз в парной практике',
+    caption: 'Встреча',
+    category: 'connection',
+  },
+  {
+    src: '/images/landing/gallery/moment-10-water-joy.jpg',
+    alt: 'Группа держится за руки в воде, радость',
+    caption: 'Радость и связь',
+    category: 'joy',
+  },
+  {
+    src: '/images/landing/gallery/moment-11-laughter.jpg',
+    alt: 'Смех в группе — легкость после процесса',
+    caption: 'Легкость',
+    category: 'joy',
+  },
+  {
+    src: '/images/landing/gallery/moment-12-sunset-circle.jpg',
+    alt: 'Завершающий круг на закате',
+    caption: 'Трансформация',
+    category: 'joy',
+  },
 ]
 
 // ===== FAQ =====
