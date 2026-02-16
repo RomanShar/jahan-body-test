@@ -60,10 +60,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6 text-center">
-          <p className="text-gray-600 text-sm">
-            &copy; {new Date().getFullYear()} Безопасно быть близко. Все права защищены.
-          </p>
+        <div className="border-t border-white/5 pt-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-gray-600 text-sm">
+              &copy; {new Date().getFullYear()} Безопасно быть близко. Все права защищены.
+            </p>
+            <div className="flex gap-4 text-sm">
+              <Link href="/privacy" className="text-gray-500 hover:text-gray-400 transition">
+                Политика конфиденциальности
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

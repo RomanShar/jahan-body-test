@@ -19,6 +19,7 @@ import Footer from '@/components/landing/Footer'
 import StickyHeader from '@/components/landing/StickyHeader'
 import MobileCTABar from '@/components/landing/MobileCTABar'
 import ApplicationModal from '@/components/landing/ApplicationModal'
+import StructuredData from '@/components/landing/StructuredData'
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -27,6 +28,7 @@ export default function Home() {
 
   return (
     <>
+      <StructuredData />
       <StickyHeader onApply={openModal} />
       <MobileCTABar onApply={openModal} />
       <main>
