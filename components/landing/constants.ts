@@ -1,4 +1,4 @@
-import type { PainPoint, RetreatDay, Practice, Testimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueFeature } from './types'
+import type { PainPoint, RetreatDay, Practice, Testimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueFeature, VenueRooms } from './types'
 
 // ===== HERO =====
 export const hero = {
@@ -248,24 +248,74 @@ export const testimonialsHeadline = 'Что говорят участники'
 export const venue = {
   headline: 'Где это происходит',
   subtitle: 'PPL Ocean Retreat Centre — Пенише, Португалия',
-  description: 'Ферма 7 000 м² в деревне Сан-Бернардино, на берегу Атлантики.',
+  description: 'Место, где тишина, океан и природа встречаются. 15 минут пешком от уединённого пляжа Атлантики — пространство, чтобы полностью выйти из суеты и вернуться к себе.',
   sensoryLine: 'Утром — звук океана и пение птиц. Днём — тёплый камень под ногами и запах эвкалипта. Вечером — закат над Атлантикой и тишина, в которой слышишь себя.',
   link: 'https://pplocean.com/ppl_retreat_centre',
   linkText: 'Подробнее о площадке →',
+  address: 'Rua Rei Dom Dinis, Casa Buraco do Mocho, Geraldes, 2525-524, Atouguia de Baleia',
+  mapLink: 'https://maps.app.goo.gl/P9JxW94kqn2dK8vT8',
 }
 
 export const venueFeatures: VenueFeature[] = [
-  { text: 'Ферма 7 000 м² в деревне Сан-Бернардино', icon: '🏡' },
+  { text: 'Территория 7 000 м² в зелени и тишине', icon: '🏡' },
   { text: '25-метровый бассейн с родниковой водой', icon: '🏊' },
-  { text: 'Спа, сауна, джакузи', icon: '🧖' },
-  { text: '2 зала для практик', icon: '🧘' },
-  { text: '15 минут пешком до уединённого пляжа', icon: '🌊' },
-  { text: 'Фруктовый сад и веранда', icon: '🌳' },
+  { text: 'Просторный зал для практик', icon: '🧘' },
+  { text: 'Музыкальная студия с инструментами', icon: '🎵' },
+  { text: 'Креативная арт-студия', icon: '🎨' },
+  { text: 'Приватный массажный кабинет', icon: '🧖' },
+  { text: 'Open-air платформы для занятий', icon: '☀️' },
+  { text: 'Летняя кухня с BBQ и веранда', icon: '🍳' },
+  { text: '15 минут пешком до пляжа Атлантики', icon: '🌊' },
+  { text: 'Фруктовый сад — цветёт круглый год', icon: '🌳' },
 ]
 
-export const venueRooms = [
-  '4 двухместные комнаты с видом на океан и собственной ванной',
-  '2 комнаты с общей ванной',
+export const venueRooms: VenueRooms = {
+  suites: [
+    { name: 'Pacific Ocean', floor: 1, beds: 2, features: 'своя ванная, балкон, сад, вид на океан', image: '/images/landing/venue/room-pacific.jpg' },
+    { name: 'Atlantic Ocean', floor: 1, beds: 3, features: 'своя ванная, балкон, сад, вид на океан', image: '/images/landing/venue/room-atlantic.jpg' },
+    { name: 'Arctic Ocean', floor: 2, beds: 3, features: 'своя ванная, балкон, вид на океан', image: '/images/landing/venue/room-arctic.jpg' },
+    { name: 'Indian Ocean', floor: 2, beds: 2, features: 'своя ванная, балкон, вид на океан', image: '/images/landing/venue/room-indian.jpg' },
+  ],
+  shared: [
+    { name: 'Douro River', floor: 2, beds: 2, features: 'общая ванная на этаже', image: '/images/landing/venue/territory-2.jpg' },
+    { name: 'Tejo River', floor: 2, beds: 3, features: 'общая ванная на этаже', image: '/images/landing/venue/territory-2.jpg' },
+  ],
+  facilitator: { description: 'Студия для фасилитатора: 3 кровати, кухня, своя ванная', image: '/images/landing/venue/studio-apartment.jpg' },
+}
+
+export const venueIndoor = [
+  { text: 'Просторная оборудованная кухня', image: '/images/landing/venue/kitchen.jpg' },
+  { text: 'Большая уютная гостиная', image: '/images/landing/venue/living-room.jpg' },
+  { text: 'Массажный кабинет', image: '/images/landing/venue/massage-room.jpg' },
+  { text: 'Арт-студия для живописи и лекций', image: '/images/landing/venue/art-space.jpg' },
+  { text: 'Музыкальная студия с инструментами', image: '/images/landing/venue/music-room.jpg' },
+  { text: 'Просторный зал для практик', image: '/images/landing/venue/yoga-room.jpg' },
+]
+
+export const venueOutdoor = [
+  { text: 'Open-air платформы для занятий и отдыха', image: '/images/landing/venue/terrace.jpg' },
+  { text: 'Летняя кухня с BBQ и обеденная веранда', image: '/images/landing/venue/veranda.jpg' },
+  { text: '25-метровый бассейн с зоной отдыха', image: '/images/landing/venue/pool.jpg' },
+  { text: 'Фруктовый сад — цветёт круглый год', image: '/images/landing/venue/territory-1.jpg' },
+  { text: 'Тихие зоны для прогулок и медитации', image: '/images/landing/venue/territory-2.jpg' },
+]
+
+export const venueLocation = {
+  beach: '15 минут пешком до пляжа',
+  shops: '5–15 минут на машине до магазинов и ресторанов',
+  lisbon: '1 час на машине от Лиссабона',
+  bus: 'Прямой автобус из Лиссабона (остановка в 700 м от центра)',
+}
+
+export const venuePhotos = [
+  { src: '/images/landing/venue/hero-venue.jpg', alt: 'PPL Ocean Retreat Centre — территория на закате' },
+  { src: '/images/landing/venue/pool.jpg', alt: 'Бассейн 25 м с родниковой водой' },
+  { src: '/images/landing/venue/ocean-view.jpg', alt: 'Вид на Атлантический океан' },
+  { src: '/images/landing/venue/sunset-view.jpg', alt: 'Закат над океаном' },
+  { src: '/images/landing/venue/veranda.jpg', alt: 'Веранда и зона отдыха' },
+  { src: '/images/landing/venue/yoga-room.jpg', alt: 'Зал для практик' },
+  { src: '/images/landing/venue/terrace.jpg', alt: 'Терраса с видом' },
+  { src: '/images/landing/venue/territory-1.jpg', alt: 'Территория и сад' },
 ]
 
 // ===== PRICING =====

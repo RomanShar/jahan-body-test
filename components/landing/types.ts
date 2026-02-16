@@ -63,3 +63,17 @@ export interface VenueFeature {
   text: string
   icon: string
 }
+
+export interface VenueRoom {
+  name: string
+  floor: number
+  beds: number
+  features: string
+  image: string
+}
+
+export interface VenueRooms {
+  suites: VenueRoom[]
+  shared: VenueRoom[]
+  facilitator: { description: string; image: string }
+}
