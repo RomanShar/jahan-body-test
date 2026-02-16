@@ -69,21 +69,33 @@ export default function TestimonialsSection() {
 
               <div className="flex items-center gap-3">
                 {testimonial.image ? (
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                  <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-purple-100">
                     <Image
                       src={testimonial.image}
                       alt={testimonial.name}
                       fill
                       className="object-cover"
-                      sizes="48px"
+                      sizes="80px"
                     />
                   </div>
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                    <User className="w-6 h-6 text-purple-600" />
+                  <div className="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 ring-2 ring-purple-100">
+                    <User className="w-10 h-10 text-purple-600" />
                   </div>
                 )}
-                <p className="font-medium text-gray-600 text-sm italic">{testimonial.name}</p>
+                <div>
+                  <p className="font-medium text-gray-600 text-sm italic">{testimonial.name}</p>
+                  {testimonial.videoUrl && (
+                    <a
+                      href={testimonial.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-block text-xs font-semibold text-red-600 hover:text-red-700 transition uppercase tracking-wide"
+                    >
+                      Смотреть видео →
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))}
