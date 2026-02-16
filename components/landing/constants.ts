@@ -253,22 +253,22 @@ export const pricingTiers: PricingTier[] = [
   {
     name: 'Комната на троих',
     description: 'Общая комната (3 чел.), общая ванная',
-    price: '490',
-    earlyBird: '440',
+    price: '590',
+    earlyBird: '490',
     highlight: false,
   },
   {
     name: 'Комната на двоих',
     description: 'Общая комната (2 чел.), общая ванная',
-    price: '590',
-    earlyBird: '540',
+    price: '690',
+    earlyBird: '590',
     highlight: true,
   },
   {
     name: 'Одноместная',
     description: 'Отдельная комната, вид на океан, своя ванная',
-    price: '690',
-    earlyBird: '640',
+    price: '790',
+    earlyBird: '690',
     highlight: false,
   },
 ]

@@ -31,8 +31,8 @@ export default function StructuredData() {
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'EUR',
-      lowPrice: '490',
-      highPrice: '790',
+      lowPrice: '590',
+      highPrice: '890',
       availability: 'https://schema.org/InStock',
       validFrom: '2026-02-16T00:00:00+00:00',
     },
