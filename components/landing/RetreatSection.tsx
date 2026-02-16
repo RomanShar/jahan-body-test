@@ -11,9 +11,9 @@ export default function RetreatSection() {
   const [safetyOpen, setSafetyOpen] = useState(false)
 
   return (
-    <section id="retreat" className="bg-gray-50 py-20 sm:py-28 px-6">
+    <section id="retreat" className="bg-white py-20 sm:py-28 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-4 text-center">
           {retreatSection.headline}
         </h2>
         <p className="text-gray-500 text-center mb-16 max-w-xl mx-auto">

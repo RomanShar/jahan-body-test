@@ -23,9 +23,9 @@ export default function TestCTASection() {
   }, [])
 
   return (
-    <section className="bg-white py-20 sm:py-28 px-6">
+    <section className="bg-white py-16 sm:py-20 px-6">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
           {testCTA.headline}
         </h2>
         <p className="text-gray-600 text-lg mb-10 max-w-xl mx-auto">
@@ -68,7 +68,7 @@ export default function TestCTASection() {
         </Link>
 
         {leadCount !== null && leadCount > 0 && (
-          <p className="text-gray-400 text-sm mt-4">
+          <p className="text-gray-500 text-sm mt-4">
             {testCTA.counter} {leadCount} человек
           </p>
         )}

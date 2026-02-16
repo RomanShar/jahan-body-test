@@ -11,7 +11,7 @@ export default function MobileCTABar({ onApply }: MobileCTABarProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.9)
+      setVisible(window.scrollY > window.innerHeight * 0.5)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })

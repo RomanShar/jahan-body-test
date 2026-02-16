@@ -17,8 +17,9 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
         fill
         className="object-cover"
         priority
+        sizes="100vw"
       />
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(139,92,246,0.15),transparent_50%)]" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
@@ -26,7 +27,7 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
           {hero.tagline}
         </p>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
           {hero.headline}
         </h1>
 
@@ -59,12 +60,6 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
         </p>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
-        <div className="w-6 h-10 border-2 border-gray-500 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-gray-400 rounded-full" />
-        </div>
-      </div>
     </section>
   )
 }

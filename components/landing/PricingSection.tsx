@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Check, X } from 'lucide-react'
+import { Check, X, ShieldCheck } from 'lucide-react'
 import { pricing, pricingTiers, pricingIncludes } from './constants'
 
 function useCountdown(deadline: string) {
@@ -41,7 +41,7 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
   return (
     <section id="pricing" className="bg-white py-20 sm:py-28 px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-4 text-center">
           Стоимость
         </h2>
 
@@ -95,7 +95,7 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
               <h3 className="text-xl font-bold text-gray-800 mb-1">{tier.name}</h3>
               <p className="text-gray-500 text-sm mb-6">{tier.description}</p>
 
-              <div className="flex items-baseline gap-2 mb-6">
+              <div className="flex items-baseline gap-2 mb-2">
                 {!expired && tier.earlyBird && (
                   <span className="text-gray-400 line-through text-lg">
                     {tier.price}
@@ -107,12 +107,19 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
                 <span className="text-gray-500">{pricing.currency}</span>
               </div>
 
+              {!expired && tier.earlyBird && (
+                <p className="text-green-600 text-sm font-medium mb-4">
+                  Экономия {Number(tier.price) - Number(tier.earlyBird)} EUR
+                </p>
+              )}
+              {(expired || !tier.earlyBird) && <div className="mb-6" />}
+
               <button
                 onClick={onApply}
                 className={`block w-full py-3 rounded-xl font-semibold text-center transition-all text-lg ${
                   tier.highlight
                     ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg shadow-purple-500/25'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'border-2 border-purple-400 text-purple-600 hover:bg-purple-50'
                 }`}
               >
                 Оставить заявку
@@ -127,7 +134,7 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
         </p>
 
         {/* Application note */}
-        <p className="text-center text-gray-400 text-sm mb-3">
+        <p className="text-center text-gray-500 text-sm mb-3">
           {pricing.applicationNote}
         </p>
 
@@ -153,6 +160,14 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Return guarantee */}
+        <div className="flex items-center justify-center gap-3 mt-10 text-gray-600">
+          <ShieldCheck className="w-5 h-5 text-green-500 flex-shrink-0" />
+          <p className="text-sm">
+            Полный возврат при отмене за 14+ дней до начала
+          </p>
         </div>
       </div>
     </section>

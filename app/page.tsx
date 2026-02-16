@@ -19,6 +19,7 @@ import Footer from '@/components/landing/Footer'
 import StickyHeader from '@/components/landing/StickyHeader'
 import MobileCTABar from '@/components/landing/MobileCTABar'
 import ApplicationModal from '@/components/landing/ApplicationModal'
+import ProcessSection from '@/components/landing/ProcessSection'
 import StructuredData from '@/components/landing/StructuredData'
 
 export default function Home() {
@@ -42,6 +43,7 @@ export default function Home() {
         <TestimonialsSection />
         <RetreatSection />
         <VenueSection />
+        <ProcessSection />
         <PricingSection onApply={openModal} />
         <FAQSection />
         <TestCTASection />

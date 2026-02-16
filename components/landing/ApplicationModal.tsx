@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { X } from 'lucide-react'
 import { pricingTiers, pricing } from './constants'
 import { saveLead } from '@/lib/supabase'
@@ -19,6 +19,34 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+
+  // Reset form when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setName('')
+      setEmail('')
+      setPhone('')
+      setSelectedTier(pricingTiers[1].name)
+      setMotivation('')
+      setSubmitted(false)
+      setError('')
+    }
+  }, [isOpen])
+
+  // Escape key handler
+  const handleEscape = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') onClose()
+  }, [onClose])
+
+  useEffect(() => {
+    if (!isOpen) return
+    document.addEventListener('keydown', handleEscape)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = ''
+    }
+  }, [isOpen, handleEscape])
 
   if (!isOpen) return null
 
@@ -135,7 +163,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
 
           <div>
             <label htmlFor="app-phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Телефон / WhatsApp <span className="text-gray-400">(необязательно)</span>
+              Телефон / WhatsApp <span className="text-gray-500">(необязательно)</span>
             </label>
             <input
               id="app-phone"
@@ -179,7 +207,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
 
           <div>
             <label htmlFor="app-motivation" className="block text-sm font-medium text-gray-700 mb-1">
-              Почему хотите участвовать? <span className="text-gray-400">(необязательно)</span>
+              Почему хотите участвовать? <span className="text-gray-500">(необязательно)</span>
             </label>
             <textarea
               id="app-motivation"
@@ -203,7 +231,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
             {submitting ? 'Отправляем...' : 'Оставить заявку'}
           </button>
 
-          <p className="text-gray-400 text-xs text-center">
+          <p className="text-gray-500 text-xs text-center">
             {pricing.applicationNote}
           </p>
         </form>

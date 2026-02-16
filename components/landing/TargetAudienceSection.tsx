@@ -3,9 +3,9 @@ import { targetAudience, targetAudienceNotAbout, targetAudienceNotes } from './c
 
 export default function TargetAudienceSection() {
   return (
-    <section className="bg-white py-20 sm:py-28 px-6">
+    <section className="bg-white py-16 sm:py-24 px-6">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-12 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-12 text-center">
           {targetAudience.headline}
         </h2>
 

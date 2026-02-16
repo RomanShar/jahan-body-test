@@ -1,5 +1,5 @@
 import { Move, Wind, Volume2 } from 'lucide-react'
-import { philosophyHeadline, philosophyCentralQuote, philosophyPillars, philosophyInsight } from './constants'
+import { philosophyHeadline, philosophyCentralQuote, philosophyPillars, philosophyInsight, philosophyPermission } from './constants'
 
 const iconMap = {
   move: Move,
@@ -11,7 +11,7 @@ export default function PhilosophySection() {
   return (
     <section id="about" className="bg-brand-cream py-20 sm:py-28 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-4 text-center">
           {philosophyHeadline}
         </h2>
 
@@ -37,7 +37,7 @@ export default function PhilosophySection() {
                   &laquo;{pillar.quote}&raquo;
                 </p>
 
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-500 text-xs leading-relaxed mt-3 border-t border-gray-200 pt-3">
                   {pillar.evidence}
                 </p>
               </div>
@@ -45,8 +45,12 @@ export default function PhilosophySection() {
           })}
         </div>
 
-        <p className="text-center text-gray-600 text-lg max-w-2xl mx-auto mt-12 leading-relaxed">
+        <blockquote className="text-center text-xl sm:text-2xl text-gray-700 max-w-2xl mx-auto mt-16 leading-relaxed border-l-4 border-purple-300 pl-6 sm:border-l-0 sm:pl-0">
           {philosophyInsight}
+        </blockquote>
+
+        <p className="text-center text-purple-600 font-medium text-lg max-w-xl mx-auto mt-6 italic">
+          {philosophyPermission}
         </p>
       </div>
     </section>

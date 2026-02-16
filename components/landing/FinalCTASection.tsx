@@ -15,7 +15,7 @@ export default function FinalCTASection({ onApply }: FinalCTASectionProps) {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.1),transparent_50%)]" />
 
       <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
           {finalCTA.headline}
         </h2>
         <p className="text-xl text-purple-100 mb-4 max-w-xl mx-auto">

@@ -6,7 +6,7 @@ export default function TestimonialsSection() {
   return (
     <section className="bg-gray-50 py-20 sm:py-28 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-16 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-16 text-center">
           {testimonialsHeadline}
         </h2>
 
@@ -14,7 +14,11 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col justify-between"
+              className={`bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col justify-between ${
+                index === testimonials.length - 1 && testimonials.length % 2 !== 0
+                  ? 'md:col-span-2 md:max-w-lg md:mx-auto'
+                  : ''
+              }`}
             >
               <div>
                 <Quote className="w-8 h-8 text-purple-200 mb-4" />

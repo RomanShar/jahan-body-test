@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Bot, Pill, Hospital, Home, User, Plane } from 'lucide-react'
-import { painPoints, painPointsHeadline, painPointsClosing, statsBar } from './constants'
+import { painPoints, painPointsHeadline, painPointsClosing, statsBar, devaluation } from './constants'
 
 const iconMap = {
   '🤖': Bot,
@@ -40,7 +40,7 @@ export default function PainPointsSection() {
   return (
     <section className="bg-brand-dark py-20 sm:py-28 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-16 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-16 text-center">
           {painPointsHeadline}
         </h2>
 
@@ -87,7 +87,18 @@ export default function PainPointsSection() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-gray-600 text-center">{statsBar.source}</p>
+        <p className="text-xs text-gray-600 text-center mb-16">{statsBar.source}</p>
+
+        {/* Devaluation block */}
+        <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-8 max-w-2xl mx-auto">
+          <p className="text-purple-300 font-semibold mb-4">{devaluation.headline}</p>
+          <div className="space-y-2 mb-4">
+            {devaluation.items.map((item, index) => (
+              <p key={index} className="text-gray-400 text-lg italic">{item}</p>
+            ))}
+          </div>
+          <p className="text-gray-300 leading-relaxed">{devaluation.response}</p>
+        </div>
       </div>
     </section>
   )

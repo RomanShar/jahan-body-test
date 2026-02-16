@@ -15,7 +15,7 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isVisible = window.scrollY > window.innerHeight * 0.8
+      const isVisible = window.scrollY > window.innerHeight * 0.4
       setVisible(isVisible)
       if (!isVisible) setMobileMenuOpen(false)
     }

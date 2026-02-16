@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Home, Waves, Sparkles, UtensilsCrossed, Palmtree } from 'lucide-react'
+import { Home, Waves, Sparkles, Flower2, TreePalm } from 'lucide-react'
 import { venue, venueFeatures, venueRooms } from './constants'
 
 const venuePhotos = [
@@ -13,15 +13,16 @@ const iconMap = {
   '🏡': Home,
   '🏊': Waves,
   '🧖': Sparkles,
-  '🍴': UtensilsCrossed,
+  '🧘': Flower2,
   '🌊': Waves,
+  '🌳': TreePalm,
 }
 
 export default function VenueSection() {
   return (
     <section className="bg-brand-cream py-20 sm:py-28 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-3 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-3 text-center">
           {venue.headline}
         </h2>
         <p className="text-lg text-gray-500 text-center mb-4">
