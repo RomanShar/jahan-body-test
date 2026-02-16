@@ -13,6 +13,7 @@ import FacilitatorSection from '@/components/landing/FacilitatorSection'
 import TestimonialsSection from '@/components/landing/TestimonialsSection'
 import RetreatSection from '@/components/landing/RetreatSection'
 import VenueSection from '@/components/landing/VenueSection'
+import GallerySection from '@/components/landing/GallerySection'
 import PricingSection from '@/components/landing/PricingSection'
 import FAQSection from '@/components/landing/FAQSection'
 import FinalCTASection from '@/components/landing/FinalCTASection'
@@ -45,6 +46,7 @@ export default function Home() {
         <TestimonialsSection />
         <RetreatSection />
         <VenueSection />
+        <GallerySection />
         <ProcessSection />
         <PricingSection onApply={openModal} />
         <FAQSection />
