@@ -77,3 +77,10 @@ export interface VenueRooms {
   shared: VenueRoom[]
   facilitator: { description: string; image: string }
 }
+
+export interface GalleryImage {
+  src: string
+  alt: string
+  caption?: string
+  category?: 'process' | 'connection' | 'joy'
+}
