@@ -4,7 +4,7 @@ import { useState } from 'react'
 import HeroSection from '@/components/landing/HeroSection'
 import SocialProofBar from '@/components/landing/SocialProofBar'
 import PainPointsSection from '@/components/landing/PainPointsSection'
-import DevaluationSection from '@/components/landing/DevaluationSection'
+
 import TargetAudienceSection from '@/components/landing/TargetAudienceSection'
 import PhilosophySection from '@/components/landing/PhilosophySection'
 import TestCTASection from '@/components/landing/TestCTASection'
@@ -36,7 +36,6 @@ export default function Home() {
         <HeroSection onApply={openModal} />
         <SocialProofBar />
         <PainPointsSection />
-        <DevaluationSection />
         <TargetAudienceSection />
         <PhilosophySection />
         <FacilitatorSection />

@@ -21,8 +21,8 @@ export default function StructuredData() {
       },
     },
     image: [
-      'https://yourdomain.com/images/landing/hero.jpg',
-      'https://yourdomain.com/images/landing/venue/venue-1.jpg',
+      'https://selfhealing.space/images/landing/hero.jpg',
+      'https://selfhealing.space/images/landing/venue/venue-1.jpg',
     ],
     organizer: {
       '@type': 'Person',
@@ -32,7 +32,7 @@ export default function StructuredData() {
       '@type': 'AggregateOffer',
       priceCurrency: 'EUR',
       lowPrice: '590',
-      highPrice: '890',
+      highPrice: '790',
       availability: 'https://schema.org/InStock',
       validFrom: '2026-02-16T00:00:00+00:00',
     },
