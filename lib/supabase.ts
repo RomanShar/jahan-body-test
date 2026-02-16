@@ -11,6 +11,8 @@ export interface Lead {
   name: string
   email: string
   phone?: string
+  room_preference?: string
+  motivation?: string
   test_results?: Record<string, number>
   created_at?: string
 }
