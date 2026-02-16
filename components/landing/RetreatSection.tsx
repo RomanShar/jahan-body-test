@@ -20,6 +20,13 @@ export default function RetreatSection() {
           {retreatSection.location}. {retreatSection.locationDescription}
         </p>
 
+        {/* Format metric */}
+        <div className="flex justify-center mb-10">
+          <span className="bg-purple-50 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium">
+            85% практика · 15% теория
+          </span>
+        </div>
+
         {/* Day selector */}
         <div className="flex flex-wrap gap-2 sm:gap-4 mb-10 justify-center">
           {retreatDays.map((day, index) => {

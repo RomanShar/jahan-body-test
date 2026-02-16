@@ -33,3 +33,21 @@ yarn-error.log*
 next-env.d.ts
 meditation-audio-main/
 meditation-audio-main1/
+
+# agent tooling
+.agent/
+.agents/
+skills/
+.cursor/
+.windsurf/
+.mcp.json
+landing-v1/
+docs/
+.claude/commands/
+.claude/docs/
+.claude/skills/
+
+# media assets (too large for git)
+2025-09-03*/
+2025-09-15*/
+*.pdf

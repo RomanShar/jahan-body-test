@@ -18,6 +18,7 @@ const config: Config = {
           pink: '#ec4899',
           dark: '#1e1b2e',
           cream: '#fdf4e3',
+          warm: '#c4956a',
         },
       },
       animation: {

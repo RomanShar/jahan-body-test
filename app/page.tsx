@@ -4,9 +4,10 @@ import { useState } from 'react'
 import HeroSection from '@/components/landing/HeroSection'
 import SocialProofBar from '@/components/landing/SocialProofBar'
 import PainPointsSection from '@/components/landing/PainPointsSection'
-
+import DevaluationSection from '@/components/landing/DevaluationSection'
 import TargetAudienceSection from '@/components/landing/TargetAudienceSection'
 import PhilosophySection from '@/components/landing/PhilosophySection'
+import ResultsSection from '@/components/landing/ResultsSection'
 import TestCTASection from '@/components/landing/TestCTASection'
 import FacilitatorSection from '@/components/landing/FacilitatorSection'
 import TestimonialsSection from '@/components/landing/TestimonialsSection'
@@ -37,7 +38,9 @@ export default function Home() {
         <SocialProofBar />
         <PainPointsSection />
         <TargetAudienceSection />
+        <DevaluationSection />
         <PhilosophySection />
+        <ResultsSection />
         <FacilitatorSection />
         <TestimonialsSection />
         <RetreatSection />

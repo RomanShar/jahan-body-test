@@ -9,7 +9,7 @@ interface FinalCTASectionProps {
 
 export default function FinalCTASection({ onApply }: FinalCTASectionProps) {
   return (
-    <section id="final-cta" className="relative py-20 sm:py-28 px-6 overflow-hidden">
+    <section id="final-cta" className="relative py-24 sm:py-32 px-6 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-purple-700" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.1),transparent_50%)]" />

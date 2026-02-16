@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
 import { Move, Wind, Volume2 } from 'lucide-react'
 import { philosophyHeadline, philosophyCentralQuote, philosophyPillars, philosophyInsight, philosophyPermission } from './constants'
 
@@ -8,6 +11,29 @@ const iconMap = {
 }
 
 export default function PhilosophySection() {
+  const [visiblePillars, setVisiblePillars] = useState<Set<number>>(new Set())
+  const pillarsRef = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute('data-index'))
+            setVisiblePillars((prev) => new Set(prev).add(index))
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    pillarsRef.current.forEach((el) => {
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section id="about" className="bg-brand-cream py-20 sm:py-28 px-6">
       <div className="max-w-4xl mx-auto">
@@ -20,11 +46,21 @@ export default function PhilosophySection() {
         </blockquote>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-          {philosophyPillars.map((pillar) => {
+          {philosophyPillars.map((pillar, index) => {
             const Icon = iconMap[pillar.iconName]
 
             return (
-              <div key={pillar.name} className="text-center">
+              <div
+                key={pillar.name}
+                ref={(el) => { pillarsRef.current[index] = el }}
+                data-index={index}
+                className={`text-center transition-all duration-700 ${
+                  visiblePillars.has(index)
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
                 <div className="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center mx-auto mb-5">
                   <Icon className="w-8 h-8 text-purple-600" />
                 </div>

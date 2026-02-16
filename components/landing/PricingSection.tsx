@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Check, X, ShieldCheck } from 'lucide-react'
 import { pricing, pricingTiers, pricingIncludes } from './constants'
 
@@ -37,6 +37,28 @@ interface PricingSectionProps {
 
 export default function PricingSection({ onApply }: PricingSectionProps) {
   const { timeLeft, expired } = useCountdown(pricing.earlyBirdDeadline)
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute('data-index'))
+            setVisibleCards((prev) => new Set(prev).add(index))
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    cardsRef.current.forEach((el) => {
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section id="pricing" className="bg-white py-20 sm:py-28 px-6">
@@ -77,14 +99,21 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
 
         {/* 3 Tier cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {pricingTiers.map((tier) => (
+          {pricingTiers.map((tier, index) => (
             <div
               key={tier.name}
-              className={`relative rounded-2xl p-8 border-2 ${
+              ref={(el) => { cardsRef.current[index] = el }}
+              data-index={index}
+              className={`relative rounded-2xl p-8 border-2 transition-all duration-700 ${
                 tier.highlight
                   ? 'border-purple-400 bg-gradient-to-br from-purple-50 to-pink-50'
                   : 'border-gray-200 bg-white'
+              } ${
+                visibleCards.has(index)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4'
               }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               {tier.highlight && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-semibold px-4 py-1 rounded-full whitespace-nowrap">

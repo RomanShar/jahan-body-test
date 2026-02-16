@@ -13,7 +13,7 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
       {/* Background photo + overlay */}
       <Image
         src={hero.heroImage}
-        alt="Джахан на телесном ретрите в Португалии — возвращение контакта с собой"
+        alt="Суперблизость — телесный тренинг Джахана в Португалии"
         fill
         className="object-cover"
         priority
@@ -54,10 +54,17 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
           </a>
         </div>
 
-        {/* Urgency line */}
-        <p className="mt-6 text-sm text-purple-200 font-medium">
-          {hero.urgencyLine}
-        </p>
+        {/* Urgency badges */}
+        <div className="mt-6 flex flex-wrap gap-3 justify-center">
+          {hero.urgencyBadges.map((badge, i) => (
+            <span
+              key={i}
+              className="bg-white/10 backdrop-blur-sm text-white/90 px-4 py-1.5 rounded-full text-sm font-medium"
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
       </div>
 
     </section>

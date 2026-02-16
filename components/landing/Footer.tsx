@@ -8,9 +8,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-2">Безопасно быть близко</h3>
+            <h3 className="text-xl font-bold text-white mb-2">Суперблизость</h3>
             <p className="text-gray-500 text-sm max-w-xs">
-              Телесный ретрит в Португалии
+              Телесный тренинг в Пенише, Португалия
             </p>
           </div>
 
@@ -63,7 +63,7 @@ export default function Footer() {
         <div className="border-t border-white/5 pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-600 text-sm">
-              &copy; {new Date().getFullYear()} Безопасно быть близко. Все права защищены.
+              &copy; {new Date().getFullYear()} Суперблизость. Все права защищены.
             </p>
             <div className="flex gap-4 text-sm">
               <Link href="/privacy" className="text-gray-500 hover:text-gray-400 transition">

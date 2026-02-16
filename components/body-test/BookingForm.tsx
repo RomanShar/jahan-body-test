@@ -12,7 +12,6 @@ interface BookingFormProps {
 const BookingForm: React.FC<BookingFormProps> = ({ scores, avgScore, onBack }) => {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '';
 
-  // Загружаем Calendly widget script
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
@@ -20,7 +19,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ scores, avgScore, onBack }) =
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup
       const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
       if (existingScript) {
         existingScript.remove();
@@ -38,7 +36,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ scores, avgScore, onBack }) =
         Назад к результатам
       </button>
 
-      {/* Header */}
       <div className="text-center mb-6">
         <Calendar className="w-16 h-16 text-purple-500 mx-auto mb-4" />
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
@@ -54,7 +51,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ scores, avgScore, onBack }) =
         </div>
       </div>
 
-      {/* Calendly Inline Widget */}
       {calendlyUrl ? (
         <div
           className="calendly-inline-widget bg-white rounded-xl shadow-lg overflow-hidden"
@@ -69,7 +65,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ scores, avgScore, onBack }) =
         </div>
       )}
 
-      {/* What to expect */}
       <div className="mt-8 bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200">
         <h3 className="font-bold text-lg mb-3 text-gray-800">Что будет на сессии:</h3>
         <ul className="space-y-2 text-gray-700">
