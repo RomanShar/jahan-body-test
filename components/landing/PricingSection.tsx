@@ -81,6 +81,7 @@ export default function PricingSection() {
 
               <button
                 onClick={openModal}
+                aria-label={`${pricingCTA} — ${tier.name}`}
                 className="block w-full py-3 text-center transition-all text-[13px] uppercase tracking-wider font-medium bg-brand-clay text-white hover:bg-brand-clay-hover"
               >
                 {pricingCTA}

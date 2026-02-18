@@ -8,7 +8,7 @@ export default function FAQSection() {
   const contentRefs = useRef<(HTMLDivElement | null)[]>([])
   const [heights, setHeights] = useState<number[]>([])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const measured = contentRefs.current.map((ref) => ref?.scrollHeight || 0)
     setHeights(measured)
   }, [openIndex])
@@ -30,7 +30,7 @@ export default function FAQSection() {
               <button
                 id={`faq-btn-${index}`}
                 onClick={() => toggle(index)}
-                className="w-full flex items-center justify-between py-6 text-left focus-visible:outline-none"
+                className="w-full flex items-center justify-between py-6 text-left focus-visible:ring-2 focus-visible:ring-brand-clay focus-visible:ring-offset-2"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-panel-${index}`}
               >

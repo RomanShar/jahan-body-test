@@ -24,9 +24,9 @@ export default function FacilitatorSection() {
 
           {/* Bio */}
           <div className="flex-1">
-            <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-2">
+            <h3 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-2">
               {facilitator.name}
-            </h2>
+            </h3>
             <p className="text-brand-clay font-medium mb-6">
               {facilitator.title}
             </p>

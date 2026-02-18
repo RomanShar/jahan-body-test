@@ -32,7 +32,8 @@ export default function StickyHeader() {
     if (href?.startsWith('#')) {
       e.preventDefault()
       const el = document.querySelector(href)
-      el?.scrollIntoView({ behavior: 'smooth' })
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      el?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' })
     }
   }
 

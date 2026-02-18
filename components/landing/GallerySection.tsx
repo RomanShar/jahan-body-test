@@ -23,15 +23,27 @@ export default function GallerySection() {
     setLightboxIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
   }, [])
 
+  const lightboxRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<number | null>(null)
+
   useEffect(() => {
     if (!lightboxOpen) return
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeLightbox()
       if (e.key === 'ArrowRight') goNext()
       if (e.key === 'ArrowLeft') goPrev()
+      if (e.key === 'Tab') {
+        const focusable = lightboxRef.current?.querySelectorAll<HTMLElement>('button')
+        if (!focusable?.length) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+      }
     }
     document.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
+    setTimeout(() => lightboxRef.current?.querySelector<HTMLElement>('button')?.focus(), 50)
     return () => {
       document.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
@@ -101,6 +113,7 @@ export default function GallerySection() {
         {/* Lightbox */}
         {lightboxOpen && (
           <div
+            ref={lightboxRef}
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={closeLightbox}
             onTouchStart={handleTouchStart}
