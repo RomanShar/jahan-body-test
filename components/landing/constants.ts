@@ -349,7 +349,7 @@ export const videoTestimonials: VideoTestimonial[] = [
 
 export const testimonialsHeadline = 'Что говорят участники'
 export const videoTestimonialsHeadline = 'Послушайте участников'
-export const videoTestimonialsSubheadline = 'Настоящие отзывы сразу после тренинга'
+export const videoTestimonialsSubheadline = 'Настоящие отзывы после работы с Джаханом'
 
 // ===== VENUE =====
 export const venue = {
