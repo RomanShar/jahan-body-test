@@ -50,6 +50,7 @@ export interface PricingTier {
 export interface PhilosophyPillar {
   name: string
   quote: string
+  description: string
   iconName: 'move' | 'wind' | 'volume-2'
 }
 

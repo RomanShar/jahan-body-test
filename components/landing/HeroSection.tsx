@@ -52,15 +52,7 @@ function VideoCard({
 export default function HeroSection() {
   const { openModal } = useModal()
   const [cardIdx, setCardIdx] = useState(0)
-  const [isDesktop, setIsDesktop] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)')
-    setIsDesktop(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
+  const [showScrollHint, setShowScrollHint] = useState(true)
 
   // Rotate video cards — pause when section is off-screen
   const sectionRef = useRef<HTMLElement>(null)
@@ -81,6 +73,22 @@ export default function HeroSection() {
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => { stop(); observer.disconnect() }
+  }, [])
+
+  // Fade out scroll indicator on scroll
+  useEffect(() => {
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setShowScrollHint(window.scrollY < 100)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const staticBadges = hero.urgencyBadges.slice(0, 2)
@@ -158,44 +166,56 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Floating Video Cards — Desktop/Tablet: 3 cards (conditionally rendered to save mobile bandwidth) */}
-        {isDesktop && (
-          <div className="hidden md:block md:col-span-5 relative h-[600px]">
-            <VideoCard
-              video={video1}
-              className="absolute top-4 right-4 w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 ease-out z-10"
-            />
-            <VideoCard
-              video={video2}
-              className="absolute top-[180px] right-[200px] w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl -rotate-6 hover:rotate-0 transition-transform duration-500 ease-out z-20"
-            />
-            <VideoCard
-              video={video3}
-              className="absolute bottom-10 right-[60px] w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 ease-out z-30"
-            />
+        {/* Mobile: single video card */}
+        <div className="md:hidden flex justify-center">
+          <VideoCard
+            video={video1}
+            className="w-48 aspect-[3/4] bg-white p-1.5 rounded-sm shadow-2xl rotate-2"
+          />
+        </div>
 
-            {/* Video dots — only highlight lead card */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-40">
-              {HERO_VIDEOS.map((_, i) => (
+        {/* Desktop: 3 floating video cards */}
+        <div className="hidden md:block md:col-span-5 relative h-[600px]">
+          <VideoCard
+            video={video1}
+            className="absolute top-4 right-4 w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 ease-out z-10"
+          />
+          <VideoCard
+            video={video2}
+            className="absolute top-[180px] right-[200px] w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl -rotate-6 hover:rotate-0 transition-transform duration-500 ease-out z-20"
+          />
+          <VideoCard
+            video={video3}
+            className="absolute bottom-10 right-[60px] w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 ease-out z-30"
+          />
+
+          {/* Video dots — highlight visible window of 3 */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-40">
+            {HERO_VIDEOS.map((_, i) => {
+              const isLead = i === cardIdx
+              const isVisible = i === cardIdx || i === (cardIdx + 1) % HERO_VIDEOS.length || i === (cardIdx + 2) % HERO_VIDEOS.length
+              return (
                 <button
                   key={i}
                   onClick={() => setCardIdx(i)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    i === cardIdx
-                      ? 'bg-white scale-125'
-                      : 'bg-white/40'
+                  className={`rounded-full transition-all duration-300 ${
+                    isLead
+                      ? 'w-2.5 h-2.5 bg-white scale-125'
+                      : isVisible
+                        ? 'w-2 h-2 bg-white/80'
+                        : 'w-2 h-2 bg-white/30'
                   }`}
                   aria-label={`Видео ${i + 1}`}
                 />
-              ))}
-            </div>
+              )
+            })}
           </div>
-        )}
+        </div>
 
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
+      {/* Scroll indicator — fades out on scroll */}
+      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block transition-opacity duration-500 ${showScrollHint ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>

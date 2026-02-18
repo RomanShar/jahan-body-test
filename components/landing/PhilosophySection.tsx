@@ -57,7 +57,9 @@ export default function PhilosophySection() {
                   &laquo;{pillar.quote}&raquo;
                 </p>
 
-
+                <p className="text-brand-dark text-[15px] leading-relaxed">
+                  {pillar.description}
+                </p>
               </div>
             )
           })}

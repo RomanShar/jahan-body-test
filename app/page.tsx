@@ -3,7 +3,6 @@ import SocialProofBar from '@/components/landing/SocialProofBar'
 import PainPointsSection from '@/components/landing/PainPointsSection'
 import ManifestoSection from '@/components/landing/ManifestoSection'
 import PhilosophySection from '@/components/landing/PhilosophySection'
-import ScienceSection from '@/components/landing/ScienceSection'
 import ResultsSection from '@/components/landing/ResultsSection'
 import FacilitatorSection from '@/components/landing/FacilitatorSection'
 import TestimonialsSection from '@/components/landing/TestimonialsSection'
@@ -38,7 +37,6 @@ export default function Home() {
         <PainPointsSection />
         <ManifestoSection />
         <PhilosophySection />
-        <ScienceSection />
         <ResultsSection />
         <VideoBreak />
         <FacilitatorSection />
