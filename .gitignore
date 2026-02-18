@@ -70,7 +70,8 @@ index.html
 *.jpg
 *.jpeg
 *.MOV
-*.MP4
+/*.MP4
+/*.mp4
 
 # source video folders
 кружочки/
