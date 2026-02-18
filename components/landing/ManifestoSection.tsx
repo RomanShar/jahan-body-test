@@ -11,7 +11,7 @@ export default function ManifestoSection() {
         fill
         className="object-cover object-[50%_25%]"
         sizes="100vw"
-        priority
+        loading="lazy"
       />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60" />
