@@ -121,8 +121,13 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
             {hero.tagline}
           </p>
 
-          <h1 className="font-serif text-[clamp(40px,6vw,68px)] text-white leading-[1.1] mb-8 drop-shadow-lg">
-            {hero.headline}
+          <h1 className="font-serif text-[clamp(32px,5vw,56px)] text-white leading-[1.15] mb-8 drop-shadow-lg">
+            {hero.headline.split('\n').map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
 
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed mb-10 max-w-xl mx-auto md:mx-0 drop-shadow-md">

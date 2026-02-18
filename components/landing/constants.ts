@@ -3,7 +3,7 @@ import type { PainPoint, RetreatDay, Practice, Testimonial, VideoTestimonial, FA
 // ===== HERO =====
 export const hero = {
   tagline: 'Пениш · Португалия · 1–4 мая 2026',
-  headline: 'Твоё тело помнит, как быть счастливым',
+  headline: 'В голове - терапия, книги, понимание.\nВ теле - всё тот же зажим.',
   description: 'Телесный тренинг для русскоязычных в Европе. 4 дня тишины, звука и океана - чтобы вернуть контакт с собой, своим телом и близкими.',
   ctaPrimary: 'Оставить заявку',
   ctaSecondary: 'Почему это работает?',
