@@ -409,24 +409,10 @@ export const gallerySection = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: '/images/landing/gallery/moment-04-breathwork.webp',
-    alt: 'Парная практика дыхания',
-    caption: 'Дыхание вдвоем',
-    category: 'connection',
-    featured: true,
-  },
-  {
     src: '/images/landing/gallery/moment-06-circle.webp',
     alt: 'Групповой круг - пространство безопасности',
     caption: 'Безопасность группы',
     category: 'connection',
-  },
-  {
-    src: '/images/landing/gallery/moment-10-water-joy.webp',
-    alt: 'Группа держится за руки в воде, радость',
-    caption: 'Радость и связь',
-    category: 'joy',
-    featured: true,
   },
   {
     src: '/images/landing/gallery/moment-09-eye-contact.webp',

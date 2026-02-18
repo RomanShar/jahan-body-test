@@ -109,11 +109,6 @@ export default function GallerySection() {
                   : '(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
                 }
               />
-              {image.caption && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-3">
-                  <p className="text-white text-sm font-medium">{image.caption}</p>
-                </div>
-              )}
             </div>
           ))}
         </div>

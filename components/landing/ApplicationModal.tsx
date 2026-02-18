@@ -15,6 +15,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [telegram, setTelegram] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -30,6 +31,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
       setName('')
       setEmail('')
       setPhone('')
+      setTelegram('')
       setSubmitted(false)
       setError('')
       setConsent(false)
@@ -113,6 +115,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
         name: trimmedName,
         email: trimmedEmail,
         phone: phone.trim() || undefined,
+        telegram: telegram.trim() || undefined,
       })
       setSubmitted(true)
     } catch {
@@ -235,6 +238,20 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
               placeholder="+351 ..."
             />
             {fieldErrors.phone && <p className="text-red-500 text-xs mt-1">{fieldErrors.phone}</p>}
+          </div>
+
+          <div>
+            <label htmlFor="app-telegram" className="block text-sm text-brand-muted mb-1">
+              Telegram <span className="text-brand-light">(необязательно)</span>
+            </label>
+            <input
+              id="app-telegram"
+              type="text"
+              value={telegram}
+              onChange={(e) => setTelegram(e.target.value)}
+              className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
+              placeholder="@username"
+            />
           </div>
 
           {/* Honeypot */}

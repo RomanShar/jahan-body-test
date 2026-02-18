@@ -51,10 +51,6 @@ export default function Home() {
         <SafetySection />
         <VenueSection />
         <GallerySection />
-        <PhotoBreak
-          src="/images/landing/breaks/beach-golden.webp"
-          alt="Практика на берегу океана"
-        />
         <TargetAudienceSection />
         <PricingSection />
         <FAQSection />

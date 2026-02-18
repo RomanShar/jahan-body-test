@@ -15,6 +15,7 @@ export interface Lead {
   name: string
   email: string
   phone?: string
+  telegram?: string
   room_preference?: string
   motivation?: string
   test_results?: Record<string, number>
