@@ -71,9 +71,9 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
         const { count } = await supabase
           .from('leads')
           .select('*', { count: 'exact', head: true })
-        setSpotsOccupied(count || 0)
+        setSpotsOccupied(count ?? 0)
       } catch {
-        // Silently fail - badge just won't show dynamic count
+        // Fallback to null — will use static badge from constants
       }
     }
     fetchCount()

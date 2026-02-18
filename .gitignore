@@ -77,6 +77,9 @@ index.html
 кружочки/
 transcripts/
 
+# Audit screenshots
+public/audit-*
+
 # Cyrillic-named screenshots
 СУПЕРСПОСОБНОСТИ*
 Суперблизость*

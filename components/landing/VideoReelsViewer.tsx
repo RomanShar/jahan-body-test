@@ -49,12 +49,12 @@ export default function VideoReelsViewer({ videos, startIndex, onClose }: VideoR
   }, [currentIndex, hasVideo])
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientX
+    touchStartY.current = e.touches[0].clientY
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartY.current === null) return
-    const diff = touchStartY.current - e.changedTouches[0].clientX
+    const diff = touchStartY.current - e.changedTouches[0].clientY
     if (Math.abs(diff) > 60) {
       if (diff > 0) goNext()
       else goPrev()

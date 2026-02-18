@@ -65,7 +65,7 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
               } ${
                 visibleCards.has(index)
                   ? 'opacity-100 translate-y-0'
-                  : 'opacity-100 translate-y-4'
+                  : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >

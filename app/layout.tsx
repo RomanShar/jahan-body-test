@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://selfhealing.space'),
   title: 'Суперблизость — телесный тренинг в Пенише, Португалия',
   description: 'Твоё тело помнит, как быть счастливым. 4 дня тишины, звука и океана для тех, кто устал быть сильным. Пениш, Португалия, 1–4 мая 2026.',
+  icons: {
+    icon: '/favicon.png',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'Суперблизость — телесный тренинг в Португалии',
     description: 'Твоё тело помнит, как быть счастливым. 4 дня тишины, звука и океана. Пениш, 1–4 мая 2026.',
