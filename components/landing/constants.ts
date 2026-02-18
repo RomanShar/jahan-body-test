@@ -66,13 +66,13 @@ export const scienceItems = [
   {
     number: '→',
     label: 'Движение',
-    text: 'Мы всю жизнь двигались. Бегали, танцевали, дрались, обнимались. Тело помнит свободу - нужно только дать ему пространство.',
+    text: 'На тренинге нет хореографии и правил. Вы просто двигаетесь - как хочет тело. Через 20 минут плечи опускаются, челюсть расслабляется, и вы чувствуете себя иначе.',
     source: '',
   },
   {
     number: '→',
     label: 'Дыхание',
-    text: 'Когда дыхание свободно - тело оттаивает. Не нужно ничего анализировать. Просто дышать - и тело само находит, где зажато.',
+    text: 'Простые дыхательные техники, которым легко следовать. Тело начинает расслабляться само - без усилий и анализа. Многие впервые замечают, где именно держат напряжение.',
     source: '',
   },
   {
@@ -467,35 +467,11 @@ export const gallerySection = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: '/images/landing/gallery/moment-01-jahan-portrait.webp',
-    alt: 'Джахан - ведущий тренинга, момент присутствия',
-    caption: 'Присутствие',
-    category: 'process',
-    featured: true,
-  },
-  {
-    src: '/images/landing/gallery/moment-02-sitting-presence.webp',
-    alt: 'Участник в позе готовности, начало пути',
-    caption: 'Готовность',
-    category: 'process',
-  },
-  {
-    src: '/images/landing/gallery/moment-03-hands-face-release.webp',
-    alt: 'Эмоциональное освобождение, руки на лице',
-    caption: 'Освобождение',
-    category: 'process',
-  },
-  {
     src: '/images/landing/gallery/moment-04-breathwork.webp',
     alt: 'Парная практика дыхания',
     caption: 'Дыхание вдвоем',
     category: 'connection',
-  },
-  {
-    src: '/images/landing/gallery/moment-05-movement.webp',
-    alt: 'Свободное движение с закрытыми глазами',
-    caption: 'Свободное движение',
-    category: 'process',
+    featured: true,
   },
   {
     src: '/images/landing/gallery/moment-06-circle.webp',
