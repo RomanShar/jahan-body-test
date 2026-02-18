@@ -7,8 +7,9 @@ export default function StructuredData() {
     '@graph': [
       {
         '@type': 'Event',
-        name: 'Суперблизость — Телесный тренинг',
-        description: 'Телесный тренинг о возвращении контакта с собой, телом и близостью. Движение, дыхание и звук — для тех, кто устал разбираться головой.',
+        name: 'Суперблизость - Телесный тренинг',
+        description: 'Телесный тренинг, который возвращает мощь, энергию и притягательность. 4 дня в Португалии у океана - движение, дыхание, звук.',
+        url: 'https://selfhealing.space',
         startDate: '2026-05-01T15:00:00+01:00',
         endDate: '2026-05-04T12:00:00+01:00',
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -24,8 +25,8 @@ export default function StructuredData() {
           },
         },
         image: [
-          'https://selfhealing.space/images/landing/hero.jpg',
-          'https://selfhealing.space/images/landing/venue/venue-1.jpg',
+          'https://selfhealing.space/images/landing/hero.webp',
+          'https://selfhealing.space/images/landing/venue/hero-venue.webp',
         ],
         organizer: {
           '@type': 'Person',
@@ -34,7 +35,7 @@ export default function StructuredData() {
         offers: {
           '@type': 'AggregateOffer',
           priceCurrency: 'EUR',
-          lowPrice: '590',
+          lowPrice: '490',
           highPrice: '790',
           availability: 'https://schema.org/InStock',
           validFrom: '2026-02-16T00:00:00+00:00',

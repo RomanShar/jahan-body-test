@@ -3,12 +3,15 @@ import { facilitator } from './constants'
 
 export default function FacilitatorSection() {
   return (
-    <section id="facilitator" className="bg-white py-20 sm:py-28 px-6">
+    <section id="facilitator" className="bg-brand-body py-20 sm:py-28 px-6">
       <div className="max-w-4xl mx-auto">
+        <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-12 text-center">
+          Ведущий
+        </h2>
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
           {/* Photo */}
           <div className="flex-shrink-0">
-            <div className="w-72 h-96 md:w-80 md:h-[28rem] rounded-2xl overflow-hidden shadow-lg shadow-purple-200/30 relative">
+            <div className="w-72 h-96 md:w-80 md:h-[28rem] rounded-sm overflow-hidden relative">
               <Image
                 src={facilitator.photoUrl}
                 alt={facilitator.name}
@@ -21,29 +24,39 @@ export default function FacilitatorSection() {
 
           {/* Bio */}
           <div className="flex-1">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-2">
+            <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-2">
               {facilitator.name}
             </h2>
-            <p className="text-purple-600 font-medium mb-6">
+            <p className="text-brand-clay font-medium mb-6">
               {facilitator.title}
             </p>
-            <div className="text-gray-600 leading-relaxed mb-6 space-y-4">
+            <div className="text-brand-muted leading-relaxed mb-6 space-y-4">
               {facilitator.bio.split('\n\n').map((paragraph, i) => (
                 <p key={i} className={i === 0 ? 'text-lg' : 'text-base'}>{paragraph}</p>
               ))}
             </div>
 
             {/* Credentials */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-6">
               {facilitator.credentials.map((credential, index) => (
                 <span
                   key={index}
-                  className="bg-purple-50 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium border border-purple-100"
+                  className="bg-brand-body text-brand-muted px-4 py-1.5 text-sm border border-brand-border"
                 >
                   {credential}
                 </span>
               ))}
             </div>
+
+            {/* Telegram channel */}
+            <a
+              href={facilitator.telegramChannel}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-clay underline underline-offset-4 text-[15px] hover:text-brand-clay-hover transition-colors"
+            >
+              {facilitator.telegramChannelText}
+            </a>
           </div>
         </div>
       </div>

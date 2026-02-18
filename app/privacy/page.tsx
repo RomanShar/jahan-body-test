@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Политика конфиденциальности — Безопасно быть близко',
+  title: 'Политика конфиденциальности — Суперблизость',
 }
 
 export default function PrivacyPage() {
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
         <div className="prose prose-gray max-w-none space-y-6 text-gray-600 leading-relaxed">
           <p>
             Настоящая политика описывает, как мы собираем, используем и защищаем ваши персональные данные
-            на сайте «Безопасно быть близко».
+            на сайте «Суперблизость».
           </p>
 
           <h2 className="text-xl font-bold text-gray-800 mt-8">Какие данные мы собираем</h2>

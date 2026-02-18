@@ -51,3 +51,31 @@ docs/
 2025-09-03*/
 2025-09-15*/
 *.pdf
+
+# temp screenshots & audit artifacts
+screenshot-*.png
+sc-*.png
+audit-*.png
+fix-*.png
+cto-*.png
+show-*.png
+test-*.png
+test-results/
+*.html
+*.html.bak
+CONTENT-AUDIT.md
+index.html
+
+# temp images in root
+*.jpg
+*.jpeg
+*.MOV
+*.MP4
+
+# source video folders
+кружочки/
+transcripts/
+
+# Cyrillic-named screenshots
+СУПЕРСПОСОБНОСТИ*
+Суперблизость*

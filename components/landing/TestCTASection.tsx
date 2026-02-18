@@ -16,7 +16,7 @@ export default function TestCTASection() {
           .select('*', { count: 'exact', head: true })
         setLeadCount(count || 0)
       } catch {
-        // Silently fail — counter just won't show
+        // Silently fail - counter just won't show
       }
     }
     fetchCount()
@@ -67,11 +67,13 @@ export default function TestCTASection() {
           {testCTA.button}
         </Link>
 
-        {leadCount !== null && leadCount > 0 && (
-          <p className="text-gray-500 text-sm mt-4">
-            {testCTA.counter} {leadCount} человек
-          </p>
-        )}
+        <div className="min-h-6 mt-4">
+          {leadCount !== null && leadCount > 0 && (
+            <p className="text-gray-500 text-sm">
+              {testCTA.counter} {leadCount} человек
+            </p>
+          )}
+        </div>
       </div>
     </section>
   )

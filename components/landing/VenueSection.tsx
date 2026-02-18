@@ -1,175 +1,131 @@
 import Image from 'next/image'
-import { Home, Waves, Sparkles, Flower2, TreePalm, Music, Palette, Sun, UtensilsCrossed, MapPin, Navigation } from 'lucide-react'
-import { venue, venueFeatures, venueRooms, venueIndoor, venueOutdoor, venueLocation, venuePhotos } from './constants'
-
-const iconMap: Record<string, typeof Home> = {
-  '🏡': Home,
-  '🏊': Waves,
-  '🧖': Sparkles,
-  '🧘': Flower2,
-  '🌊': Waves,
-  '🌳': TreePalm,
-  '🎵': Music,
-  '🎨': Palette,
-  '☀️': Sun,
-  '🍳': UtensilsCrossed,
-}
+import { MapPin, Navigation } from 'lucide-react'
+import { venue, venueHighlights, accommodationTiers, venueLocation, pricingTiers, pricing } from './constants'
 
 export default function VenueSection() {
   return (
-    <section id="venue" className="bg-brand-cream py-20 sm:py-28 px-6">
+    <section id="venue" className="bg-brand-body py-20 sm:py-28 px-6">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-3 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-3 text-center">
           {venue.headline}
         </h2>
-        <p className="text-lg text-gray-500 text-center mb-4">
+        <p className="text-lg text-brand-muted text-center mb-4">
           {venue.subtitle}
         </p>
-        <p className="text-gray-600 text-center mb-6 max-w-2xl mx-auto">
+        <p className="text-brand-muted text-center mb-12 max-w-2xl mx-auto">
           {venue.description}
         </p>
-        <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto italic leading-relaxed">
-          {venue.sensoryLine}
-        </p>
 
-        {/* Photo gallery — 2x4 grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-16">
-          {venuePhotos.map((photo, i) => (
+        {/* Hero venue photo */}
+        <div className="relative w-full aspect-[21/9] rounded-sm overflow-hidden mb-12">
+          <Image
+            src="/images/landing/venue/hero-venue.webp"
+            alt="PPL Ocean Retreat Centre - вид с высоты, рядом с океаном"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 1024px"
+            quality={85}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute bottom-4 left-6 sm:bottom-6 sm:left-8">
+            <p className="text-white font-serif text-lg sm:text-xl drop-shadow-lg">
+              PPL Ocean Retreat Centre
+            </p>
+            <p className="text-white/80 text-sm drop-shadow-lg">
+              Сан-Бернардино, рядом с Пенише
+            </p>
+          </div>
+        </div>
+
+        {/* Venue highlights - asymmetric grid: first photo larger */}
+        <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-3 mb-16">
+          {venueHighlights.map((item, i) => (
             <div
               key={i}
-              className={`relative overflow-hidden rounded-xl shadow-md ${
-                i === 0 ? 'col-span-2 row-span-2 aspect-[4/3]' : 'aspect-[4/3]'
+              className={`group relative rounded-sm overflow-hidden ${
+                i === 0
+                  ? 'col-span-2 row-span-2 aspect-[4/3] md:aspect-auto'
+                  : 'aspect-[4/3]'
               }`}
             >
               <Image
-                src={photo.src}
-                alt={photo.alt}
+                src={item.image}
+                alt={item.alt}
                 fill
-                className="object-cover hover:scale-105 transition-transform duration-500"
-                sizes={i === 0 ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes={i === 0 ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 50vw, 33vw'}
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <p className={`absolute bottom-2 left-3 right-3 text-white font-medium ${
+                i === 0 ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'
+              }`}>
+                {item.label}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Features grid — 2x5 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-16">
-          {venueFeatures.map((feature, i) => {
-            const IconComponent = iconMap[feature.icon]
-            return (
-              <div
-                key={i}
-                className="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm"
-              >
-                {IconComponent ? (
-                  <IconComponent className="w-5 h-5 text-purple-500 flex-shrink-0" />
-                ) : (
-                  <span className="text-xl flex-shrink-0">{feature.icon}</span>
-                )}
-                <span className="text-gray-700 text-sm">{feature.text}</span>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Indoor & Outdoor Spaces */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {/* Indoor */}
-          <div>
-            <h3 className="font-serif text-xl font-semibold text-gray-800 mb-4">Внутренние пространства</h3>
-            <div className="grid grid-cols-2 gap-3">
-              {venueIndoor.map((space, i) => (
-                <div key={i} className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
-                  <Image src={space.image} alt={space.text} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <p className="absolute bottom-2 left-3 right-3 text-white text-xs font-medium">{space.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Outdoor */}
-          <div>
-            <h3 className="font-serif text-xl font-semibold text-gray-800 mb-4">На открытом воздухе</h3>
-            <div className="grid grid-cols-2 gap-3">
-              {venueOutdoor.map((space, i) => (
-                <div key={i} className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
-                  <Image src={space.image} alt={space.text} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <p className="absolute bottom-2 left-3 right-3 text-white text-xs font-medium">{space.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Rooms */}
+        {/* Accommodation - 3 tier cards */}
         <div className="mb-16">
-          <h3 className="font-serif text-xl font-semibold text-gray-800 mb-2 text-center">Размещение</h3>
-          <p className="text-gray-500 text-sm text-center mb-6">До 20 гостей · Все комнаты с отдельными кроватями</p>
+          <h3 className="font-serif text-xl text-brand-dark mb-2 text-center">
+            Варианты размещения
+          </h3>
+          <p className="text-brand-light text-sm text-center mb-6">
+            Все комнаты с отдельными кроватями · До 20 гостей
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {accommodationTiers.map((tier, i) => {
+              const earlyBirdActive = new Date(pricing.earlyBirdDeadline).getTime() > Date.now()
+              const pt = pricingTiers[i]
+              const displayPrice = earlyBirdActive && pt?.earlyBird ? pt.earlyBird : pt?.price
 
-          {/* Suites */}
-          <p className="text-sm font-medium text-purple-600 mb-3 uppercase tracking-wide">Сьюты с собственной ванной</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            {venueRooms.suites.map((room, i) => (
-              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm">
-                <div className="relative aspect-[4/3]">
-                  <Image src={room.image} alt={`Комната ${room.name}`} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
+              return (
+                <div key={i} className="bg-brand-card overflow-hidden border border-brand-border">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={tier.image}
+                      alt={tier.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-baseline justify-between">
+                      <p className="font-medium text-brand-dark text-sm">{tier.name}</p>
+                      {displayPrice && (
+                        <p className="text-brand-clay font-serif text-lg">от €{displayPrice}</p>
+                      )}
+                    </div>
+                    <p className="text-brand-light text-xs mt-1">{tier.description}</p>
+                  </div>
                 </div>
-                <div className="p-3">
-                  <p className="font-medium text-gray-800 text-sm">&laquo;{room.name}&raquo;</p>
-                  <p className="text-gray-500 text-xs mt-1">{room.beds} кровати · {room.floor} этаж</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{room.features}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Shared rooms */}
-          <p className="text-sm font-medium text-purple-600 mb-3 uppercase tracking-wide">Комнаты с общей ванной</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            {venueRooms.shared.map((room, i) => (
-              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm">
-                <div className="p-4">
-                  <p className="font-medium text-gray-800 text-sm">&laquo;{room.name}&raquo;</p>
-                  <p className="text-gray-500 text-xs mt-1">{room.beds} кровати · {room.floor} этаж</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{room.features}</p>
-                </div>
-              </div>
-            ))}
-            {/* Facilitator studio */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-              <div className="relative aspect-[4/3]">
-                <Image src={venueRooms.facilitator.image} alt="Студия фасилитатора" fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
-              </div>
-              <div className="p-3">
-                <p className="text-gray-500 text-xs">{venueRooms.facilitator.description}</p>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </div>
 
         {/* Location */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-          <h3 className="font-serif text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-purple-500" />
+        <div className="bg-brand-card p-6 sm:p-8 border border-brand-border mb-8">
+          <h3 className="font-serif text-xl text-brand-dark mb-4 flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-brand-sage" />
             Расположение
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
             {Object.values(venueLocation).map((item, i) => (
-              <div key={i} className="flex items-start gap-2 text-gray-600 text-sm">
-                <Navigation className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+              <div key={i} className="flex items-start gap-2 text-brand-muted text-sm">
+                <Navigation className="w-4 h-4 text-brand-sage mt-0.5 flex-shrink-0" />
                 {item}
               </div>
             ))}
           </div>
-          <p className="text-gray-400 text-xs mb-3">{venue.address}</p>
+          <p className="text-brand-light text-xs mb-3">{venue.address}</p>
           <a
             href={venue.mapLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-purple-600 hover:text-purple-700 text-sm font-medium transition inline-flex items-center gap-1"
+            className="text-brand-clay hover:text-brand-clay-hover text-sm font-medium transition inline-flex items-center gap-1"
           >
             Открыть в Google Maps →
           </a>
@@ -181,7 +137,7 @@ export default function VenueSection() {
             href={venue.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-purple-600 hover:text-purple-700 font-medium transition inline-flex items-center gap-1"
+            className="text-brand-clay hover:text-brand-clay-hover font-medium transition inline-flex items-center gap-1"
           >
             {venue.linkText}
           </a>

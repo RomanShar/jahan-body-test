@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
-import { pricingTiers, pricing } from './constants'
+import Link from 'next/link'
+import { pricing, contact } from './constants'
 import { saveLead } from '@/lib/supabase'
 
 interface ApplicationModalProps {
@@ -14,44 +15,64 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [selectedTier, setSelectedTier] = useState(pricingTiers[1].name)
-  const [motivation, setMotivation] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [consent, setConsent] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
+  const modalRef = useRef<HTMLDivElement>(null)
+  const firstInputRef = useRef<HTMLInputElement>(null)
 
-  // Reset form when modal opens
   useEffect(() => {
     if (isOpen) {
       setName('')
       setEmail('')
       setPhone('')
-      setSelectedTier(pricingTiers[1].name)
-      setMotivation('')
       setSubmitted(false)
       setError('')
+      setConsent(false)
+      setHoneypot('')
+      setTimeout(() => firstInputRef.current?.focus(), 100)
     }
   }, [isOpen])
 
-  // Escape key handler
-  const handleEscape = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') onClose()
-  }, [onClose])
-
   useEffect(() => {
     if (!isOpen) return
-    document.addEventListener('keydown', handleEscape)
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last?.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first?.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
     document.body.style.overflow = 'hidden'
     return () => {
-      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [isOpen, handleEscape])
+  }, [isOpen, onClose])
 
   if (!isOpen) return null
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (honeypot) return
     setError('')
     setSubmitting(true)
 
@@ -60,12 +81,10 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
         name,
         email,
         phone: phone || undefined,
-        room_preference: selectedTier,
-        motivation: motivation || undefined,
       })
       setSubmitted(true)
     } catch {
-      setError('Произошла ошибка. Попробуйте ещё раз или напишите нам в Telegram.')
+      setError('error')
     } finally {
       setSubmitting(false)
     }
@@ -80,29 +99,32 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
       <div
         className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
         onClick={handleBackdropClick}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title-success"
       >
-        <div className="bg-white rounded-2xl p-8 sm:p-10 max-w-md w-full relative text-center">
+        <div ref={modalRef} className="bg-brand-body p-8 sm:p-10 max-w-md w-full relative text-center">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition"
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-brand-light hover:text-brand-dark transition"
             aria-label="Закрыть"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-            <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <div className="w-16 h-16 rounded-full bg-brand-sage/20 flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-brand-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
 
-          <h3 className="text-2xl font-bold text-gray-800 mb-3">Спасибо за заявку!</h3>
-          <p className="text-gray-600 mb-6">
+          <h3 id="modal-title-success" className="font-serif text-2xl text-brand-dark mb-3">Спасибо за заявку!</h3>
+          <p className="text-brand-muted mb-6">
             Мы свяжемся с вами в течение 24 часов для короткого интервью.
           </p>
           <button
             onClick={onClose}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all"
+            className="bg-brand-clay text-white px-8 py-3 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all"
           >
             Отлично
           </button>
@@ -115,39 +137,43 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
       onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
     >
-      <div className="bg-white rounded-2xl p-8 sm:p-10 max-w-md w-full relative max-h-[90vh] overflow-y-auto">
+      <div ref={modalRef} className="bg-brand-body p-8 sm:p-10 max-w-md w-full relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition"
+          className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-brand-light hover:text-brand-dark transition"
           aria-label="Закрыть"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-2xl font-bold text-gray-800 mb-2">Оставить заявку</h3>
-        <p className="text-gray-500 text-sm mb-6">
-          {pricing.dates} &middot; до {pricing.groupSize} участников
+        <h3 id="modal-title" className="font-serif text-2xl text-brand-dark mb-2">Оставить заявку</h3>
+        <p className="text-brand-light text-sm mb-6">
+          {pricing.dates}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="app-name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="app-name" className="block text-sm text-brand-muted mb-1">
               Имя
             </label>
             <input
+              ref={firstInputRef}
               id="app-name"
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+              className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
               placeholder="Ваше имя"
             />
           </div>
 
           <div>
-            <label htmlFor="app-email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="app-email" className="block text-sm text-brand-muted mb-1">
               Email
             </label>
             <input
@@ -156,82 +182,72 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+              className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
               placeholder="your@email.com"
             />
           </div>
 
           <div>
-            <label htmlFor="app-phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Телефон / WhatsApp <span className="text-gray-500">(необязательно)</span>
+            <label htmlFor="app-phone" className="block text-sm text-brand-muted mb-1">
+              Телефон / WhatsApp <span className="text-brand-light">(необязательно)</span>
             </label>
             <input
               id="app-phone"
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+              className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
               placeholder="+351 ..."
             />
           </div>
 
-          <div>
-            <p className="block text-sm font-medium text-gray-700 mb-3">Предпочитаемая комната</p>
-            <div className="space-y-2">
-              {pricingTiers.map((tier) => (
-                <label
-                  key={tier.name}
-                  className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                    selectedTier === tier.name
-                      ? 'border-purple-400 bg-purple-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="tier"
-                    value={tier.name}
-                    checked={selectedTier === tier.name}
-                    onChange={(e) => setSelectedTier(e.target.value)}
-                    className="text-purple-500 focus:ring-purple-400"
-                  />
-                  <div className="flex-1">
-                    <span className="font-semibold text-gray-800 text-sm">{tier.name}</span>
-                    <span className="text-gray-500 text-xs ml-2">{tier.description}</span>
-                  </div>
-                  <span className="text-purple-600 font-medium text-sm">{tier.price} {pricing.currency}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="app-motivation" className="block text-sm font-medium text-gray-700 mb-1">
-              Почему хотите участвовать? <span className="text-gray-500">(необязательно)</span>
-            </label>
-            <textarea
-              id="app-motivation"
-              value={motivation}
-              onChange={(e) => setMotivation(e.target.value)}
-              rows={3}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent resize-none"
-              placeholder="Расскажите немного о себе..."
+          {/* Honeypot */}
+          <div className="absolute -left-[9999px]" aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
             />
           </div>
 
+          {/* GDPR consent */}
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              required
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+              className="mt-1 text-brand-clay focus:ring-brand-clay"
+            />
+            <span className="text-brand-muted text-xs leading-relaxed">
+              Я согласен(а) на обработку персональных данных в соответствии с{' '}
+              <Link href="/privacy" target="_blank" className="text-brand-clay underline underline-offset-4 hover:text-brand-clay-hover">
+                политикой конфиденциальности
+              </Link>
+            </span>
+          </label>
+
           {error && (
-            <p className="text-red-500 text-sm">{error}</p>
+            <p className="text-red-500 text-sm">
+              Произошла ошибка. Попробуйте ещё раз или{' '}
+              <a href={contact.telegram} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 font-medium">
+                напишите нам в Telegram
+              </a>.
+            </p>
           )}
 
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg shadow-purple-500/25 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-brand-clay text-white py-4 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {submitting ? 'Отправляем...' : 'Оставить заявку'}
+            {submitting ? 'Отправляем...' : 'Отправить заявку'}
           </button>
 
-          <p className="text-gray-500 text-xs text-center">
+          <p className="text-brand-light text-xs text-center">
             {pricing.applicationNote}
           </p>
         </form>

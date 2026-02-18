@@ -3,13 +3,13 @@ import { navItems, contact } from './constants'
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-dark py-12 px-6 border-t border-white/5">
+    <footer className="bg-brand-body py-12 pb-24 md:pb-12 px-6 border-t border-brand-border">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-white mb-2">Суперблизость</h3>
-            <p className="text-gray-500 text-sm max-w-xs">
+            <h3 className="text-xl font-bold text-brand-dark mb-2">Суперблизость</h3>
+            <p className="text-brand-light text-sm max-w-xs">
               Телесный тренинг в Пенише, Португалия
             </p>
           </div>
@@ -20,14 +20,14 @@ export default function Footer() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-gray-400 hover:text-white transition text-sm"
+                className="text-brand-muted hover:text-brand-dark transition text-sm py-2 px-1"
               >
                 {item.label}
               </a>
             ))}
             <Link
               href="/test"
-              className="text-gray-400 hover:text-white transition text-sm"
+              className="text-brand-muted hover:text-brand-dark transition text-sm py-2 px-1"
             >
               Тест тела
             </Link>
@@ -36,10 +36,18 @@ export default function Footer() {
           {/* Contact */}
           <div className="flex gap-4">
             <a
+              href={contact.telegramChannel}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-muted hover:text-brand-dark transition text-sm py-2 px-1"
+            >
+              Telegram-канал
+            </a>
+            <a
               href={contact.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition text-sm"
+              className="text-brand-muted hover:text-brand-dark transition text-sm py-2 px-1"
             >
               Telegram
             </a>
@@ -47,30 +55,33 @@ export default function Footer() {
               href={contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition text-sm"
+              className="text-brand-muted hover:text-brand-dark transition text-sm py-2 px-1"
             >
               WhatsApp
             </a>
             <a
               href={`mailto:${contact.email}`}
-              className="text-gray-400 hover:text-white transition text-sm"
+              className="text-brand-muted hover:text-brand-dark transition text-sm py-2 px-1"
             >
               Email
             </a>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6">
+        <div className="border-t border-brand-border pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 text-sm">
+            <p className="text-brand-light text-sm">
               &copy; {new Date().getFullYear()} Суперблизость. Все права защищены.
             </p>
             <div className="flex gap-4 text-sm">
-              <Link href="/privacy" className="text-gray-500 hover:text-gray-400 transition">
+              <Link href="/privacy" className="text-brand-light hover:text-brand-muted transition">
                 Политика конфиденциальности
               </Link>
             </div>
           </div>
+          <p className="text-brand-light text-xs mt-6 text-center max-w-lg mx-auto">
+            Тренинг не является медицинской диагностикой. Для медицинских вопросов обратитесь к врачу.
+          </p>
         </div>
       </div>
     </footer>

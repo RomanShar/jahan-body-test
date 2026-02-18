@@ -1,155 +1,108 @@
-'use client'
-
-import { useState } from 'react'
-import { Shield, Waves, Sunrise, Star, ChevronDown } from 'lucide-react'
-import { retreatSection, retreatDays, practices, retreatSafety } from './constants'
-
-const dayIcons = [Shield, Waves, Sunrise, Star]
+import Image from 'next/image'
+import { retreatSection, retreatDays, retreatDailyRhythm } from './constants'
 
 export default function RetreatSection() {
-  const [activeDay, setActiveDay] = useState(0)
-  const [safetyOpen, setSafetyOpen] = useState(false)
-
   return (
-    <section id="retreat" className="bg-white py-20 sm:py-28 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-800 mb-4 text-center">
+    <section id="program" className="bg-brand-card py-20 sm:py-28">
+      <div className="max-w-5xl mx-auto px-6 mb-16 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-4">
           {retreatSection.headline}
         </h2>
-        <p className="text-gray-500 text-center mb-16 max-w-xl mx-auto">
+        <p className="text-brand-muted max-w-xl mx-auto">
           {retreatSection.location}. {retreatSection.locationDescription}
         </p>
+      </div>
 
-        {/* Format metric */}
-        <div className="flex justify-center mb-10">
-          <span className="bg-purple-50 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium">
-            85% практика · 15% теория
-          </span>
-        </div>
+      {/* Checkerboard rows */}
+      <div>
+        {retreatDays.map((day, index) => {
+          const isEven = index % 2 === 1
 
-        {/* Day selector */}
-        <div className="flex flex-wrap gap-2 sm:gap-4 mb-10 justify-center">
-          {retreatDays.map((day, index) => {
-            const Icon = dayIcons[index]
-            return (
-              <button
-                key={index}
-                onClick={() => setActiveDay(index)}
-                className={`flex items-center gap-2 px-4 sm:px-5 py-3 rounded-xl font-semibold transition-all text-sm sm:text-base ${
-                  activeDay === index
-                    ? 'bg-purple-600 text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+          return (
+            <div
+              key={index}
+              className={`grid grid-cols-1 md:grid-cols-2 min-h-[450px] ${
+                isEven ? '' : ''
+              }`}
+            >
+              {/* Text */}
+              <div
+                className={`bg-brand-card p-10 sm:p-12 flex flex-col justify-center ${
+                  isEven ? 'md:order-2' : ''
                 }`}
               >
-                <Icon className="w-5 h-5" />
-                <span className="hidden sm:inline">День {day.day}:</span>
-                <span>{day.title}</span>
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Day content */}
-        <div className="bg-white rounded-2xl p-8 sm:p-10 shadow-sm border border-gray-100 mb-16">
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">
-            День {retreatDays[activeDay].day}: {retreatDays[activeDay].title}
-          </h3>
-          <p className="text-purple-600 font-medium mb-6 text-lg">
-            {retreatDays[activeDay].subtitle}
-          </p>
-          <p className="text-gray-600 text-lg leading-relaxed mb-4">
-            {retreatDays[activeDay].description}
-          </p>
-
-          {retreatDays[activeDay].emotionalArc && (
-            <p className="text-purple-500/80 italic text-sm leading-relaxed mb-8">
-              {retreatDays[activeDay].emotionalArc}
-            </p>
-          )}
-
-          {/* Schedule */}
-          {retreatDays[activeDay].schedule && (
-            <div className="mb-8">
-              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Ритм дня</h4>
-              <div className="space-y-2">
-                {retreatDays[activeDay].schedule!.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-purple-300 flex-shrink-0" />
-                    <span className="text-gray-600">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="flex flex-wrap gap-3">
-            {retreatDays[activeDay].practices.map((practice, i) => (
-              <span
-                key={i}
-                className="bg-purple-50 text-purple-700 px-4 py-2 rounded-lg text-sm font-medium"
-              >
-                {practice}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Practices grid */}
-        <div id="program">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-            Что вас ждёт
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {practices.map((practice, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 border border-gray-100 hover:border-purple-200 transition-colors"
-              >
-                <h4 className="font-bold text-gray-800 mb-2">{practice.name}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {practice.description}
+                <p className="text-brand-sage uppercase tracking-widest text-xs mb-4">
+                  День {day.day}
                 </p>
+                <h3 className="font-serif text-2xl text-brand-dark mb-2">
+                  {day.title}
+                </h3>
+                <p className="text-brand-muted leading-relaxed mb-6">
+                  {day.description}
+                </p>
+
+                <ul className="space-y-2 mb-6">
+                  {day.practices.map((practice, i) => (
+                    <li key={i} className="flex items-start gap-2 text-brand-muted text-[15px]">
+                      <span className="text-brand-sage mt-0.5">·</span>
+                      {practice}
+                    </li>
+                  ))}
+                </ul>
+
+                {day.emotionalArc && (
+                  <p className="italic text-brand-muted text-sm border-l-2 border-brand-sage-light pl-4">
+                    {day.emotionalArc}
+                  </p>
+                )}
               </div>
-            ))}
-          </div>
+
+              {/* Image */}
+              <div
+                className={`relative min-h-[300px] md:min-h-0 ${
+                  isEven ? 'md:order-1 order-first' : ''
+                } ${!isEven ? '' : 'order-first md:order-1'}`}
+              >
+                {day.image && (
+                  <Image
+                    src={day.image}
+                    alt={`День ${day.day}: ${day.title}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Daily Rhythm */}
+      <div className="max-w-4xl mx-auto px-6 py-20 sm:py-24">
+        <h3 className="font-serif text-2xl sm:text-3xl text-brand-dark mb-3 text-center">
+          {retreatDailyRhythm.headline}
+        </h3>
+        <p className="text-brand-muted text-sm text-center mb-12 max-w-lg mx-auto">
+          {retreatDailyRhythm.subtitle}
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+          {retreatDailyRhythm.periods.map((period) => (
+            <div key={period.time} className="text-center">
+              <p className="text-brand-sage uppercase tracking-widest text-xs mb-3">
+                {period.time}
+              </p>
+              <p className="text-brand-muted text-[15px] leading-relaxed">
+                {period.description}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* Safety & boundaries (collapsible) */}
-        <div className="mt-16">
-          <button
-            onClick={() => setSafetyOpen(!safetyOpen)}
-            className="w-full flex items-center justify-between bg-white rounded-xl p-6 border border-gray-100 hover:border-purple-200 transition-colors text-left"
-          >
-            <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6 text-purple-500" />
-              <span className="text-xl font-bold text-gray-800">Безопасность и границы</span>
-            </div>
-            <ChevronDown
-              className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${
-                safetyOpen ? 'rotate-180' : ''
-              }`}
-            />
-          </button>
-
-          <div
-            className={`overflow-hidden transition-all duration-300 ${
-              safetyOpen ? 'max-h-96 mt-4' : 'max-h-0'
-            }`}
-          >
-            <div className="bg-white rounded-xl p-6 border border-gray-100 space-y-3">
-              {retreatSafety.map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <p className="italic text-brand-muted text-sm text-center border-t border-brand-border pt-8 max-w-2xl mx-auto">
+          {retreatDailyRhythm.integrationNote}
+        </p>
       </div>
     </section>
   )

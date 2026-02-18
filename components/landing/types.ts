@@ -1,4 +1,5 @@
 export interface PainPoint {
+  title: string
   text: string
   icon: string
 }
@@ -17,6 +18,7 @@ export interface RetreatDay {
   practices: string[]
   schedule?: string[]
   emotionalArc?: string
+  image?: string
 }
 
 export interface Practice {
@@ -32,6 +34,15 @@ export interface Testimonial {
   resultHighlight?: string
   videoUrl?: string
   image?: string
+  featured?: boolean
+}
+
+export interface VideoTestimonial {
+  name: string
+  quote: string
+  duration: string
+  videoUrl?: string
+  posterUrl?: string
 }
 
 export interface FAQItem {
@@ -55,27 +66,20 @@ export interface PricingTier {
 export interface PhilosophyPillar {
   name: string
   quote: string
-  evidence: string
   iconName: 'move' | 'wind' | 'volume-2'
 }
 
-export interface VenueFeature {
-  text: string
-  icon: string
-}
-
-export interface VenueRoom {
-  name: string
-  floor: number
-  beds: number
-  features: string
+export interface VenueHighlight {
   image: string
+  label: string
+  alt: string
 }
 
-export interface VenueRooms {
-  suites: VenueRoom[]
-  shared: VenueRoom[]
-  facilitator: { description: string; image: string }
+export interface AccommodationTier {
+  name: string
+  description: string
+  image: string
+  alt: string
 }
 
 export interface GalleryImage {
@@ -83,4 +87,10 @@ export interface GalleryImage {
   alt: string
   caption?: string
   category?: 'process' | 'connection' | 'joy'
+  featured?: boolean
+}
+
+export interface ManifestoData {
+  quote: string
+  author: string
 }

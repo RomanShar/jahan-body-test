@@ -10,15 +10,20 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
       },
       colors: {
         brand: {
-          purple: '#8b5cf6',
-          pink: '#ec4899',
-          dark: '#1e1b2e',
-          cream: '#fdf4e3',
-          warm: '#c4956a',
+          clay: '#C05640',
+          'clay-hover': '#A0402D',
+          sage: '#8DA399',
+          'sage-light': '#B8CCC3',
+          body: '#F2F0EB',
+          card: '#FFFFFF',
+          border: '#E0DDD6',
+          dark: '#2A2A2A',
+          muted: '#5A5A5A',
+          light: '#888888',
         },
       },
       animation: {

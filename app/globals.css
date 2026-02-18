@@ -1,3 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F2F0EB;
+    color: #2A2A2A;
+  }
+
+  a:not([class*="no-underline"]) {
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+  }
+
+  /* Global focus-visible style for accessibility */
+  :focus-visible {
+    outline: 2px solid #C05640;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Selection style */
+  ::selection {
+    background: #E8D5C4;
+    color: #2A2A2A;
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 0.75rem 1.5rem;
+  background: #C05640;
+  color: white;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-to-main:focus {
+  left: 0;
+  top: 0;
+}
+
+/* Hide scrollbar for horizontal scroll carousels */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

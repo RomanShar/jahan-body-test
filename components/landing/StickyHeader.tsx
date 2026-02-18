@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { navItems } from './constants'
 
@@ -14,10 +13,16 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      const isVisible = window.scrollY > window.innerHeight * 0.4
-      setVisible(isVisible)
-      if (!isVisible) setMobileMenuOpen(false)
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const isVisible = window.scrollY > window.innerHeight * 0.4
+        setVisible(isVisible)
+        if (!isVisible) setMobileMenuOpen(false)
+        ticking = false
+      })
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -32,20 +37,18 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
           : '-translate-y-full opacity-0 pointer-events-none'
       }`}
     >
-      <div className="bg-brand-dark/95 backdrop-blur-md border-b border-white/5">
+      <div className="bg-brand-body/92 backdrop-blur-md border-b border-brand-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="text-white font-bold text-lg">
-            Безопасно быть близко
+          <a href="#" className="text-brand-dark uppercase tracking-[0.2em] font-bold text-sm">
+            Суперблизость
           </a>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-gray-400 hover:text-white transition text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 rounded"
+                className="text-brand-muted hover:text-brand-dark transition text-sm"
               >
                 {item.label}
               </a>
@@ -53,18 +56,16 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* CTA */}
             <button
               onClick={onApply}
-              className="bg-purple-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-purple-700 transition-all text-sm shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              className="bg-brand-clay text-white px-5 py-2 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all"
             >
-              Оставить заявку
+              Занять место
             </button>
 
-            {/* Mobile hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 rounded"
+              className="md:hidden w-10 h-10 flex items-center justify-center text-brand-muted hover:text-brand-dark transition"
               aria-label={mobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
               aria-expanded={mobileMenuOpen}
             >
@@ -74,9 +75,8 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <div
-        className={`md:hidden bg-brand-dark/95 backdrop-blur-md border-b border-white/5 overflow-hidden transition-all duration-300 ${
+        className={`md:hidden bg-brand-body/95 backdrop-blur-md border-b border-brand-border overflow-hidden transition-all duration-300 ${
           mobileMenuOpen ? 'max-h-80' : 'max-h-0'
         }`}
       >
@@ -86,18 +86,11 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
               key={item.href}
               href={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 text-gray-300 hover:text-white transition text-base border-b border-white/5 last:border-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 rounded"
+              className="block py-3 text-brand-muted hover:text-brand-dark transition text-base border-b border-brand-border last:border-0"
             >
               {item.label}
             </a>
           ))}
-          <Link
-            href="/test"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-3 text-purple-400 hover:text-purple-300 transition text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 rounded"
-          >
-            Тест тела
-          </Link>
         </nav>
       </div>
     </header>
