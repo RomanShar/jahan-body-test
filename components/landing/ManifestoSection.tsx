@@ -3,7 +3,7 @@ import { manifesto } from './constants'
 
 export default function ManifestoSection() {
   return (
-    <section className="relative min-h-[70vh] sm:min-h-[80vh] flex items-end overflow-hidden">
+    <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-end overflow-hidden">
       {/* Background photo */}
       <Image
         src="/images/landing/jahan-quote.webp"
@@ -11,6 +11,7 @@ export default function ManifestoSection() {
         fill
         className="object-cover object-[50%_25%]"
         sizes="100vw"
+        quality={90}
         loading="lazy"
       />
       {/* Gradient overlay — light on top to show face, dark at bottom for text */}
