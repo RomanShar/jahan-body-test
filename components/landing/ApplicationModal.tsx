@@ -86,7 +86,9 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       errors.email = 'Введите корректный email'
     }
-    if (phone && !/^\+?[\d\s\-()]{7,20}$/.test(phone.trim())) {
+    if (!phone.trim()) {
+      errors.phone = 'Укажите телефон или WhatsApp'
+    } else if (!/^\+?[\d\s\-()]{7,20}$/.test(phone.trim())) {
       errors.phone = 'Проверьте формат телефона'
     }
 
@@ -221,11 +223,12 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
 
           <div>
             <label htmlFor="app-phone" className="block text-sm text-brand-muted mb-1">
-              Телефон / WhatsApp <span className="text-brand-light">(необязательно)</span>
+              Телефон / WhatsApp
             </label>
             <input
               id="app-phone"
               type="tel"
+              required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
