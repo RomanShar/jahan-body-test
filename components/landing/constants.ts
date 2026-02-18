@@ -364,11 +364,11 @@ export const venue = {
 
 export const venueHighlights: VenueHighlight[] = [
   { image: '/images/landing/venue/yoga-room.webp', label: 'Просторный зал для практик', alt: 'Зал для практик в PPL Ocean Retreat Centre' },
-  { image: '/images/landing/venue/pool.webp', label: '25-метровый бассейн', alt: 'Бассейн с родниковой водой' },
+  { image: '/images/landing/venue/pool-2.webp', label: '25-метровый бассейн', alt: 'Бассейн с родниковой водой' },
   { image: '/images/landing/venue/ocean-view.webp', label: 'Вид на океан', alt: 'Вид на Атлантический океан с территории' },
-  { image: '/images/landing/venue/terrace.webp', label: 'Открытая веранда для занятий', alt: 'Терраса для outdoor-практик' },
+  { image: '/images/landing/venue/terrace.webp', label: 'Балкон с видом на сад', alt: 'Приватный балкон с видом на сад' },
   { image: '/images/landing/venue/living-room.webp', label: 'Уютная гостиная', alt: 'Гостиная для отдыха и общения' },
-  { image: '/images/landing/venue/territory-1.webp', label: 'Территория 7 000 м²', alt: 'Зелёная территория retreat-центра' },
+  { image: '/images/landing/venue/territory-2.webp', label: 'Фруктовый сад на 7 000 м²', alt: 'Фруктовый сад на территории retreat-центра' },
 ]
 
 export const accommodationTiers: AccommodationTier[] = [
