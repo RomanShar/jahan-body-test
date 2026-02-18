@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import HeroSection from '@/components/landing/HeroSection'
 import SocialProofBar from '@/components/landing/SocialProofBar'
 import PainPointsSection from '@/components/landing/PainPointsSection'
@@ -21,35 +18,31 @@ import FinalCTASection from '@/components/landing/FinalCTASection'
 import Footer from '@/components/landing/Footer'
 import StickyHeader from '@/components/landing/StickyHeader'
 import MobileCTABar from '@/components/landing/MobileCTABar'
-import ApplicationModal from '@/components/landing/ApplicationModal'
 import StructuredData from '@/components/landing/StructuredData'
 import PhotoBreak from '@/components/landing/PhotoBreak'
 import VideoBreak from '@/components/landing/VideoBreak'
+import ModalProvider from '@/components/landing/ModalProvider'
 
 export default function Home() {
-  const [modalOpen, setModalOpen] = useState(false)
-  const openModal = () => setModalOpen(true)
-  const closeModal = () => setModalOpen(false)
-
   return (
-    <>
+    <ModalProvider>
       <StructuredData />
       <a href="#main-content" className="skip-to-main">
         Перейти к содержимому
       </a>
-      <StickyHeader onApply={openModal} />
-      <MobileCTABar onApply={openModal} />
+      <StickyHeader />
+      <MobileCTABar />
       <main id="main-content">
-        <HeroSection onApply={openModal} />
+        <HeroSection />
         <SocialProofBar />
-        <PainPointsSection onApply={openModal} />
+        <PainPointsSection />
         <ManifestoSection />
         <PhilosophySection />
         <ScienceSection />
         <ResultsSection />
         <VideoBreak />
         <FacilitatorSection />
-        <TestimonialsSection onApply={openModal} />
+        <TestimonialsSection />
         <PhotoBreak
           src="/images/landing/breaks/embrace.webp"
           alt="Близость и доверие на тренинге"
@@ -63,12 +56,11 @@ export default function Home() {
           alt="Практика на берегу океана"
         />
         <TargetAudienceSection />
-        <PricingSection onApply={openModal} />
+        <PricingSection />
         <FAQSection />
-        <FinalCTASection onApply={openModal} />
+        <FinalCTASection />
       </main>
       <Footer />
-      <ApplicationModal isOpen={modalOpen} onClose={closeModal} />
-    </>
+    </ModalProvider>
   )
 }

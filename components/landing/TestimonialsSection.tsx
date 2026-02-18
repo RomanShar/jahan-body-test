@@ -1,40 +1,18 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { Play } from 'lucide-react'
 import { testimonials, videoTestimonials, testimonialsHeadline, videoTestimonialsHeadline, videoTestimonialsSubheadline } from './constants'
 import VideoReelsViewer from './VideoReelsViewer'
+import { useModal } from './ModalProvider'
+import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
-interface TestimonialsSectionProps {
-  onApply?: () => void
-}
-
-export default function TestimonialsSection({ onApply }: TestimonialsSectionProps) {
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+export default function TestimonialsSection() {
+  const { openModal } = useModal()
+  const { visibleItems: visibleCards, itemsRef: cardsRef } = useAnimateOnScroll<HTMLDivElement>()
   const [reelsOpen, setReelsOpen] = useState(false)
   const [reelsStartIndex, setReelsStartIndex] = useState(0)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.getAttribute('data-index'))
-            setVisibleCards((prev) => new Set(prev).add(index))
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-
-    cardsRef.current.forEach((el) => {
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [])
 
   const openReels = (index: number) => {
     setReelsStartIndex(index)
@@ -111,55 +89,19 @@ export default function TestimonialsSection({ onApply }: TestimonialsSectionProp
         <div className="relative">
           <div className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0 sm:justify-center sm:flex-wrap">
             {videoTestimonials.map((video, index) => (
-              <button
-                key={index}
-                onClick={() => openReels(index)}
-                className="relative flex-shrink-0 group focus-visible:outline-none snap-start"
-              >
-                {/* Clay ring */}
-                <div className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] rounded-full p-[3px] ring-2 ring-brand-clay group-hover:ring-brand-clay-hover transition-all group-hover:scale-105">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-brand-dark relative">
-                    {video.videoUrl && (
-                      <video
-                        src={video.videoUrl}
-                        className="w-full h-full object-cover"
-                        muted
-                        playsInline
-                        loop
-                        preload="metadata"
-                        onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
-                        onMouseLeave={(e) => { e.currentTarget.pause(); e.currentTarget.currentTime = 0 }}
-                      />
-                    )}
-                    {!video.videoUrl && (
-                      <div className="absolute inset-0 bg-brand-dark" />
-                    )}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/0 transition-colors">
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white ml-0.5" fill="white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-2 text-center max-w-[100px] sm:max-w-[120px]">
-                  <p className="text-brand-muted text-[11px] sm:text-xs font-medium truncate">{video.name}</p>
-                  <p className="text-brand-light text-[10px]">{video.duration}</p>
-                </div>
-              </button>
+              <VideoCircle key={index} video={video} index={index} onOpen={openReels} />
             ))}
           </div>
         </div>
 
-        {onApply && (
-          <div className="text-center mt-14">
-            <button
-              onClick={onApply}
-              className="inline-block bg-brand-clay text-white px-10 py-4 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all"
-            >
-              Хочу так же → Оставить заявку
-            </button>
-          </div>
-        )}
+        <div className="text-center mt-14">
+          <button
+            onClick={openModal}
+            className="inline-block bg-brand-clay text-white px-10 py-4 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all"
+          >
+            Хочу так же → Оставить заявку
+          </button>
+        </div>
       </div>
 
       {/* Reels fullscreen viewer */}

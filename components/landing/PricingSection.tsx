@@ -1,36 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import { pricing, pricingTiers, pricingIncludes, pricingValueStack, pricingBadge, pricingCTA } from './constants'
+import { useModal } from './ModalProvider'
+import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
-interface PricingSectionProps {
-  onApply: () => void
-}
-
-export default function PricingSection({ onApply }: PricingSectionProps) {
+export default function PricingSection() {
+  const { openModal } = useModal()
   const earlyBirdActive = new Date(pricing.earlyBirdDeadline).getTime() > Date.now()
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.getAttribute('data-index'))
-            setVisibleCards((prev) => new Set(prev).add(index))
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-
-    cardsRef.current.forEach((el) => {
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [])
+  const { visibleItems: visibleCards, itemsRef: cardsRef } = useAnimateOnScroll<HTMLDivElement>()
 
   return (
     <section id="pricing" className="bg-brand-body py-20 sm:py-28 px-6">
@@ -103,7 +80,7 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
               </ul>
 
               <button
-                onClick={onApply}
+                onClick={openModal}
                 className="block w-full py-3 text-center transition-all text-[13px] uppercase tracking-wider font-medium bg-brand-clay text-white hover:bg-brand-clay-hover"
               >
                 {pricingCTA}

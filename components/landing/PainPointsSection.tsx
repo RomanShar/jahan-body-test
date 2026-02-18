@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import { painPoints, painPointsHeadline, painPointsClosing } from './constants'
+import { useModal } from './ModalProvider'
+import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
 const painIcons: Record<string, React.ReactNode> = {
   Lock: (
@@ -23,12 +24,12 @@ const painIcons: Record<string, React.ReactNode> = {
       <g filter="url(#ink2)">
         <circle cx="55" cy="100" r="45" fill="none" stroke="#2A2A2A" strokeWidth="2"/>
         <circle cx="145" cy="100" r="45" fill="none" stroke="#2A2A2A" strokeWidth="2"/>
-        <line x1="75" y1="88" x2="88" y2="88" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
-        <line x1="112" y1="88" x2="125" y2="88" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
-        <line x1="72" y1="100" x2="88" y2="100" stroke="#C05640" strokeWidth="1.2" strokeOpacity="0.6" strokeLinecap="round"/>
-        <line x1="112" y1="100" x2="128" y2="100" stroke="#C05640" strokeWidth="1.2" strokeOpacity="0.6" strokeLinecap="round"/>
-        <line x1="75" y1="112" x2="88" y2="112" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
-        <line x1="112" y1="112" x2="125" y2="112" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
+        <line x1="22" y1="88" x2="35" y2="88" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
+        <line x1="165" y1="88" x2="178" y2="88" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
+        <line x1="22" y1="100" x2="38" y2="100" stroke="#C05640" strokeWidth="1.2" strokeOpacity="0.6" strokeLinecap="round"/>
+        <line x1="162" y1="100" x2="178" y2="100" stroke="#C05640" strokeWidth="1.2" strokeOpacity="0.6" strokeLinecap="round"/>
+        <line x1="22" y1="112" x2="35" y2="112" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
+        <line x1="165" y1="112" x2="178" y2="112" stroke="#C05640" strokeWidth="1" strokeOpacity="0.5" strokeLinecap="round"/>
       </g>
     </svg>
   ),
@@ -142,33 +143,9 @@ const painIcons: Record<string, React.ReactNode> = {
   ),
 }
 
-interface PainPointsSectionProps {
-  onApply?: () => void
-}
-
-export default function PainPointsSection({ onApply }: PainPointsSectionProps) {
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.getAttribute('data-index'))
-            setVisibleCards((prev) => new Set(prev).add(index))
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-
-    cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card)
-    })
-
-    return () => observer.disconnect()
-  }, [])
+export default function PainPointsSection() {
+  const { openModal } = useModal()
+  const { visibleItems: visibleCards, itemsRef: cardsRef } = useAnimateOnScroll<HTMLDivElement>()
 
   return (
     <section className="bg-brand-body py-20 sm:py-28 px-6">
@@ -207,16 +184,14 @@ export default function PainPointsSection({ onApply }: PainPointsSectionProps) {
           {painPointsClosing}
         </p>
 
-        {onApply && (
-          <div className="text-center">
+        <div className="text-center">
             <button
-              onClick={onApply}
+              onClick={openModal}
               className="inline-block bg-brand-clay text-white px-10 py-4 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all"
             >
               Узнали себя? → Оставить заявку
             </button>
           </div>
-        )}
       </div>
     </section>
   )

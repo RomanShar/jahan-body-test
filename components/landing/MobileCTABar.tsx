@@ -1,31 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { useModal } from './ModalProvider'
 
 const TOTAL_SPOTS = 20
+const SPOTS_TAKEN = 8
 
-interface MobileCTABarProps {
-  onApply: () => void
-}
-
-export default function MobileCTABar({ onApply }: MobileCTABarProps) {
+export default function MobileCTABar() {
+  const { openModal } = useModal()
   const [visible, setVisible] = useState(false)
-  const [spotsOccupied, setSpotsOccupied] = useState<number | null>(null)
-
-  useEffect(() => {
-    async function fetchCount() {
-      try {
-        const { count } = await supabase
-          .from('leads')
-          .select('*', { count: 'exact', head: true })
-        setSpotsOccupied(count || 0)
-      } catch {
-        // fallback
-      }
-    }
-    fetchCount()
-  }, [])
 
   useEffect(() => {
     let ticking = false
@@ -52,10 +35,10 @@ export default function MobileCTABar({ onApply }: MobileCTABarProps) {
     >
       <div className="bg-brand-body/92 backdrop-blur-md border-t border-brand-border px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
         <button
-          onClick={onApply}
+          onClick={openModal}
           className="block w-full bg-brand-clay text-white py-3 text-[13px] uppercase tracking-wider font-medium text-center hover:bg-brand-clay-hover transition-all"
         >
-          Занять место {spotsOccupied !== null ? `· ${spotsOccupied} из ${TOTAL_SPOTS}` : ''}
+          Занять место · {SPOTS_TAKEN} из {TOTAL_SPOTS}
         </button>
       </div>
     </div>

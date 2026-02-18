@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import { Move, Wind, Volume2 } from 'lucide-react'
 import { philosophyHeadline, philosophyCentralQuote, philosophyPillars, philosophyInsight, philosophyPermission } from './constants'
+import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
 const iconMap = {
   move: Move,
@@ -11,28 +11,7 @@ const iconMap = {
 }
 
 export default function PhilosophySection() {
-  const [visiblePillars, setVisiblePillars] = useState<Set<number>>(new Set())
-  const pillarsRef = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.getAttribute('data-index'))
-            setVisiblePillars((prev) => new Set(prev).add(index))
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-
-    pillarsRef.current.forEach((el) => {
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [])
+  const { visibleItems: visiblePillars, itemsRef: pillarsRef } = useAnimateOnScroll<HTMLDivElement>()
 
   return (
     <section id="philosophy" className="bg-brand-body py-20 sm:py-28 px-6">

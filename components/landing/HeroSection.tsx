@@ -3,9 +3,10 @@
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { hero } from './constants'
-import { supabase } from '@/lib/supabase'
+import { useModal } from './ModalProvider'
 
 const TOTAL_SPOTS = 20
+const SPOTS_TAKEN = 8
 
 const HERO_VIDEOS = [
   { src: '/videos/hero/dance-solo.mp4', label: 'Танец' },
@@ -14,9 +15,7 @@ const HERO_VIDEOS = [
   { src: '/videos/hero/instrument-jahan.mp4', label: 'Музыка' },
 ]
 
-interface HeroSectionProps {
-  onApply: () => void
-}
+// HeroSection no longer needs props — uses ModalProvider context
 
 function VideoCard({
   video,
@@ -52,8 +51,8 @@ function VideoCard({
   )
 }
 
-export default function HeroSection({ onApply }: HeroSectionProps) {
-  const [spotsOccupied, setSpotsOccupied] = useState<number | null>(null)
+export default function HeroSection() {
+  const { openModal } = useModal()
   const [cardIdx, setCardIdx] = useState(0)
   const [isDesktop, setIsDesktop] = useState(false)
 
@@ -65,33 +64,29 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
     return () => mq.removeEventListener('change', handler)
   }, [])
 
+  // Rotate video cards — pause when section is off-screen
+  const sectionRef = useRef<HTMLElement>(null)
   useEffect(() => {
-    async function fetchCount() {
-      try {
-        const { count } = await supabase
-          .from('leads')
-          .select('*', { count: 'exact', head: true })
-        setSpotsOccupied(count ?? 0)
-      } catch {
-        // Fallback to null — will use static badge from constants
-      }
+    let timer: ReturnType<typeof setInterval> | null = null
+    const start = () => {
+      if (!timer) timer = setInterval(() => {
+        setCardIdx(prev => (prev + 1) % HERO_VIDEOS.length)
+      }, 8000)
     }
-    fetchCount()
+    const stop = () => {
+      if (timer) { clearInterval(timer); timer = null }
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { entry.isIntersecting ? start() : stop() },
+      { threshold: 0.1 }
+    )
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => { stop(); observer.disconnect() }
   }, [])
 
-  // Rotate video cards every 8 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCardIdx(prev => (prev + 1) % HERO_VIDEOS.length)
-    }, 8000)
-    return () => clearInterval(timer)
-  }, [])
-
-  // Static badges + dynamic spots badge
   const staticBadges = hero.urgencyBadges.slice(0, 2)
-  const spotsBadge = spotsOccupied !== null
-    ? `✓ ${spotsOccupied} из ${TOTAL_SPOTS} мест занято`
-    : hero.urgencyBadges[2] // fallback to static
+  const spotsBadge = `✓ ${SPOTS_TAKEN} из ${TOTAL_SPOTS} мест занято`
 
   // Three cards on desktop, one on mobile
   const video1 = HERO_VIDEOS[cardIdx]
@@ -99,7 +94,7 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
   const video3 = HERO_VIDEOS[(cardIdx + 2) % HERO_VIDEOS.length]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -136,7 +131,7 @@ export default function HeroSection({ onApply }: HeroSectionProps) {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button
-              onClick={onApply}
+              onClick={openModal}
               className="bg-white text-brand-dark px-10 py-4 text-[13px] uppercase tracking-wider font-bold hover:bg-brand-clay hover:text-white transition-all duration-300"
             >
               {hero.ctaPrimary}

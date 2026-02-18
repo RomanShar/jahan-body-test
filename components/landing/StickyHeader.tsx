@@ -3,12 +3,10 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { navItems } from './constants'
+import { useModal } from './ModalProvider'
 
-interface StickyHeaderProps {
-  onApply: () => void
-}
-
-export default function StickyHeader({ onApply }: StickyHeaderProps) {
+export default function StickyHeader() {
+  const { openModal } = useModal()
   const [visible, setVisible] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -67,7 +65,7 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={onApply}
+              onClick={openModal}
               className="bg-brand-clay text-white px-5 py-2 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all"
             >
               Занять место

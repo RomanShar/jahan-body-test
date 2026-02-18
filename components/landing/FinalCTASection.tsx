@@ -1,12 +1,10 @@
 'use client'
 
 import { finalCTA, pricing } from './constants'
+import { useModal } from './ModalProvider'
 
-interface FinalCTASectionProps {
-  onApply: () => void
-}
-
-export default function FinalCTASection({ onApply }: FinalCTASectionProps) {
+export default function FinalCTASection() {
+  const { openModal } = useModal()
   return (
     <section id="final-cta" className="bg-brand-dark py-24 sm:py-32 px-6">
       <div className="max-w-3xl mx-auto text-center">
@@ -21,7 +19,7 @@ export default function FinalCTASection({ onApply }: FinalCTASectionProps) {
         </p>
 
         <button
-          onClick={onApply}
+          onClick={openModal}
           className="bg-brand-clay text-white px-10 py-4 text-[13px] uppercase tracking-wider font-medium hover:bg-brand-clay-hover transition-all mb-6"
         >
           {finalCTA.ctaPrimary}
