@@ -78,7 +78,7 @@ export const scienceItems = [
   {
     number: '→',
     label: 'Звук',
-    text: 'Голос - это то, что мы заперли первым. Разрешить себе звучать - значит разрешить себе быть. Целиком.',
+    text: 'Мы используем голос - звуки, вибрации, иногда пение. Не нужен слух или талант. Когда голос свободен, уходит то напряжение, которое не достать движением.',
     source: '',
   },
 ]
@@ -487,12 +487,6 @@ export const galleryImages: GalleryImage[] = [
     featured: true,
   },
   {
-    src: '/images/landing/gallery/moment-08-hands-holding.webp',
-    alt: 'Руки, поддержка через прикосновение',
-    caption: 'Поддержка',
-    category: 'connection',
-  },
-  {
     src: '/images/landing/gallery/moment-09-eye-contact.webp',
     alt: 'Встреча глаз в парной практике',
     caption: 'Встреча',
@@ -509,12 +503,6 @@ export const galleryImages: GalleryImage[] = [
     alt: 'Практика шиацу в парах',
     caption: 'Телесная работа',
     category: 'process',
-  },
-  {
-    src: '/images/landing/gallery/moment-15-jahan-joy.webp',
-    alt: 'Джахан в моменте радости',
-    caption: 'Живая энергия',
-    category: 'joy',
   },
   {
     src: '/images/landing/gallery/moment-13-hands-water.webp',
