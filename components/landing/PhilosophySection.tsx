@@ -5,9 +5,9 @@ import { philosophyHeadline, philosophyCentralQuote, philosophyPillars, philosop
 import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
 const pillarImages: Record<string, { src: string; alt: string }> = {
-  move: { src: '/images/landing/pillars/dance.webp', alt: 'Танец — движение тела' },
-  wind: { src: '/images/landing/pillars/breathing.webp', alt: 'Дыхание — осознанное дыхание' },
-  'volume-2': { src: '/images/landing/pillars/sound.webp', alt: 'Звук — голос и вибрация' },
+  move: { src: '/images/landing/pillars/dance.webp', alt: 'Танец – движение тела' },
+  wind: { src: '/images/landing/pillars/breathing.webp', alt: 'Дыхание – осознанное дыхание' },
+  'volume-2': { src: '/images/landing/pillars/sound.webp', alt: 'Звук – голос и вибрация' },
 }
 
 export default function PhilosophySection() {
