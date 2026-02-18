@@ -1,4 +1,4 @@
-import type { PainPoint, RetreatDay, Practice, Testimonial, VideoTestimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueHighlight, AccommodationTier, GalleryImage, ManifestoData } from './types'
+import type { PainPoint, RetreatDay, Testimonial, VideoTestimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueHighlight, AccommodationTier, GalleryImage, ManifestoData } from './types'
 
 // ===== SPOTS (single source of truth) =====
 export const TOTAL_SPOTS = 20
@@ -146,29 +146,6 @@ export const retreatDays: RetreatDay[] = [
     practices: ['Мягкие утренние практики', 'Круг закрытия', 'Практики для дома', 'Отъезд'],
     emotionalArc: 'Увозишь не теорию. Увозишь состояние и инструменты. Через неделю - дышишь глубже. Через месяц - партнёр спрашивает: «Что с тобой случилось?»',
     image: '/images/landing/retreat/day4-beach.webp',
-  },
-]
-
-export const practices: Practice[] = [
-  {
-    name: 'Дыхательные практики',
-    description: 'Дыхание - первый ключ. Когда дыхание свободно, тело оттаивает и начинает чувствовать',
-  },
-  {
-    name: 'Экстатический танец',
-    description: 'Свободное движение в безопасном пространстве - без правил, без хореографии, без оценки',
-  },
-  {
-    name: 'Голосовые практики',
-    description: 'Голос как инструмент для высвобождения эмоций, застрявших в горле и груди',
-  },
-  {
-    name: 'Движение с закрытыми глазами',
-    description: 'Убрав зрение, вы усиливаете связь с телом. Без зрителей, без самокритики - только движение',
-  },
-  {
-    name: 'Практики близости и присутствия',
-    description: 'Без сексуализации и давления. Через простые, безопасные форматы контакта вы исследуете: как вы приближаетесь, как отстраняетесь, где появляется напряжение и где возникает доверие. В одежде, с чёткими границами и согласием',
   },
 ]
 

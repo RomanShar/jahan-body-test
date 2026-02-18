@@ -88,12 +88,16 @@ export default function StickyHeader() {
         className={`md:hidden bg-brand-body/95 backdrop-blur-md border-b border-brand-border overflow-hidden transition-all duration-300 ${
           mobileMenuOpen ? 'max-h-80' : 'max-h-0'
         }`}
+        role="region"
+        aria-label="Мобильное меню"
+        aria-hidden={!mobileMenuOpen}
       >
         <nav className="px-6 py-4 space-y-1">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
+              tabIndex={mobileMenuOpen ? 0 : -1}
               onClick={(e) => { smoothScroll(e); setMobileMenuOpen(false) }}
               className="block py-3 text-brand-muted hover:text-brand-dark transition text-base border-b border-brand-border last:border-0"
             >

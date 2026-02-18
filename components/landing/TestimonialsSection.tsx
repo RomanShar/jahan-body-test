@@ -8,7 +8,7 @@ import VideoReelsViewer from './VideoReelsViewer'
 import { useModal } from './ModalProvider'
 import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
-function VideoCircle({ video, index, onOpen }: { video: typeof videoTestimonials[number]; index: number; onOpen: (i: number) => void }) {
+function VideoCircle({ video, index, onOpen }: { video: typeof videoTestimonials[number]; index: number; onOpen: (i: number, el?: HTMLButtonElement) => void }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLButtonElement>(null)
 
@@ -32,7 +32,7 @@ function VideoCircle({ video, index, onOpen }: { video: typeof videoTestimonials
   return (
     <button
       ref={containerRef}
-      onClick={() => onOpen(index)}
+      onClick={(e) => onOpen(index, e.currentTarget)}
       className="relative flex-shrink-0 group focus-visible:ring-2 focus-visible:ring-brand-clay focus-visible:ring-offset-2 rounded-full snap-start"
     >
       <div className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] rounded-full p-[3px] ring-2 ring-brand-clay group-hover:ring-brand-clay-hover transition-all group-hover:scale-105">
@@ -73,8 +73,10 @@ export default function TestimonialsSection() {
   const { visibleItems: visibleCards, itemsRef: cardsRef } = useAnimateOnScroll<HTMLDivElement>()
   const [reelsOpen, setReelsOpen] = useState(false)
   const [reelsStartIndex, setReelsStartIndex] = useState(0)
+  const reelsTriggerRef = useRef<HTMLButtonElement | null>(null)
 
-  const openReels = (index: number) => {
+  const openReels = (index: number, triggerEl?: HTMLButtonElement) => {
+    reelsTriggerRef.current = triggerEl ?? null
     setReelsStartIndex(index)
     setReelsOpen(true)
   }
@@ -169,7 +171,7 @@ export default function TestimonialsSection() {
         <VideoReelsViewer
           videos={videoTestimonials}
           startIndex={reelsStartIndex}
-          onClose={() => setReelsOpen(false)}
+          onClose={() => { setReelsOpen(false); reelsTriggerRef.current?.focus() }}
         />
       )}
     </section>

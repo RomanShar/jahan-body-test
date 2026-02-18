@@ -6,11 +6,18 @@ import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 function DanceIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <circle cx="19" cy="7" r="2.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M12 29C12 29 14 24 18 21C20.5 19.125 19 14 18 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M18 21C14 20 9 20 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M18 12C15 11 11 8 12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M18 12C21 12 24 13 27 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Head */}
+      <circle cx="16.5" cy="6" r="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Spine — flowing S-curve */}
+      <path d="M16.5 8 C17.5 10.5 18 13 17.5 15.5 C17 17 16 18 15.5 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Standing leg */}
+      <path d="M15.5 19 C14 22.5 12 25.5 10.5 29" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Lifted leg — arabesque */}
+      <path d="M15.5 19 C19 17.5 23 15.5 27 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Left arm — reaching up */}
+      <path d="M17.5 10.5 C15 8.5 12 6 9 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Right arm — extended forward */}
+      <path d="M17.5 10.5 C20 12 22 13 25 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   )
 }

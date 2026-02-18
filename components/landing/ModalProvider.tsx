@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback, useRef } from 'react'
 import ApplicationModal from './ApplicationModal'
 
 interface ModalContextValue {
@@ -17,8 +17,18 @@ export function useModal() {
 
 export default function ModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
-  const openModal = useCallback(() => setIsOpen(true), [])
-  const closeModal = useCallback(() => setIsOpen(false), [])
+  const triggerRef = useRef<Element | null>(null)
+  const openModal = useCallback(() => {
+    triggerRef.current = document.activeElement
+    setIsOpen(true)
+  }, [])
+  const closeModal = useCallback(() => {
+    setIsOpen(false)
+    requestAnimationFrame(() => {
+      if (triggerRef.current instanceof HTMLElement) triggerRef.current.focus()
+      triggerRef.current = null
+    })
+  }, [])
 
   return (
     <ModalContext.Provider value={{ openModal }}>

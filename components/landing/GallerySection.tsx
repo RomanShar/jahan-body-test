@@ -9,11 +9,19 @@ export default function GallerySection() {
   const touchStartX = useRef<number | null>(null)
 
   const openLightbox = (i: number) => {
+    triggerRef.current = i
     setLightboxIndex(i)
     setLightboxOpen(true)
   }
 
-  const closeLightbox = useCallback(() => setLightboxOpen(false), [])
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false)
+    if (triggerRef.current !== null) {
+      const buttons = document.querySelectorAll<HTMLElement>('#gallery [role="button"]')
+      buttons[triggerRef.current]?.focus()
+      triggerRef.current = null
+    }
+  }, [])
 
   const goNext = useCallback(() => {
     setLightboxIndex((prev) => (prev + 1) % galleryImages.length)
@@ -129,7 +137,8 @@ export default function GallerySection() {
                 width={1200}
                 height={800}
                 className="object-contain max-h-[90vh]"
-                quality={90}
+                sizes="(max-width: 768px) 100vw, 90vw"
+                quality={85}
               />
 
               <button
@@ -156,7 +165,7 @@ export default function GallerySection() {
                 ›
               </button>
 
-              <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+              <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm" aria-live="polite" aria-atomic="true">
                 {lightboxIndex + 1} / {galleryImages.length}
               </p>
             </div>

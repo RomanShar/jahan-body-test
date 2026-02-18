@@ -39,9 +39,14 @@ export async function saveLead(lead: Lead) {
 
 // Функция для получения URL аудиофайла из Storage
 export function getAudioUrl(filename: string): string {
+  const sanitized = filename.replace(/[^a-zA-Z0-9._-]/g, '')
+  if (!sanitized || sanitized.startsWith('.')) {
+    throw new Error('Invalid audio filename')
+  }
+
   const { data } = supabase.storage
     .from('Audio')
-    .getPublicUrl(filename)
+    .getPublicUrl(sanitized)
 
   return data.publicUrl
 }

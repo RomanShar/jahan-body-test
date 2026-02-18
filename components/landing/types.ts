@@ -4,35 +4,20 @@ export interface PainPoint {
   icon: string
 }
 
-export interface SciencePoint {
-  title: string
-  description: string
-  iconName: 'brain' | 'heart' | 'activity'
-}
-
 export interface RetreatDay {
   day: number
   title: string
   subtitle: string
   description: string
   practices: string[]
-  schedule?: string[]
   emotionalArc?: string
   image?: string
 }
 
-export interface Practice {
-  name: string
-  description: string
-}
-
 export interface Testimonial {
   name: string
-  city?: string
   text: string
-  beforeText?: string
   resultHighlight?: string
-  videoUrl?: string
   image?: string
   featured?: boolean
 }
@@ -42,7 +27,6 @@ export interface VideoTestimonial {
   quote: string
   duration: string
   videoUrl?: string
-  posterUrl?: string
 }
 
 export interface FAQItem {

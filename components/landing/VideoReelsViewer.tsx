@@ -104,7 +104,7 @@ export default function VideoReelsViewer({ videos, startIndex, onClose }: VideoR
           <p className="text-white/90 text-base sm:text-lg italic leading-relaxed">
             &laquo;{video.quote}&raquo;
           </p>
-          <p className="text-white/50 text-sm mt-3">
+          <p className="text-white/50 text-sm mt-3" aria-live="polite" aria-atomic="true">
             {video.name} &middot; {currentIndex + 1}/{videos.length}
           </p>
         </div>

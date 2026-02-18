@@ -20,6 +20,8 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
   const [error, setError] = useState('')
   const [consent, setConsent] = useState(false)
   const [honeypot, setHoneypot] = useState('')
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+  const lastSubmitRef = useRef(0)
   const modalRef = useRef<HTMLDivElement>(null)
   const firstInputRef = useRef<HTMLInputElement>(null)
 
@@ -73,18 +75,46 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (honeypot) return
+
+    const errors: Record<string, string> = {}
+    const trimmedName = name.trim()
+    const trimmedEmail = email.trim()
+
+    if (!trimmedName || trimmedName.length < 2) {
+      errors.name = 'Укажите имя (минимум 2 символа)'
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      errors.email = 'Введите корректный email'
+    }
+    if (phone && !/^\+?[\d\s\-()]{7,20}$/.test(phone.trim())) {
+      errors.phone = 'Проверьте формат телефона'
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors)
+      return
+    }
+
+    const now = Date.now()
+    if (now - lastSubmitRef.current < 5000) {
+      setError('Подождите несколько секунд перед повторной отправкой')
+      return
+    }
+    lastSubmitRef.current = now
+
+    setFieldErrors({})
     setError('')
     setSubmitting(true)
 
     try {
       await saveLead({
-        name,
-        email,
-        phone: phone || undefined,
+        name: trimmedName,
+        email: trimmedEmail,
+        phone: phone.trim() || undefined,
       })
       setSubmitted(true)
     } catch {
-      setError('error')
+      setError('network')
     } finally {
       setSubmitting(false)
     }
@@ -170,6 +200,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
               className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
               placeholder="Ваше имя"
             />
+            {fieldErrors.name && <p className="text-red-500 text-xs mt-1">{fieldErrors.name}</p>}
           </div>
 
           <div>
@@ -185,6 +216,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
               className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
               placeholder="your@email.com"
             />
+            {fieldErrors.email && <p className="text-red-500 text-xs mt-1">{fieldErrors.email}</p>}
           </div>
 
           <div>
@@ -199,6 +231,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
               className="w-full px-4 py-3 border border-brand-border bg-brand-card text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-clay focus:border-transparent"
               placeholder="+351 ..."
             />
+            {fieldErrors.phone && <p className="text-red-500 text-xs mt-1">{fieldErrors.phone}</p>}
           </div>
 
           {/* Honeypot */}

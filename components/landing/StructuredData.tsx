@@ -1,7 +1,11 @@
 import Script from 'next/script'
-import { faqItems } from './constants'
+import { faqItems, pricingTiers } from './constants'
 
 export default function StructuredData() {
+  const allPrices = pricingTiers.flatMap(t => [Number(t.earlyBird || t.price), Number(t.price)])
+  const lowPrice = Math.min(...allPrices)
+  const highPrice = Math.max(...allPrices)
+
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -19,6 +23,8 @@ export default function StructuredData() {
           name: 'PPL Ocean Retreat Centre',
           address: {
             '@type': 'PostalAddress',
+            streetAddress: 'Estrada Municipal 564',
+            postalCode: '2520-614',
             addressLocality: 'Peniche',
             addressRegion: 'Leiria',
             addressCountry: 'PT',
@@ -32,11 +38,12 @@ export default function StructuredData() {
           '@type': 'Person',
           name: 'Джахан',
         },
+        duration: 'P4D',
         offers: {
           '@type': 'AggregateOffer',
           priceCurrency: 'EUR',
-          lowPrice: '490',
-          highPrice: '790',
+          lowPrice,
+          highPrice,
           availability: 'https://schema.org/InStock',
           validFrom: '2026-02-16T00:00:00+00:00',
         },
