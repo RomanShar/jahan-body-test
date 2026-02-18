@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useModal } from './ModalProvider'
-
-const TOTAL_SPOTS = 20
-const SPOTS_TAKEN = 8
+import { TOTAL_SPOTS, SPOTS_TAKEN } from './constants'
 
 export default function MobileCTABar() {
   const { openModal } = useModal()

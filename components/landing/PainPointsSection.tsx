@@ -6,7 +6,7 @@ import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
 const painIcons: Record<string, React.ReactNode> = {
   Lock: (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]" aria-hidden="true">
       <defs><filter id="ink1"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter></defs>
       <g filter="url(#ink1)">
         <path d="M100,100 Q120,80 90,70 T70,110 T130,120 T110,60 T60,90 T90,140 T150,100 T50,80" fill="none" stroke="#C05640" strokeWidth="1.5" strokeOpacity="0.8" strokeLinecap="round"/>
@@ -19,7 +19,7 @@ const painIcons: Record<string, React.ReactNode> = {
     </svg>
   ),
   Users: (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]" aria-hidden="true">
       <defs><filter id="ink2"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter></defs>
       <g filter="url(#ink2)">
         <circle cx="55" cy="100" r="45" fill="none" stroke="#2A2A2A" strokeWidth="2"/>
@@ -34,7 +34,7 @@ const painIcons: Record<string, React.ReactNode> = {
     </svg>
   ),
   Infinity: (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]" aria-hidden="true">
       <defs><filter id="ink3"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter></defs>
       <g filter="url(#ink3)">
         <path d="M100,100 C100,70 140,50 160,70 C180,90 160,130 100,100 C40,70 20,90 40,130 C60,150 100,130 100,100 Z" fill="none" stroke="#2A2A2A" strokeWidth="2" strokeLinecap="round"/>
@@ -45,7 +45,7 @@ const painIcons: Record<string, React.ReactNode> = {
     </svg>
   ),
   Snowflake: (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]" aria-hidden="true">
       <defs>
         <filter id="ink4"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter>
         <linearGradient id="iceBlock" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -96,7 +96,7 @@ const painIcons: Record<string, React.ReactNode> = {
     </svg>
   ),
   HeartOff: (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]" aria-hidden="true">
       <defs><filter id="ink5"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter></defs>
       <g filter="url(#ink5)">
         <path d="M100,140 C70,120 40,95 40,70 C40,50 55,40 75,40 C88,40 96,48 100,55 C104,48 112,40 125,40 C145,40 160,50 160,70 C160,95 130,120 100,140 Z" fill="#C05640" fillOpacity="0.08" stroke="#C05640" strokeWidth="1" strokeOpacity="0.3"/>
@@ -110,7 +110,7 @@ const painIcons: Record<string, React.ReactNode> = {
     </svg>
   ),
   Shield: (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]" aria-hidden="true">
       <defs><filter id="ink6"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter></defs>
       <g filter="url(#ink6)">
         <rect x="15" y="15" width="170" height="170" fill="none" stroke="#2A2A2A" strokeWidth="1" strokeOpacity="0.2"/>
@@ -126,7 +126,7 @@ const painIcons: Record<string, React.ReactNode> = {
     </svg>
   ),
   Globe: (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-[120px] h-[120px]" aria-hidden="true">
       <defs><filter id="ink7"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter></defs>
       <g filter="url(#ink7)">
         <circle cx="100" cy="100" r="70" fill="none" stroke="#2A2A2A" strokeWidth="2" strokeLinecap="round"/>

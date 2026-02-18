@@ -27,14 +27,25 @@ export default function VideoReelsViewer({ videos, startIndex, onClose }: VideoR
     setCurrentIndex((prev) => Math.max(prev - 1, 0))
   }, [])
 
+  const dialogRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goNext()
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') goPrev()
+      if (e.key === 'Tab') {
+        const focusable = dialogRef.current?.querySelectorAll<HTMLElement>('button')
+        if (!focusable?.length) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+      }
     }
     document.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
+    setTimeout(() => dialogRef.current?.querySelector<HTMLElement>('button')?.focus(), 50)
     return () => {
       document.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
@@ -59,6 +70,7 @@ export default function VideoReelsViewer({ videos, startIndex, onClose }: VideoR
 
   return (
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
       role="dialog"
       aria-modal="true"

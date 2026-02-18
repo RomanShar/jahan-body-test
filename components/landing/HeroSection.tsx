@@ -2,11 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { hero } from './constants'
+import { hero, TOTAL_SPOTS, SPOTS_TAKEN } from './constants'
 import { useModal } from './ModalProvider'
-
-const TOTAL_SPOTS = 20
-const SPOTS_TAKEN = 8
 
 const HERO_VIDEOS = [
   { src: '/videos/hero/dance-solo.mp4', label: 'Танец' },
