@@ -4,8 +4,8 @@ import { venue, venueHighlights, accommodationTiers, venueLocation, pricingTiers
 
 export default function VenueSection() {
   return (
-    <section id="venue" className="bg-brand-body py-20 sm:py-28 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="venue" className="bg-brand-body py-20 sm:py-28">
+      <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
         <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-3 text-center">
           {venue.headline}
@@ -17,26 +17,31 @@ export default function VenueSection() {
           {venue.description}
         </p>
 
-        {/* Hero venue photo */}
-        <div className="relative w-full aspect-[21/9] rounded-sm overflow-hidden mb-12">
-          <Image
-            src="/images/landing/venue/hero-venue.webp"
-            alt="PPL Ocean Retreat Centre - вид с высоты, рядом с океаном"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 1024px"
-            quality={85}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          <div className="absolute bottom-4 left-6 sm:bottom-6 sm:left-8">
-            <p className="text-white font-serif text-lg sm:text-xl drop-shadow-lg">
-              PPL Ocean Retreat Centre
-            </p>
-            <p className="text-white/80 text-sm drop-shadow-lg">
-              Сан-Бернардино, рядом с Пенише
-            </p>
-          </div>
+      </div>
+
+      {/* Hero venue photo — full-bleed cinematic */}
+      <div className="relative w-full aspect-[21/9] sm:aspect-[2.5/1] overflow-hidden mb-12">
+        <Image
+          src="/images/landing/venue/hero-venue.webp"
+          alt="PPL Ocean Retreat Centre - вид с высоты, рядом с океаном"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          quality={85}
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+        <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10">
+          <p className="text-white font-serif text-xl sm:text-2xl drop-shadow-lg">
+            PPL Ocean Retreat Centre
+          </p>
+          <p className="text-white/80 text-sm sm:text-base drop-shadow-lg">
+            Сан-Бернардино, рядом с Пенише
+          </p>
         </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6">
 
         {/* Venue highlights - asymmetric grid: first photo larger */}
         <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-3 mb-16">

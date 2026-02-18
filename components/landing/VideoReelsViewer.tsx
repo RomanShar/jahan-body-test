@@ -41,12 +41,7 @@ export default function VideoReelsViewer({ videos, startIndex, onClose }: VideoR
     }
   }, [onClose, goNext, goPrev])
 
-  useEffect(() => {
-    if (videoRef.current && hasVideo) {
-      videoRef.current.load()
-      videoRef.current.play().catch(() => {})
-    }
-  }, [currentIndex, hasVideo])
+  // React re-creates <video> DOM node on key change → auto loads + plays
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartY.current = e.touches[0].clientY
@@ -77,9 +72,11 @@ export default function VideoReelsViewer({ videos, startIndex, onClose }: VideoR
           {hasVideo ? (
             <video
               ref={videoRef}
+              key={video.videoUrl}
               src={video.videoUrl}
               className="w-full h-full object-cover"
               playsInline
+              autoPlay
               muted={muted}
               loop
             />

@@ -9,7 +9,7 @@ export default function StructuredData() {
         '@type': 'Event',
         name: 'Суперблизость - Телесный тренинг',
         description: 'Телесный тренинг, который возвращает мощь, энергию и притягательность. 4 дня в Португалии у океана - движение, дыхание, звук.',
-        url: 'https://selfhealing.space',
+        url: 'https://www.selfhealing.space',
         startDate: '2026-05-01T15:00:00+01:00',
         endDate: '2026-05-04T12:00:00+01:00',
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -25,8 +25,8 @@ export default function StructuredData() {
           },
         },
         image: [
-          'https://selfhealing.space/images/landing/hero-generated.webp',
-          'https://selfhealing.space/images/landing/venue/hero-venue.webp',
+          'https://www.selfhealing.space/images/landing/hero-generated.webp',
+          'https://www.selfhealing.space/images/landing/venue/hero-venue.webp',
         ],
         organizer: {
           '@type': 'Person',

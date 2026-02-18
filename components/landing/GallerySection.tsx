@@ -1,11 +1,12 @@
 'use client'
 import Image from 'next/image'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { gallerySection, galleryImages } from './constants'
 
 export default function GallerySection() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
+  const touchStartX = useRef<number | null>(null)
 
   const openLightbox = (i: number) => {
     setLightboxIndex(i)
@@ -36,6 +37,19 @@ export default function GallerySection() {
       document.body.style.overflow = ''
     }
   }, [lightboxOpen, closeLightbox, goNext, goPrev])
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 60) {
+      if (diff > 0) goNext()
+      else goPrev()
+    }
+    touchStartX.current = null
+  }
 
   return (
     <section className="bg-brand-card py-20 sm:py-28 px-6" id="gallery">
@@ -89,6 +103,8 @@ export default function GallerySection() {
           <div
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={closeLightbox}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
             role="dialog"
             aria-modal="true"
             aria-label="Просмотр фото"

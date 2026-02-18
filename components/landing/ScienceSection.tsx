@@ -1,5 +1,3 @@
-'use client'
-
 import { scienceHeadline, scienceSubheadline, scienceItems } from './constants'
 
 export default function ScienceSection() {

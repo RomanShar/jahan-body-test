@@ -1,5 +1,3 @@
-'use client'
-
 import { retreatSafety, safetyHeadline, safetySubheadline } from './constants'
 
 export default function SafetySection() {

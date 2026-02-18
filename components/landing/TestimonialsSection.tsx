@@ -8,6 +8,66 @@ import VideoReelsViewer from './VideoReelsViewer'
 import { useModal } from './ModalProvider'
 import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
+function VideoCircle({ video, index, onOpen }: { video: typeof videoTestimonials[number]; index: number; onOpen: (i: number) => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const containerRef = useRef<HTMLButtonElement>(null)
+
+  // Auto-play/pause on mobile via IntersectionObserver (hover doesn't work on touch)
+  useEffect(() => {
+    const el = containerRef.current
+    const vid = videoRef.current
+    if (!el || !vid || !video.videoUrl) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) vid.play().catch(() => {})
+        else { vid.pause(); vid.currentTime = 0 }
+      },
+      { threshold: 0.5 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [video.videoUrl])
+
+  return (
+    <button
+      ref={containerRef}
+      onClick={() => onOpen(index)}
+      className="relative flex-shrink-0 group focus-visible:outline-none snap-start"
+    >
+      <div className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] rounded-full p-[3px] ring-2 ring-brand-clay group-hover:ring-brand-clay-hover transition-all group-hover:scale-105">
+        <div className="w-full h-full rounded-full overflow-hidden bg-brand-dark relative">
+          {video.videoUrl && (
+            <video
+              ref={videoRef}
+              src={video.videoUrl}
+              className="w-full h-full object-cover"
+              muted
+              playsInline
+              loop
+              preload="metadata"
+              onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
+              onMouseLeave={(e) => { e.currentTarget.pause(); e.currentTarget.currentTime = 0 }}
+            />
+          )}
+          {!video.videoUrl && (
+            <div className="absolute inset-0 bg-brand-dark" />
+          )}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/0 transition-colors">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white ml-0.5" fill="white" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-2 text-center max-w-[100px] sm:max-w-[120px]">
+        <p className="text-brand-muted text-[11px] sm:text-xs font-medium truncate">{video.name}</p>
+        <p className="text-brand-light text-[10px]">{video.duration}</p>
+      </div>
+    </button>
+  )
+}
+
 export default function TestimonialsSection() {
   const { openModal } = useModal()
   const { visibleItems: visibleCards, itemsRef: cardsRef } = useAnimateOnScroll<HTMLDivElement>()
