@@ -58,7 +58,7 @@ export default function PricingSection({ onApply }: PricingSectionProps) {
               key={tier.name}
               ref={(el) => { cardsRef.current[index] = el }}
               data-index={index}
-              className={`relative bg-brand-card p-10 border-2 transition-all duration-700 ${
+              className={`relative bg-brand-card p-10 border-2 transition-[opacity,transform] duration-700 ${
                 tier.highlight
                   ? 'border-brand-clay'
                   : 'border-brand-border'

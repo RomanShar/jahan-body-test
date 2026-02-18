@@ -29,6 +29,15 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute('href')
+    if (href?.startsWith('#')) {
+      e.preventDefault()
+      const el = document.querySelector(href)
+      el?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -48,6 +57,7 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={smoothScroll}
                 className="text-brand-muted hover:text-brand-dark transition text-sm"
               >
                 {item.label}
@@ -85,7 +95,7 @@ export default function StickyHeader({ onApply }: StickyHeaderProps) {
             <a
               key={item.href}
               href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => { smoothScroll(e); setMobileMenuOpen(false) }}
               className="block py-3 text-brand-muted hover:text-brand-dark transition text-base border-b border-brand-border last:border-0"
             >
               {item.label}

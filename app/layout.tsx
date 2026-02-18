@@ -11,9 +11,12 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://selfhealing.space'),
+  metadataBase: new URL('https://www.selfhealing.space'),
   title: 'Суперблизость — телесный тренинг в Пенише, Португалия',
   description: 'Твоё тело помнит, как быть счастливым. 4 дня тишины, звука и океана для тех, кто устал быть сильным. Пениш, Португалия, 1–4 мая 2026.',
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/favicon.png',
     apple: '/apple-touch-icon.png',
@@ -21,6 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Суперблизость — телесный тренинг в Португалии',
     description: 'Твоё тело помнит, как быть счастливым. 4 дня тишины, звука и океана. Пениш, 1–4 мая 2026.',
+    url: '/',
     type: 'website',
     locale: 'ru_RU',
     images: [
@@ -46,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ru" className="scroll-smooth">
+    <html lang="ru">
       <body className={`${inter.variable} ${playfair.variable} font-sans`}>{children}</body>
     </html>
   )

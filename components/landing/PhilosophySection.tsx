@@ -54,7 +54,7 @@ export default function PhilosophySection() {
                 key={pillar.name}
                 ref={(el) => { pillarsRef.current[index] = el }}
                 data-index={index}
-                className={`bg-brand-card p-10 text-center transition-all duration-700 ${visiblePillars.has(index)
+                className={`bg-brand-card p-10 text-center transition-[opacity,transform] duration-700 ${visiblePillars.has(index)
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-4'
                   }`}

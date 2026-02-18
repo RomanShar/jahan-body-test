@@ -55,7 +55,7 @@ export default function TestimonialsSection({ onApply }: TestimonialsSectionProp
               key={index}
               ref={(el) => { cardsRef.current[index] = el }}
               data-index={index}
-              className={`break-inside-avoid mb-6 p-8 border border-brand-border transition-all duration-700 ${
+              className={`break-inside-avoid mb-6 p-8 border border-brand-border transition-[opacity,transform] duration-700 ${
                 testimonial.featured
                   ? 'bg-brand-body border-l-[3px] border-l-brand-clay p-10'
                   : 'bg-brand-card'

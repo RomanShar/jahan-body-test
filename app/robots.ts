@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://selfhealing.space/sitemap.xml',
+    sitemap: 'https://www.selfhealing.space/sitemap.xml',
   }
 }

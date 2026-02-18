@@ -183,7 +183,7 @@ export default function PainPointsSection({ onApply }: PainPointsSectionProps) {
               key={index}
               ref={(el) => { cardsRef.current[index] = el }}
               data-index={index}
-              className={`bg-brand-card border border-brand-border p-10 transition-all duration-700 ${
+              className={`bg-brand-card border border-brand-border p-10 transition-[opacity,transform] duration-700 ${
                 visibleCards.has(index)
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-4'
