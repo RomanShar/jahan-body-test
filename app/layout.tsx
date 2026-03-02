@@ -12,8 +12,8 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.selfhealing.space'),
-  title: 'Embodied Intimacy Retreat — телесный тренинг в Пенише, Португалия',
-  description: 'В голове - терапия, книги, понимание. В теле - всё тот же зажим. 4 дня движения, дыхания и звука у океана. Пениш, Португалия, 1-4 мая 2026.',
+  title: 'Ретрит телесной близости — Пенише, Португалия, 1–4 мая 2026',
+  description: 'В голове — терапия, книги, понимание. В теле — всё тот же зажим. 4 дня движения, дыхания и звука у океана.',
   alternates: {
     canonical: '/',
   },
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'Embodied Intimacy Retreat — телесный тренинг в Португалии',
-    description: 'В голове - терапия, книги, понимание. В теле - всё тот же зажим. 4 дня движения, дыхания и звука у океана. Пениш, 1-4 мая 2026.',
+    title: 'Ретрит телесной близости — Пенише, Португалия, 1–4 мая 2026',
+    description: 'В голове — терапия, книги, понимание. В теле — всё тот же зажим. 4 дня движения, дыхания и звука у океана.',
     url: '/',
     type: 'website',
     locale: 'ru_RU',
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
         url: '/images/landing/og.webp',
         width: 1200,
         height: 630,
-        alt: 'Embodied Intimacy Retreat — телесный тренинг в Португалии',
+        alt: 'Ретрит телесной близости — Пенише, Португалия',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Embodied Intimacy Retreat — телесный тренинг',
-    description: 'В голове - терапия, книги, понимание. В теле - всё тот же зажим. 4 дня движения, дыхания и звука у океана. Пениш, 1-4 мая 2026.',
+    title: 'Ретрит телесной близости — Пенише, Португалия',
+    description: 'В голове — терапия, книги, понимание. В теле — всё тот же зажим. 4 дня движения, дыхания и звука у океана.',
     images: ['/images/landing/og.webp'],
   },
 }
