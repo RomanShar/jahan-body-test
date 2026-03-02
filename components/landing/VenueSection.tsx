@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { MapPin, Navigation } from 'lucide-react'
-import { venue, venueHighlights, accommodationTiers, venueLocation, pricingTiers, pricing } from './constants'
+import { venue, venueHighlights, accommodationTiers, venueLocation } from './constants'
 
 export default function VenueSection() {
   return (
@@ -80,34 +80,23 @@ export default function VenueSection() {
             Все комнаты с отдельными кроватями · До 20 гостей
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {accommodationTiers.map((tier, i) => {
-              const earlyBirdActive = new Date(pricing.earlyBirdDeadline).getTime() > Date.now()
-              const pt = pricingTiers[i]
-              const displayPrice = earlyBirdActive && pt?.earlyBird ? pt.earlyBird : pt?.price
-
-              return (
-                <div key={i} className="bg-brand-card overflow-hidden border border-brand-border">
-                  <div className="relative aspect-[4/3]">
-                    <Image
-                      src={tier.image}
-                      alt={tier.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-baseline justify-between">
-                      <p className="font-medium text-brand-dark text-sm">{tier.name}</p>
-                      {displayPrice && (
-                        <p className="text-brand-clay font-serif text-lg">от €{displayPrice}</p>
-                      )}
-                    </div>
-                    <p className="text-brand-light text-xs mt-1">{tier.description}</p>
-                  </div>
+            {accommodationTiers.map((tier, i) => (
+              <div key={i} className="bg-brand-card overflow-hidden border border-brand-border">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={tier.image}
+                    alt={tier.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
-              )
-            })}
+                <div className="p-4">
+                  <p className="font-medium text-brand-dark text-sm">{tier.name}</p>
+                  <p className="text-brand-light text-xs mt-1">{tier.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -47,8 +47,8 @@ export default function StickyHeader() {
     >
       <div className="bg-brand-body/92 backdrop-blur-md border-b border-brand-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <a href="#" className="text-brand-dark uppercase tracking-[0.2em] font-bold text-sm">
-            Суперблизость
+          <a href="#" className="text-brand-dark uppercase tracking-[0.18em] font-bold text-sm">
+            Ретрит телесной близости
           </a>
 
           <nav className="hidden md:flex items-center gap-6">

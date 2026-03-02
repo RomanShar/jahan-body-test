@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { hero, TOTAL_SPOTS, SPOTS_TAKEN } from './constants'
+import { hero } from './constants'
 import { useModal } from './ModalProvider'
 
 const HERO_VIDEOS = [
@@ -91,9 +91,6 @@ export default function HeroSection() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const staticBadges = hero.urgencyBadges.slice(0, 2)
-  const spotsBadge = `✓ ${SPOTS_TAKEN} из ${TOTAL_SPOTS} мест занято`
-
   // Three cards on desktop, one on mobile
   const video1 = HERO_VIDEOS[cardIdx]
   const video2 = HERO_VIDEOS[(cardIdx + 1) % HERO_VIDEOS.length]
@@ -154,16 +151,9 @@ export default function HeroSection() {
             </a>
           </div>
 
-          <div className="mt-8 md:mt-12 flex flex-wrap justify-center md:justify-start gap-6 text-white/80 text-sm font-medium tracking-wide">
-            {staticBadges.map((badge, i) => (
-              <span key={i} className="backdrop-blur-sm bg-white/10 px-3 py-1 rounded-full border border-white/20">
-                {badge}
-              </span>
-            ))}
-            <span className="backdrop-blur-sm bg-brand-sage/30 px-3 py-1 rounded-full border border-brand-sage/40 text-white">
-              {spotsBadge}
-            </span>
-          </div>
+          <p className="mt-8 md:mt-12 text-white/80 text-base sm:text-lg italic max-w-md mx-auto md:mx-0">
+            Для тех, кто хочет вернуть притяжение — к себе и к тому, кто рядом.
+          </p>
         </div>
 
         {/* Mobile: single video card */}

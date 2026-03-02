@@ -1,16 +1,15 @@
 import HeroSection from '@/components/landing/HeroSection'
-import SocialProofBar from '@/components/landing/SocialProofBar'
+import EmbodiedIntimacySection from '@/components/landing/EmbodiedIntimacySection'
+import ForWhomSection from '@/components/landing/ForWhomSection'
 import PainPointsSection from '@/components/landing/PainPointsSection'
 import ManifestoSection from '@/components/landing/ManifestoSection'
-import PhilosophySection from '@/components/landing/PhilosophySection'
 import ResultsSection from '@/components/landing/ResultsSection'
 import FacilitatorSection from '@/components/landing/FacilitatorSection'
+import CoupleSection from '@/components/landing/CoupleSection'
 import TestimonialsSection from '@/components/landing/TestimonialsSection'
 import RetreatSection from '@/components/landing/RetreatSection'
 import SafetySection from '@/components/landing/SafetySection'
 import VenueSection from '@/components/landing/VenueSection'
-import GallerySection from '@/components/landing/GallerySection'
-import TargetAudienceSection from '@/components/landing/TargetAudienceSection'
 import PricingSection from '@/components/landing/PricingSection'
 import FAQSection from '@/components/landing/FAQSection'
 import FinalCTASection from '@/components/landing/FinalCTASection'
@@ -33,13 +32,14 @@ export default function Home() {
       <MobileCTABar />
       <main id="main-content">
         <HeroSection />
-        <SocialProofBar />
+        <EmbodiedIntimacySection />
+        <ForWhomSection />
         <PainPointsSection />
-        <ManifestoSection />
-        <PhilosophySection />
         <ResultsSection />
+        <ManifestoSection />
         <VideoBreak />
         <FacilitatorSection />
+        <CoupleSection />
         <TestimonialsSection />
         <PhotoBreak
           src="/images/landing/breaks/embrace.webp"
@@ -48,8 +48,6 @@ export default function Home() {
         <RetreatSection />
         <SafetySection />
         <VenueSection />
-        <GallerySection />
-        <TargetAudienceSection />
         <PricingSection />
         <FAQSection />
         <FinalCTASection />
