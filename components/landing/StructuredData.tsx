@@ -31,7 +31,7 @@ export default function StructuredData() {
           },
         },
         image: [
-          'https://www.selfhealing.space/images/landing/hero-generated.webp',
+          'https://www.selfhealing.space/images/landing/hero-embrace.webp',
           'https://www.selfhealing.space/images/landing/venue/hero-venue.webp',
         ],
         organizer: {
