@@ -1,6 +1,6 @@
 export default function EmbodiedIntimacySection() {
   return (
-    <section className="bg-brand-card py-20 sm:py-28 px-6">
+    <section id="philosophy" className="bg-brand-card py-20 sm:py-28 px-6">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-8">
           Что такое Embodied Intimacy?

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { useModal } from './ModalProvider'
-import { TOTAL_SPOTS, SPOTS_TAKEN } from './constants'
 
 export default function MobileCTABar() {
   const { openModal } = useModal()
@@ -36,7 +35,7 @@ export default function MobileCTABar() {
           onClick={openModal}
           className="block w-full bg-brand-clay text-white py-3 text-[13px] uppercase tracking-wider font-medium text-center hover:bg-brand-clay-hover transition-all"
         >
-          Занять место · {SPOTS_TAKEN} из {TOTAL_SPOTS}
+          Занять место
         </button>
       </div>
     </div>

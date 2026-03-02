@@ -5,77 +5,11 @@ import Image from 'next/image'
 import { hero } from './constants'
 import { useModal } from './ModalProvider'
 
-const HERO_VIDEOS = [
-  { src: '/videos/hero/dance-solo.mp4', label: 'Танец' },
-  { src: '/videos/hero/dance-group.mp4', label: 'Движение' },
-  { src: '/videos/hero/happy-dance.mp4', label: 'Радость' },
-  { src: '/videos/hero/instrument-jahan.mp4', label: 'Музыка' },
-]
-
-// HeroSection no longer needs props — uses ModalProvider context
-
-function VideoCard({
-  video,
-  className,
-}: {
-  video: typeof HERO_VIDEOS[number]
-  className: string
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    videoRef.current?.play().catch(() => {})
-  }, [video.src])
-
-  return (
-    <div className={className}>
-      <div className="relative w-full h-full overflow-hidden rounded-sm">
-        <video
-          ref={videoRef}
-          key={video.src}
-          src={video.src}
-          muted
-          loop
-          playsInline
-          autoPlay
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-          <p className="text-white font-serif text-lg">{video.label}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default function HeroSection() {
   const { openModal } = useModal()
-  const [cardIdx, setCardIdx] = useState(0)
   const [showScrollHint, setShowScrollHint] = useState(true)
-
-  // Rotate video cards — pause when section is off-screen
   const sectionRef = useRef<HTMLElement>(null)
-  useEffect(() => {
-    let timer: ReturnType<typeof setInterval> | null = null
-    const start = () => {
-      if (!timer) timer = setInterval(() => {
-        setCardIdx(prev => (prev + 1) % HERO_VIDEOS.length)
-      }, 8000)
-    }
-    const stop = () => {
-      if (timer) { clearInterval(timer); timer = null }
-    }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => { entry.isIntersecting ? start() : stop() },
-      { threshold: 0.1 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => { stop(); observer.disconnect() }
-  }, [])
-
-  // Fade out scroll indicator on scroll
   useEffect(() => {
     let ticking = false
     const onScroll = () => {
@@ -91,122 +25,86 @@ export default function HeroSection() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Three cards on desktop, one on mobile
-  const video1 = HERO_VIDEOS[cardIdx]
-  const video2 = HERO_VIDEOS[(cardIdx + 1) % HERO_VIDEOS.length]
-  const video3 = HERO_VIDEOS[(cardIdx + 2) % HERO_VIDEOS.length]
-
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/landing/hero-generated.webp"
-          alt="Побережье Пениша на закате - скалы, океан, Португалия"
-          fill
-          className="object-cover"
-          priority
-          quality={90}
-        />
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
-      </div>
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col bg-brand-dark overflow-hidden">
+      {/* Main content area */}
+      <div className="flex-1 flex items-center">
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center py-20 md:py-0">
+          {/* Left — text */}
+          <div className="text-center md:text-left pt-16 md:pt-0 order-1">
+            <span className="inline-flex items-center gap-2 backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-8 text-white/90 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium">
+              <svg className="w-3.5 h-3.5 text-white/70 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {hero.tagline}
+            </span>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-        {/* Text Content */}
-        <div className="md:col-span-7 text-center md:text-left pt-16 md:pt-0">
-          <span className="inline-flex items-center gap-2 backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-6 text-white/90 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium shadow-lg">
-            <svg className="w-3.5 h-3.5 text-white/70 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {hero.tagline}
-          </span>
+            <h1 className="font-serif text-[clamp(40px,6vw,72px)] text-white leading-[1.05] mb-6">
+              {hero.headline.split('\n').map((line, i) => (
+                <span key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </span>
+              ))}
+            </h1>
 
-          <h1 className="font-serif text-[clamp(32px,5vw,56px)] text-white leading-[1.15] mb-8 drop-shadow-lg">
-            {hero.headline.split('\n').map((line, i) => (
-              <span key={i}>
-                {i > 0 && <br />}
-                {line}
-              </span>
-            ))}
-          </h1>
+            <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-10 max-w-lg mx-auto md:mx-0">
+              {hero.description}
+            </p>
 
-          <p className="text-lg sm:text-xl text-white/90 leading-relaxed mb-10 max-w-xl mx-auto md:mx-0 drop-shadow-md">
-            {hero.description}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <button
-              onClick={openModal}
-              className="bg-white text-brand-dark px-10 py-4 text-[13px] uppercase tracking-wider font-bold hover:bg-brand-clay hover:text-white transition-all duration-300"
-            >
-              {hero.ctaPrimary}
-            </button>
-            <a
-              href={hero.ctaSecondaryHref}
-              className="border border-white text-white px-10 py-4 text-[13px] uppercase tracking-wider font-bold hover:bg-white hover:text-brand-dark transition-all duration-300"
-            >
-              {hero.ctaSecondary}
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <button
+                onClick={openModal}
+                className="bg-white text-brand-dark px-10 py-4 text-[13px] uppercase tracking-wider font-bold hover:bg-brand-clay hover:text-white transition-all duration-300"
+              >
+                {hero.ctaPrimary}
+              </button>
+              <a
+                href={hero.ctaSecondaryHref}
+                className="border border-white/40 text-white px-10 py-4 text-[13px] uppercase tracking-wider font-bold hover:bg-white hover:text-brand-dark transition-all duration-300"
+              >
+                {hero.ctaSecondary}
+              </a>
+            </div>
           </div>
 
-          <p className="mt-8 md:mt-12 text-white/80 text-base sm:text-lg italic max-w-md mx-auto md:mx-0">
-            Для тех, кто хочет вернуть притяжение — к себе и к тому, кто рядом.
-          </p>
-        </div>
-
-        {/* Mobile: single video card */}
-        <div className="md:hidden flex justify-center">
-          <VideoCard
-            video={video1}
-            className="w-48 aspect-[3/4] bg-white p-1.5 rounded-sm shadow-2xl rotate-2"
-          />
-        </div>
-
-        {/* Desktop: 3 floating video cards */}
-        <div className="hidden md:block md:col-span-5 relative h-[600px]">
-          <VideoCard
-            video={video1}
-            className="absolute top-4 right-4 w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 ease-out z-10"
-          />
-          <VideoCard
-            video={video2}
-            className="absolute top-[180px] right-[200px] w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl -rotate-6 hover:rotate-0 transition-transform duration-500 ease-out z-20"
-          />
-          <VideoCard
-            video={video3}
-            className="absolute bottom-10 right-[60px] w-56 aspect-[3/4] bg-white p-2 rounded-sm shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 ease-out z-30"
-          />
-
-          {/* Video dots — highlight visible window of 3 */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-40">
-            {HERO_VIDEOS.map((_, i) => {
-              const isLead = i === cardIdx
-              const isVisible = i === cardIdx || i === (cardIdx + 1) % HERO_VIDEOS.length || i === (cardIdx + 2) % HERO_VIDEOS.length
-              return (
-                <button
-                  key={i}
-                  onClick={() => setCardIdx(i)}
-                  className={`rounded-full transition-all duration-300 ${
-                    isLead
-                      ? 'w-2.5 h-2.5 bg-white scale-125'
-                      : isVisible
-                        ? 'w-2 h-2 bg-white/80'
-                        : 'w-2 h-2 bg-white/30'
-                  }`}
-                  aria-label={`Видео ${i + 1}`}
-                />
-              )
-            })}
+          {/* Right — photo + subtitle overlay */}
+          <div className="relative order-2">
+            <div className="relative aspect-[3/4] max-h-[70vh] mx-auto md:mx-0 rounded-sm overflow-hidden">
+              <Image
+                src={hero.heroImage}
+                alt="Джахан — ведущий ретрита"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 80vw, 45vw"
+              />
+              {/* Gradient overlay at bottom for subtitle */}
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
+            </div>
+            {/* Subtitle overlay — bottom right of photo */}
+            <p className="absolute bottom-6 right-4 left-4 md:left-auto md:right-6 text-right text-white text-base sm:text-lg font-medium leading-snug max-w-sm ml-auto">
+              {hero.subtitle}
+            </p>
           </div>
         </div>
-
       </div>
 
-      {/* Scroll indicator — fades out on scroll */}
-      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden md:block transition-opacity duration-500 ${showScrollHint ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      {/* Bottom bar — social proof */}
+      <div className="border-t border-white/10 bg-brand-dark/80">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap justify-center md:justify-between gap-x-8 gap-y-2">
+          {hero.socialProof.map((item, i) => (
+            <span key={i} className="text-white/60 text-xs sm:text-sm whitespace-nowrap">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className={`absolute bottom-16 left-1/2 -translate-x-1/2 animate-bounce hidden md:block transition-opacity duration-500 ${showScrollHint ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
       </div>
