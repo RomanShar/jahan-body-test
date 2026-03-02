@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-brand-dark mb-2">Суперблизость</h3>
+            <h3 className="text-xl font-bold text-brand-dark mb-2">Ретрит телесной близости</h3>
             <p className="text-brand-light text-sm max-w-xs">
               Телесный тренинг в Пенише, Португалия
             </p>
@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="border-t border-brand-border pt-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-brand-light text-sm">
-              &copy; {new Date().getFullYear()} Суперблизость. Все права защищены.
+              &copy; {new Date().getFullYear()} Ретрит телесной близости. Все права защищены.
             </p>
             <div className="flex gap-4 text-sm">
               <Link href="/privacy" className="text-brand-light hover:text-brand-muted transition">
