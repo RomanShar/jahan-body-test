@@ -13,7 +13,7 @@ const columns = [
       'которые хотят снова ощущать себя живой, тёплой, чувствительной',
       'которые хотят вернуть чувственное притяжение — к себе и к партнёру',
     ],
-    image: '/images/landing/results/step-02-body-contact.webp',
+    image: '/images/landing/results/target-women.webp',
     alt: 'Женщины на тренинге',
   },
   {
@@ -37,7 +37,7 @@ const columns = [
       'которые хотят, чтобы дом снова стал местом тепла, а не переговорной',
       'которые готовы работать не с обвинениями, а с собой',
     ],
-    image: '/images/landing/results/step-04-felt-contact.webp',
+    image: '/images/landing/results/target-couples.webp',
     alt: 'Пара на тренинге',
   },
 ]
