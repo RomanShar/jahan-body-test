@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { hero } from './constants'
+import { hero, socialProof, TOTAL_SPOTS, SPOTS_TAKEN } from './constants'
 import { useModal } from './ModalProvider'
 
 export default function HeroSection() {
@@ -80,20 +80,31 @@ export default function HeroSection() {
                 priority
                 sizes="(max-width: 768px) 80vw, 45vw"
               />
-              {/* Gradient overlay at bottom for subtitle */}
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
             </div>
-            {/* Subtitle overlay — bottom right of photo */}
-            <p className="absolute bottom-6 right-4 left-4 md:left-auto md:right-6 text-right text-white text-base sm:text-lg font-medium leading-snug max-w-sm ml-auto">
-              {hero.subtitle}
-            </p>
+            {/* Subtitle — red clay label at bottom-right of photo */}
+            <div className="absolute bottom-4 right-0 md:bottom-6 md:-right-2">
+              <p className="bg-brand-clay text-white text-sm sm:text-base font-medium leading-snug px-4 py-2 max-w-sm text-right">
+                {hero.subtitle}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar — social proof */}
+      {/* Top social proof bar — credentials with checkmarks */}
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap justify-center gap-x-8 gap-y-1">
+          {[...socialProof.items, `${SPOTS_TAKEN} из ${TOTAL_SPOTS} мест занято`].map((item, i) => (
+            <span key={i} className="text-white/60 text-xs sm:text-sm whitespace-nowrap">
+              ✓ {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom social proof bar */}
       <div className="border-t border-white/10 bg-brand-dark/80">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap justify-center md:justify-between gap-x-8 gap-y-2">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap justify-center md:justify-between gap-x-8 gap-y-1">
           {hero.socialProof.map((item, i) => (
             <span key={i} className="text-white/60 text-xs sm:text-sm whitespace-nowrap">
               {item}
