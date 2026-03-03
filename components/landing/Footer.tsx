@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold text-brand-dark mb-2">Ретрит телесной близости</h3>
             <p className="text-brand-light text-sm max-w-xs">
-              Телесный тренинг в Пенише, Португалия
+              Телесный ретрит в Пенише, Португалия
             </p>
           </div>
 
@@ -80,7 +80,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-brand-light text-xs mt-6 text-center max-w-lg mx-auto">
-            Тренинг не является медицинской диагностикой. Для медицинских вопросов обратитесь к врачу.
+            Ретрит не является медицинской диагностикой. Для медицинских вопросов обратитесь к врачу.
           </p>
         </div>
       </div>

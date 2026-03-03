@@ -11,8 +11,8 @@ export default function StructuredData() {
     '@graph': [
       {
         '@type': 'Event',
-        name: 'Embodied Intimacy Retreat — Телесный тренинг',
-        description: 'Телесный тренинг, который возвращает мощь, энергию и притягательность. 4 дня в Португалии у океана - движение, дыхание, звук.',
+        name: 'Embodied Intimacy Retreat — Телесный ретрит',
+        description: 'Телесный ретрит, который возвращает мощь, энергию и притягательность. 4 дня в Португалии у океана — движение, дыхание, звук.',
         url: 'https://www.selfhealing.space',
         startDate: '2026-05-01T15:00:00+01:00',
         endDate: '2026-05-04T12:00:00+01:00',

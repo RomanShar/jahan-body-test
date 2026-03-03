@@ -14,7 +14,7 @@ const columns = [
       'которые хотят вернуть чувственное притяжение — к себе и к партнёру',
     ],
     image: '/images/landing/results/target-women.webp',
-    alt: 'Женщины на тренинге',
+    alt: 'Женщины на ретрите',
   },
   {
     title: 'Для мужчин',
@@ -26,7 +26,7 @@ const columns = [
       'которые чувствуют, что в отношениях стало слишком много слов и мало игры',
     ],
     image: '/images/landing/results/target-men.webp',
-    alt: 'Мужчина на тренинге',
+    alt: 'Мужчина на ретрите',
   },
   {
     title: 'Для пар',
@@ -38,7 +38,7 @@ const columns = [
       'которые готовы работать не с обвинениями, а с собой',
     ],
     image: '/images/landing/results/target-couples.webp',
-    alt: 'Пара на тренинге',
+    alt: 'Пара на ретрите',
   },
 ]
 

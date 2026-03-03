@@ -392,7 +392,7 @@ export const targetAudienceNotes = [
 // ===== GALLERY SECTION =====
 export const gallerySection = {
   headline: 'Как это выглядит',
-  description: 'Настоящие моменты с тренингов',
+  description: 'Настоящие моменты с ретритов',
 }
 
 export const galleryImages: GalleryImage[] = [
