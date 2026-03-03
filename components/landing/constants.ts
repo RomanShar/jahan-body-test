@@ -216,7 +216,7 @@ export const coFacilitator = {
   name: 'Дева Варша',
   title: 'Организатор ретрита, маркетолог',
   bio: 'Люблю создавать праздники без повода, которые становятся лучшими воспоминаниями. Занимаюсь организацией медитационных групп и ретритов и вижу своей миссией дать людям возможность почувствовать себя счастливее и легче — также, как это помогло мне.',
-  photoUrl: '/images/landing/facilitators/deva-varsha.webp',
+  photoUrl: '/images/landing/facilitators/deva-varsha-new.webp',
 }
 
 // ===== TESTIMONIALS =====
@@ -303,7 +303,7 @@ export const venueHighlights: VenueHighlight[] = [
 export const accommodationTiers: AccommodationTier[] = [
   { name: 'Место в комнате на троих', description: 'Комната на 3 чел. · Своя ванная', image: '/images/landing/venue/room-atlantic.webp', alt: 'Комната на троих с собственной ванной' },
   { name: 'Место в комнате на двоих', description: 'Комната на 2 чел. · Своя ванная', image: '/images/landing/venue/room-pacific.webp', alt: 'Комната на двоих с собственной ванной' },
-  { name: 'Одноместное размещение', description: 'Отдельная комната · Своя ванная · Вид на океан', image: '/images/landing/venue/room-replacement.webp', alt: 'Одноместная комната с видом на океан' },
+  { name: 'Одноместное размещение', description: 'Отдельная комната · Своя ванная · Вид на океан', image: '/images/landing/venue/room-single.webp', alt: 'Одноместная комната с видом на океан' },
 ]
 
 export const venueLocation = {

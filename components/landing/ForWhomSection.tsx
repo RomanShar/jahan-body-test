@@ -60,7 +60,7 @@ export default function ForWhomSection() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:items-end">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {columns.map((col) => (
             <div key={col.title} className="flex flex-col">
               <h3 className="font-serif text-xl text-brand-dark mb-4 uppercase tracking-wider">

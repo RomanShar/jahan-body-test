@@ -33,7 +33,7 @@ export default function HeroSection() {
           src={hero.heroImage}
           alt="Embodied Intimacy Retreat"
           fill
-          className="object-cover object-top"
+          className="object-cover object-[75%_top]"
           priority
           sizes="100vw"
           quality={90}
@@ -82,7 +82,12 @@ export default function HeroSection() {
             </div>
 
             <p className="bg-brand-clay text-white text-sm sm:text-base font-medium leading-snug px-4 py-2 max-w-sm inline-block">
-              {hero.subtitle}
+              {hero.subtitle.split('\n').map((line, i) => (
+                <span key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </span>
+              ))}
             </p>
           </div>
         </div>

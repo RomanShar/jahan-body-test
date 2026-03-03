@@ -6,7 +6,7 @@ export default function CoupleSection() {
       {/* Background hands photo */}
       <div className="absolute inset-0">
         <Image
-          src="/images/landing/breaks/hands.webp"
+          src="/images/landing/breaks/couple-hands.webp"
           alt=""
           fill
           className="object-cover"

@@ -33,11 +33,11 @@ export default function Home() {
         <PhilosophySection />
         <ForWhomSection />
         <ResultsSection />
+        <RetreatSection />
+        <SafetySection />
         <FacilitatorSection />
         <CoupleSection />
         <TestimonialsSection />
-        <RetreatSection />
-        <SafetySection />
         <VenueSection />
         <PricingSection />
         <FAQSection />

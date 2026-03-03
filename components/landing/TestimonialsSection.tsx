@@ -138,6 +138,36 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
+        {/* Featured video testimonials */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+          <div>
+            <video
+              className="w-full aspect-[9/16] max-h-[500px] object-cover bg-brand-dark rounded-sm"
+              controls
+              preload="metadata"
+              playsInline
+              poster=""
+            >
+              <source src="/videos/testimonials/testimonial-08-evgenia-full.mp4" type="video/mp4" />
+            </video>
+            <p className="text-brand-clay text-xs uppercase tracking-widest mt-3">Евгения, 43 года</p>
+            <p className="text-brand-muted text-sm mt-1">2:14</p>
+          </div>
+          <div>
+            <video
+              className="w-full aspect-[9/16] max-h-[500px] object-cover bg-brand-dark rounded-sm"
+              controls
+              preload="metadata"
+              playsInline
+              poster=""
+            >
+              <source src="/videos/testimonials/testimonial-09-anastasia-full.mp4" type="video/mp4" />
+            </video>
+            <p className="text-brand-clay text-xs uppercase tracking-widest mt-3">Анастасия</p>
+            <p className="text-brand-muted text-sm mt-1">1:00</p>
+          </div>
+        </div>
+
         {/* Video testimonials subsection */}
         <div className="text-center mb-10">
           <h3 className="font-serif text-2xl sm:text-3xl text-brand-dark mb-2">
