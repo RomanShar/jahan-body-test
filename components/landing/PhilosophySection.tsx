@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { philosophyHeadline, philosophyCentralQuote, philosophyPillars, philosophyInsight, philosophyPermission } from './constants'
+import { philosophyHeadline, philosophyPillars, philosophyInsight, philosophyPermission } from './constants'
 import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
 const pillarImages: Record<string, { src: string; alt: string }> = {
@@ -16,13 +16,9 @@ export default function PhilosophySection() {
   return (
     <section id="philosophy" className="bg-brand-body py-20 sm:py-28 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-4 text-center">
+        <h2 className="font-serif text-3xl sm:text-4xl text-brand-dark mb-16 text-center">
           {philosophyHeadline}
         </h2>
-
-        <blockquote className="text-center text-xl sm:text-2xl text-brand-muted italic max-w-2xl mx-auto mb-16">
-          &laquo;{philosophyCentralQuote}&raquo;
-        </blockquote>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
           {philosophyPillars.map((pillar, index) => {
@@ -53,9 +49,7 @@ export default function PhilosophySection() {
                   {pillar.name}
                 </p>
 
-                <p className="text-brand-muted leading-relaxed mb-4">
-                  &laquo;{pillar.quote}&raquo;
-                </p>
+                <hr className="border-brand-border mb-4 mx-auto w-16" />
 
                 <p className="text-brand-dark text-[15px] leading-relaxed">
                   {pillar.description}

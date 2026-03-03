@@ -1,5 +1,6 @@
 import HeroSection from '@/components/landing/HeroSection'
 import EmbodiedIntimacySection from '@/components/landing/EmbodiedIntimacySection'
+import PhilosophySection from '@/components/landing/PhilosophySection'
 import ForWhomSection from '@/components/landing/ForWhomSection'
 import ResultsSection from '@/components/landing/ResultsSection'
 import FacilitatorSection from '@/components/landing/FacilitatorSection'
@@ -29,6 +30,7 @@ export default function Home() {
       <main id="main-content">
         <HeroSection />
         <EmbodiedIntimacySection />
+        <PhilosophySection />
         <ForWhomSection />
         <ResultsSection />
         <FacilitatorSection />

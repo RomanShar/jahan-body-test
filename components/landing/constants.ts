@@ -12,7 +12,7 @@ export const hero = {
   ctaPrimary: 'Оставить заявку',
   ctaSecondary: 'Почему это работает?',
   ctaSecondaryHref: '#philosophy',
-  subtitle: 'Для тех, кто хочет вернуть притяжение —\u00A0к\u00A0себе и\u00A0к\u00A0тому, кто рядом.',
+  subtitle: 'Для тех, кто хочет вернуть притяжение —\nк\u00A0себе и\u00A0к\u00A0тому, кто рядом.',
   heroImage: '/images/landing/hero-embrace.webp',
   socialProof: [
     '500+ человек прошли метод',
@@ -44,8 +44,7 @@ export const manifesto: ManifestoData = {
 }
 
 // ===== PHILOSOPHY SECTION =====
-export const philosophyHeadline = 'Три столпа практики'
-export const philosophyCentralQuote = ''
+export const philosophyHeadline = 'Как всё происходит'
 
 export const philosophyPillars: PhilosophyPillar[] = [
   {
