@@ -26,12 +26,25 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex flex-col bg-brand-dark overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* Background image — full cover */}
+      <div className="absolute inset-0">
+        <Image
+          src={hero.heroImage}
+          alt="Embodied Intimacy Retreat"
+          fill
+          className="object-cover object-top"
+          priority
+          sizes="100vw"
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/85 via-brand-dark/60 to-brand-dark/30" />
+      </div>
+
       {/* Main content area */}
-      <div className="flex-1 flex items-center">
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center py-20 md:py-0">
-          {/* Left — text */}
-          <div className="text-center md:text-left pt-16 md:pt-0 order-1">
+      <div className="relative flex-1 flex items-center">
+        <div className="max-w-7xl mx-auto px-6 w-full py-28 md:py-0">
+          <div className="text-center md:text-left max-w-xl">
             <span className="inline-flex items-center gap-2 backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-8 text-white/90 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium">
               <svg className="w-3.5 h-3.5 text-white/70 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -53,7 +66,7 @@ export default function HeroSection() {
               {hero.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8">
               <button
                 onClick={openModal}
                 className="bg-white text-brand-dark px-10 py-4 text-[13px] uppercase tracking-wider font-bold hover:bg-brand-clay hover:text-white transition-all duration-300"
@@ -67,33 +80,16 @@ export default function HeroSection() {
                 {hero.ctaSecondary}
               </a>
             </div>
-          </div>
 
-          {/* Right — photo + subtitle overlay */}
-          <div className="relative order-2">
-            <div className="relative aspect-[3/4] max-h-[70vh] mx-auto md:mx-0 rounded-sm overflow-hidden">
-              <Image
-                src={hero.heroImage}
-                alt="Джахан — ведущий ретрита"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 80vw, 45vw"
-                quality={90}
-                />
-            </div>
-            {/* Subtitle — red clay label at bottom-right of photo */}
-            <div className="absolute bottom-4 right-0 md:bottom-6 md:-right-2">
-              <p className="bg-brand-clay text-white text-sm sm:text-base font-medium leading-snug px-4 py-2 max-w-sm text-right">
-                {hero.subtitle}
-              </p>
-            </div>
+            <p className="bg-brand-clay text-white text-sm sm:text-base font-medium leading-snug px-4 py-2 max-w-sm inline-block">
+              {hero.subtitle}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Top social proof bar — credentials with checkmarks */}
-      <div className="border-t border-white/10">
+      {/* Top social proof bar */}
+      <div className="relative border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap justify-center gap-x-8 gap-y-1">
           {[...socialProof.items, `${SPOTS_TAKEN} из ${TOTAL_SPOTS} мест занято`].map((item, i) => (
             <span key={i} className="text-white/60 text-xs sm:text-sm whitespace-nowrap">
@@ -104,7 +100,7 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom social proof bar */}
-      <div className="border-t border-white/10 bg-brand-dark/80">
+      <div className="relative border-t border-white/10 bg-brand-dark/80">
         <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap justify-center md:justify-between gap-x-8 gap-y-1">
           {hero.socialProof.map((item, i) => (
             <span key={i} className="text-white/60 text-xs sm:text-sm whitespace-nowrap">

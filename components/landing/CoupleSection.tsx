@@ -8,7 +8,7 @@ export default function CoupleSection() {
           {/* Photo */}
           <div className="w-full md:w-1/2 relative aspect-[3/4] rounded-sm overflow-hidden">
             <Image
-              src="/images/landing/breaks/embrace.webp"
+              src="/images/landing/facilitators/jahan-varsha.webp"
               alt="Джахан и Дева Варша"
               fill
               className="object-cover"

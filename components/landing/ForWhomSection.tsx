@@ -60,13 +60,13 @@ export default function ForWhomSection() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:items-end">
           {columns.map((col) => (
-            <div key={col.title}>
+            <div key={col.title} className="flex flex-col">
               <h3 className="font-serif text-xl text-brand-dark mb-4 uppercase tracking-wider">
                 {col.title}
               </h3>
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3 mb-6 flex-1">
                 {col.items.map((item, i) => (
                   <li key={i} className="text-brand-muted text-sm leading-relaxed flex items-start gap-2">
                     <span className="text-brand-sage mt-0.5 flex-shrink-0">•</span>

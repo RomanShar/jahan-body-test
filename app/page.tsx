@@ -1,8 +1,6 @@
 import HeroSection from '@/components/landing/HeroSection'
 import EmbodiedIntimacySection from '@/components/landing/EmbodiedIntimacySection'
 import ForWhomSection from '@/components/landing/ForWhomSection'
-import PainPointsSection from '@/components/landing/PainPointsSection'
-import ManifestoSection from '@/components/landing/ManifestoSection'
 import ResultsSection from '@/components/landing/ResultsSection'
 import FacilitatorSection from '@/components/landing/FacilitatorSection'
 import CoupleSection from '@/components/landing/CoupleSection'
@@ -17,8 +15,6 @@ import Footer from '@/components/landing/Footer'
 import StickyHeader from '@/components/landing/StickyHeader'
 import MobileCTABar from '@/components/landing/MobileCTABar'
 import StructuredData from '@/components/landing/StructuredData'
-import PhotoBreak from '@/components/landing/PhotoBreak'
-import VideoBreak from '@/components/landing/VideoBreak'
 import ModalProvider from '@/components/landing/ModalProvider'
 
 export default function Home() {
@@ -34,17 +30,10 @@ export default function Home() {
         <HeroSection />
         <EmbodiedIntimacySection />
         <ForWhomSection />
-        <PainPointsSection />
         <ResultsSection />
-        <ManifestoSection />
-        <VideoBreak />
         <FacilitatorSection />
         <CoupleSection />
         <TestimonialsSection />
-        <PhotoBreak
-          src="/images/landing/breaks/embrace.webp"
-          alt="Близость и доверие на тренинге"
-        />
         <RetreatSection />
         <SafetySection />
         <VenueSection />
