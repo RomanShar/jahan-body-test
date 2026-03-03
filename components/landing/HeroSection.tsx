@@ -33,7 +33,7 @@ export default function HeroSection() {
           src={hero.heroImage}
           alt="Embodied Intimacy Retreat"
           fill
-          className="object-cover object-[75%_top]"
+          className="object-cover object-[85%_center]"
           priority
           sizes="100vw"
           quality={90}
