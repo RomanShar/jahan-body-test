@@ -70,6 +70,7 @@ export default function RetreatSection() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={90}
                   />
                 )}
               </div>

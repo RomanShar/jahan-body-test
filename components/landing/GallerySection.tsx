@@ -108,6 +108,7 @@ export default function GallerySection() {
                   ? '(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 50vw'
                   : '(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
                 }
+                quality={90}
               />
             </div>
           ))}
@@ -133,7 +134,7 @@ export default function GallerySection() {
                 height={800}
                 className="object-contain max-h-[90vh]"
                 sizes="(max-width: 768px) 100vw, 90vw"
-                quality={85}
+                quality={90}
               />
 
               <button

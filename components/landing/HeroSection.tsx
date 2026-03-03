@@ -79,7 +79,8 @@ export default function HeroSection() {
                 className="object-cover"
                 priority
                 sizes="(max-width: 768px) 80vw, 45vw"
-              />
+                quality={90}
+                />
             </div>
             {/* Subtitle — red clay label at bottom-right of photo */}
             <div className="absolute bottom-4 right-0 md:bottom-6 md:-right-2">

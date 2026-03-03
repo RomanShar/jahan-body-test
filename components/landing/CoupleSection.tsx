@@ -13,7 +13,8 @@ export default function CoupleSection() {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
-            />
+              quality={90}
+                />
           </div>
 
           {/* Quote */}

@@ -23,10 +23,11 @@ export default function ResultsSection() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={90}
                 />
-                {'tag' in item && item.tag && (
+                {'tag' in item && (item as { tag?: string }).tag && (
                   <span className="absolute top-4 left-4 bg-white/90 text-brand-dark text-xs uppercase tracking-wider px-3 py-1 font-medium">
-                    {item.tag}
+                    {(item as { tag?: string }).tag}
                   </span>
                 )}
               </div>

@@ -81,6 +81,7 @@ export default function ForWhomSection() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  quality={90}
                 />
               </div>
             </div>

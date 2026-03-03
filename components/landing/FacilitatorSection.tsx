@@ -19,7 +19,8 @@ export default function FacilitatorSection() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 288px, 320px"
-              />
+                quality={90}
+                />
             </div>
           </div>
           <div className="flex-1">
@@ -67,7 +68,8 @@ export default function FacilitatorSection() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 288px, 320px"
-              />
+                quality={90}
+                />
             </div>
           </div>
           <div className="flex-1">
