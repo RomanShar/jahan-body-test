@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
 import Link from 'next/link'
 import { pricing, contact } from './constants'
-import { saveLead } from '@/lib/supabase'
 
 interface ApplicationModalProps {
   isOpen: boolean
@@ -111,12 +110,17 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
     setSubmitting(true)
 
     try {
-      await saveLead({
-        name: trimmedName,
-        email: trimmedEmail,
-        phone: phone.trim() || undefined,
-        telegram: telegram.trim() || undefined,
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          phone: phone.trim() || undefined,
+          telegram: telegram.trim() || undefined,
+        }),
       })
+      if (!res.ok) throw new Error('Failed to submit')
       setSubmitted(true)
     } catch {
       setError('network')
