@@ -6,9 +6,8 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
+# vite
+/dist/
 
 # production
 /build
@@ -51,6 +50,10 @@ docs/
 2025-09-03*/
 2025-09-15*/
 *.pdf
+*.zip
+materials/
+icons/
+pdf-review/
 
 # temp screenshots & audit artifacts
 screenshot-*.png
@@ -61,10 +64,9 @@ cto-*.png
 show-*.png
 test-*.png
 test-results/
-*.html
 *.html.bak
 CONTENT-AUDIT.md
-index.html
+research-*.html
 
 # temp images in root
 *.jpg

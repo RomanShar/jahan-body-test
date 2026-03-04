@@ -1,6 +1,4 @@
-'use client'
 
-import Image from 'next/image'
 import { philosophyHeadline, philosophyPillars, philosophyInsight, philosophyPermission } from './constants'
 import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
 
@@ -36,12 +34,13 @@ export default function PhilosophySection() {
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="w-28 h-28 mx-auto mb-5 overflow-hidden rounded-full">
-                  <Image
+                  <img
                     src={image.src}
                     alt={image.alt}
                     width={112}
                     height={112}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
 

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { navItems, contact } from './constants'
 
 export default function Footer() {
@@ -26,7 +26,7 @@ export default function Footer() {
               </a>
             ))}
             <Link
-              href="/test"
+              to="/test"
               className="text-brand-muted hover:text-brand-dark transition text-sm py-2 px-1"
             >
               Тест тела
@@ -74,7 +74,7 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Ретрит телесной близости. Все права защищены.
             </p>
             <div className="flex gap-4 text-sm">
-              <Link href="/privacy" className="text-brand-light hover:text-brand-muted transition">
+              <Link to="/privacy" className="text-brand-light hover:text-brand-muted transition">
                 Политика конфиденциальности
               </Link>
             </div>

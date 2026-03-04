@@ -1,16 +1,11 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'Политика конфиденциальности — Ретрит телесной близости',
-}
+import { Link } from 'react-router-dom'
 
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-brand-body py-20 px-6">
       <div className="max-w-2xl mx-auto">
         <Link
-          href="/"
+          to="/"
           className="text-brand-clay hover:text-brand-clay-hover text-sm mb-8 inline-block"
         >
           &larr; На главную

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 
 interface PhotoBreakProps {
   src: string
@@ -9,13 +8,11 @@ interface PhotoBreakProps {
 export default function PhotoBreak({ src, alt, quote }: PhotoBreakProps) {
   return (
     <div className="relative w-full aspect-[16/9] sm:aspect-[21/9]">
-      <Image
+      <img
         src={src}
         alt={alt}
-        fill
-        className="object-cover"
-        sizes="100vw"
-        quality={90}
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
       {quote && (

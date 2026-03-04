@@ -1,4 +1,3 @@
-'use client'
 
 import { finalCTA, pricing } from './constants'
 import { useModal } from './ModalProvider'

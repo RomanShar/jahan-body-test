@@ -1,7 +1,4 @@
-'use client'
-
 import { useEffect, useState, useRef } from 'react'
-import Image from 'next/image'
 import { hero, socialProof, TOTAL_SPOTS, SPOTS_TAKEN } from './constants'
 import { useModal } from './ModalProvider'
 
@@ -29,14 +26,12 @@ export default function HeroSection() {
     <section ref={sectionRef} className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Background image — full cover */}
       <div className="absolute inset-0">
-        <Image
+        <img
           src={hero.heroImage}
           alt="Embodied Intimacy Retreat"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-          quality={90}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/85 via-brand-dark/60 to-brand-dark/30" />
       </div>

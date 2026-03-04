@@ -1,4 +1,3 @@
-'use client'
 
 import { pricing, pricingTiers, pricingIncludes, pricingValueStack, pricingBadge, pricingCTA } from './constants'
 import { useModal } from './ModalProvider'

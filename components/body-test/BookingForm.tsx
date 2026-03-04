@@ -1,4 +1,3 @@
-'use client'
 
 import React, { useEffect } from 'react';
 import { ArrowLeft, Calendar } from 'lucide-react';
@@ -10,7 +9,7 @@ interface BookingFormProps {
 }
 
 const BookingForm: React.FC<BookingFormProps> = ({ scores, avgScore, onBack }) => {
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '';
+  const calendlyUrl = import.meta.env.VITE_CALENDLY_URL || '';
 
   useEffect(() => {
     const script = document.createElement('script');

@@ -1,4 +1,3 @@
-'use client'
 
 import { createContext, useContext, useState, useCallback, useRef } from 'react'
 import ApplicationModal from './ApplicationModal'

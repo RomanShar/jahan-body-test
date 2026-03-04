@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { MapPin, Navigation } from 'lucide-react'
 import { venue, venueHighlights, accommodationTiers, venueLocation } from './constants'
 
@@ -21,14 +20,12 @@ export default function VenueSection() {
 
       {/* Hero venue photo — full-bleed cinematic */}
       <div className="relative w-full aspect-[21/9] sm:aspect-[2.5/1] overflow-hidden mb-12">
-        <Image
+        <img
           src="/images/landing/venue/hero-venue.webp"
           alt="PPL Ocean Retreat Centre - вид с высоты, рядом с океаном"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          quality={95}
-          priority
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
         <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10">
@@ -54,14 +51,12 @@ export default function VenueSection() {
                   : 'aspect-[4/3]'
               }`}
             >
-              <Image
+              <img
                 src={item.image}
                 alt={item.alt}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                sizes={i === 0 ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 50vw, 33vw'}
-                quality={90}
-                />
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <p className={`absolute bottom-2 left-3 right-3 text-white font-medium ${
                 i === 0 ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'
@@ -84,14 +79,12 @@ export default function VenueSection() {
             {accommodationTiers.map((tier, i) => (
               <div key={i} className="bg-brand-card overflow-hidden border border-brand-border">
                 <div className="relative aspect-[4/3]">
-                  <Image
+                  <img
                     src={tier.image}
                     alt={tier.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    quality={90}
-                />
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="p-4">
                   <p className="font-medium text-brand-dark text-sm">{tier.name}</p>

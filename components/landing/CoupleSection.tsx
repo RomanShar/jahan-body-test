@@ -1,17 +1,14 @@
-import Image from 'next/image'
 
 export default function CoupleSection() {
   return (
     <section className="relative py-24 sm:py-32 px-6 overflow-hidden">
       {/* Background hands photo */}
       <div className="absolute inset-0">
-        <Image
+        <img
           src="/images/landing/breaks/couple-hands.webp"
           alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-          quality={90}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-brand-dark/75" />
       </div>

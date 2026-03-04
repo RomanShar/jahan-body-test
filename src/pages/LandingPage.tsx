@@ -18,7 +18,7 @@ import MobileCTABar from '@/components/landing/MobileCTABar'
 import StructuredData from '@/components/landing/StructuredData'
 import ModalProvider from '@/components/landing/ModalProvider'
 
-export default function Home() {
+export default function LandingPage() {
   return (
     <ModalProvider>
       <StructuredData />

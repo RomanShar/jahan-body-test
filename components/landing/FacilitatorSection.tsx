@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { facilitator, coFacilitator } from './constants'
 
 export default function FacilitatorSection() {
@@ -13,14 +12,12 @@ export default function FacilitatorSection() {
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16 mb-20">
           <div className="flex-shrink-0">
             <div className="w-72 h-96 md:w-80 md:h-[28rem] rounded-sm overflow-hidden relative">
-              <Image
+              <img
                 src={facilitator.photoUrl}
                 alt={facilitator.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 288px, 320px"
-                quality={90}
-                />
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
           <div className="flex-1">
@@ -62,14 +59,12 @@ export default function FacilitatorSection() {
         <div className="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
           <div className="flex-shrink-0">
             <div className="w-72 h-96 md:w-80 md:h-[28rem] rounded-sm overflow-hidden relative bg-brand-card">
-              <Image
+              <img
                 src={coFacilitator.photoUrl}
                 alt={coFacilitator.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 288px, 320px"
-                quality={90}
-                />
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
           <div className="flex-1">

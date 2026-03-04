@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { resultsSection } from './constants'
 
 export default function ResultsSection() {
@@ -17,13 +16,11 @@ export default function ResultsSection() {
             >
               {/* Photo */}
               <div className="w-full md:w-1/2 relative aspect-[3/2] rounded-sm overflow-hidden">
-                <Image
+                <img
                   src={item.image}
                   alt={item.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={90}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
                 />
                 {'tag' in item && (item as { tag?: string }).tag && (
                   <span className="absolute top-4 left-4 bg-white/90 text-brand-dark text-xs uppercase tracking-wider px-3 py-1 font-medium">

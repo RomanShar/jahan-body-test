@@ -1,4 +1,4 @@
-import Script from 'next/script'
+
 import { faqItems, pricingTiers } from './constants'
 
 export default function StructuredData() {
@@ -67,7 +67,7 @@ export default function StructuredData() {
   }
 
   return (
-    <Script
+    <script
       id="structured-data"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

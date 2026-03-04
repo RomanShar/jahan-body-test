@@ -1,7 +1,5 @@
-'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
 import { Play } from 'lucide-react'
 import { testimonials, videoTestimonials, testimonialsHeadline, videoTestimonialsHeadline, videoTestimonialsSubheadline } from './constants'
 import VideoReelsViewer from './VideoReelsViewer'
@@ -109,12 +107,13 @@ export default function TestimonialsSection() {
               <div className="flex items-center gap-3 mb-4">
                 {testimonial.image && (
                   <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                    <Image
+                    <img
                       src={testimonial.image}
                       alt={testimonial.name}
                       width={40}
                       height={40}
                       className="object-cover w-full h-full"
+                      loading="lazy"
                     />
                   </div>
                 )}

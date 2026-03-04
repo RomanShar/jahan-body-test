@@ -1,5 +1,3 @@
-'use client'
-import Image from 'next/image'
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { gallerySection, galleryImages } from './constants'
 
@@ -99,16 +97,11 @@ export default function GallerySection() {
               }`}
               aria-label={`Открыть фото: ${image.alt}`}
             >
-              <Image
+              <img
                 src={image.src}
                 alt={image.alt}
-                fill
-                className="object-cover"
-                sizes={image.featured
-                  ? '(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 50vw'
-                  : '(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
-                }
-                quality={90}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           ))}
@@ -127,14 +120,10 @@ export default function GallerySection() {
             aria-label="Просмотр фото"
           >
             <div className="relative max-w-5xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-              <Image
+              <img
                 src={galleryImages[lightboxIndex].src}
                 alt={galleryImages[lightboxIndex].alt}
-                width={1200}
-                height={800}
-                className="object-contain max-h-[90vh]"
-                sizes="(max-width: 768px) 100vw, 90vw"
-                quality={90}
+                className="object-contain max-h-[90vh] max-w-full"
               />
 
               <button

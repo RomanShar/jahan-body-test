@@ -1,8 +1,7 @@
-'use client'
 
 import { useState, useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { pricing, contact } from './constants'
 
 interface ApplicationModalProps {
@@ -110,9 +109,14 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
     setSubmitting(true)
 
     try {
-      const res = await fetch('/api/leads', {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+      const res = await fetch(`${supabaseUrl}/functions/v1/submit-lead`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabaseKey}`,
+        },
         body: JSON.stringify({
           name: trimmedName,
           email: trimmedEmail,
@@ -281,7 +285,7 @@ export default function ApplicationModal({ isOpen, onClose }: ApplicationModalPr
             />
             <span className="text-brand-muted text-xs leading-relaxed">
               Я согласен(а) на обработку персональных данных в соответствии с{' '}
-              <Link href="/privacy" target="_blank" className="text-brand-clay underline underline-offset-4 hover:text-brand-clay-hover">
+              <Link to="/privacy" target="_blank" className="text-brand-clay underline underline-offset-4 hover:text-brand-clay-hover">
                 политикой конфиденциальности
               </Link>
             </span>

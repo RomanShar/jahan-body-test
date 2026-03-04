@@ -1,4 +1,3 @@
-'use client'
 
 import React, { useState } from 'react';
 import type { Stage, ZoneScore, TestResult, ProgressComparison } from './types';

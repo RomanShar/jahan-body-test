@@ -1,17 +1,13 @@
-import Image from 'next/image'
 import { manifesto } from './constants'
 
 export default function ManifestoSection() {
   return (
     <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-end overflow-hidden">
       {/* Background photo */}
-      <Image
+      <img
         src="/images/landing/jahan-quote.webp"
         alt="Джахан"
-        fill
-        className="object-cover object-[50%_25%]"
-        sizes="100vw"
-        quality={90}
+        className="absolute inset-0 w-full h-full object-cover object-[50%_25%]"
         loading="lazy"
       />
       {/* Gradient overlay — light on top to show face, dark at bottom for text */}

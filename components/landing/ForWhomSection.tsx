@@ -1,6 +1,4 @@
-'use client'
 
-import Image from 'next/image'
 import { useModal } from './ModalProvider'
 
 const columns = [
@@ -75,13 +73,11 @@ export default function ForWhomSection() {
                 ))}
               </ul>
               <div className="relative aspect-[4/3] rounded-sm overflow-hidden">
-                <Image
+                <img
                   src={col.image}
                   alt={col.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  quality={90}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>
