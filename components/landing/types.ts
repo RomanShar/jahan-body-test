@@ -1,9 +1,3 @@
-export interface PainPoint {
-  title: string
-  text: string
-  icon: string
-}
-
 export interface RetreatDay {
   day: number
   title: string

@@ -1,4 +1,4 @@
-import type { PainPoint, RetreatDay, Testimonial, VideoTestimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueHighlight, AccommodationTier, GalleryImage, ManifestoData } from './types'
+import type { RetreatDay, Testimonial, VideoTestimonial, FAQItem, PricingIncluded, PricingTier, PhilosophyPillar, VenueHighlight, AccommodationTier, GalleryImage, ManifestoData } from './types'
 
 // ===== SPOTS (single source of truth) =====
 export const TOTAL_SPOTS = 20
@@ -21,21 +21,6 @@ export const hero = {
     '✔ Формат соло и для пар',
   ],
 }
-
-// ===== PAIN POINTS =====
-export const painPoints: PainPoint[] = [
-  { title: 'Сила заперта', text: 'Вы чувствуете мощный потенциал внутри, но он сжат в тугой узел. Вас распирает изнутри, но вы не даёте этому выйти. Сдерживаетесь, даже когда никто не видит.', icon: 'Lock' },
-  { title: 'Рядом, но не вместе', text: 'Живёте с партнёром рядом, но настоящей близости нет. У каждого внутри «библиотека непроговорённого».', icon: 'Users' },
-  { title: 'Автопилот', text: 'Вам за 30, внешне всё «нормально» – работа, семья, план. Но вкус жизни пропал. В какой-то момент: «А что дальше?» – и головой ответа не найти.', icon: 'Infinity' },
-  { title: 'Замороженность', text: 'Тело зажато - и это забирает энергию, уверенность, привлекательность. Головой тело не расслабить.', icon: 'Snowflake' },
-  { title: 'Эмоции под замком', text: 'Научились держать лицо. Таблетки, психолог, работа – а тело всё равно сжато. Цена контроля – не чувствовать ничего. Ни радости, ни злости, ни нежности.', icon: 'HeartOff' },
-  { title: 'Контроль как защита', text: 'Всё под контролем - расписание, эмоции, даже расслабление. Но внутри - усталость от того, что нельзя отпустить.', icon: 'Shield' },
-  { title: 'Новая страна, старые зажимы', text: 'Переехали - а тело привезло с собой всё: стресс адаптации, потерю опоры, невысказанное на чужом языке. После переезда связь с собой оборвалась.', icon: 'Globe' },
-]
-
-export const painPointsHeadline = 'Узнаёте себя?'
-
-export const painPointsClosing = 'Хватит искать в себе проблемы. Лучше дайте выход силе.'
 
 // ===== MANIFESTO =====
 export const manifesto: ManifestoData = {
