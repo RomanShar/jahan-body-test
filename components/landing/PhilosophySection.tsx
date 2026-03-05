@@ -1,13 +1,6 @@
 
 import { philosophyHeadline, philosophyPillars, philosophyInsight, philosophyPermission } from './constants'
 import { useAnimateOnScroll } from '@/hooks/useAnimateOnScroll'
-
-const pillarImages: Record<string, { src: string; alt: string }> = {
-  move: { src: '/images/landing/pillars/dance.webp', alt: 'Танец – движение тела' },
-  wind: { src: '/images/landing/pillars/breathing.webp', alt: 'Дыхание – осознанное дыхание' },
-  'volume-2': { src: '/images/landing/pillars/sound.webp', alt: 'Звук – голос и вибрация' },
-}
-
 export default function PhilosophySection() {
   const { visibleItems: visiblePillars, itemsRef: pillarsRef } = useAnimateOnScroll<HTMLDivElement>()
 
@@ -19,10 +12,7 @@ export default function PhilosophySection() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-          {philosophyPillars.map((pillar, index) => {
-            const image = pillarImages[pillar.iconName]
-
-            return (
+          {philosophyPillars.map((pillar, index) => (
               <div
                 key={pillar.name}
                 ref={(el) => { pillarsRef.current[index] = el }}
@@ -33,17 +23,6 @@ export default function PhilosophySection() {
                   }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="w-28 h-28 mx-auto mb-5 overflow-hidden rounded-full">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width={112}
-                    height={112}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-
                 <p className="text-brand-clay uppercase tracking-widest text-xs mb-3">
                   {pillar.name}
                 </p>
@@ -54,8 +33,7 @@ export default function PhilosophySection() {
                   {pillar.description}
                 </p>
               </div>
-            )
-          })}
+            ))}
         </div>
 
         <blockquote className="text-center text-xl sm:text-2xl text-brand-dark max-w-2xl mx-auto mt-16 leading-relaxed">

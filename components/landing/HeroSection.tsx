@@ -1,26 +1,10 @@
-import { useEffect, useState, useRef } from 'react'
+import { useRef } from 'react'
 import { hero, socialProof, TOTAL_SPOTS, SPOTS_TAKEN } from './constants'
 import { useModal } from './ModalProvider'
 
 export default function HeroSection() {
   const { openModal } = useModal()
-  const [showScrollHint, setShowScrollHint] = useState(true)
   const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    let ticking = false
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setShowScrollHint(window.scrollY < 100)
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex flex-col overflow-hidden">
@@ -110,12 +94,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className={`absolute bottom-16 left-1/2 -translate-x-1/2 animate-bounce hidden md:block transition-opacity duration-500 ${showScrollHint ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </div>
     </section>
   )
 }
