@@ -14,8 +14,8 @@ export default function StructuredData() {
         name: 'Embodied Intimacy Retreat — Телесный ретрит',
         description: 'Телесный ретрит, который возвращает мощь, энергию и притягательность. 4 дня в Португалии у океана — движение, дыхание, звук.',
         url: 'https://www.selfhealing.space',
-        startDate: '2026-05-01T15:00:00+01:00',
-        endDate: '2026-05-04T12:00:00+01:00',
+        startDate: '2026-10-01T15:00:00+01:00',
+        endDate: '2026-10-04T12:00:00+01:00',
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
         eventStatus: 'https://schema.org/EventScheduled',
         location: {

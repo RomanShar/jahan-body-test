@@ -6,7 +6,7 @@ export const SPOTS_TAKEN = 8
 
 // ===== HERO =====
 export const hero = {
-  tagline: 'Пенише · Португалия · 1–4 мая 2026',
+  tagline: 'Пенише · Португалия · 1–4 октября 2026',
   headline: 'Embodied Intimacy\nRetreat',
   description: '3 дня у океана, чтобы выйти из телесной заморозки и вернуться в живое ощущение себя.',
   ctaPrimary: 'Оставить заявку',
@@ -304,7 +304,7 @@ export const pricing = {
   earlyBirdDeadline: '2026-03-15T23:59:59',
   earlyBirdNote: 'Early bird до 15 марта — скидка €100',
   groupSize: '20',
-  dates: '1–4 мая 2026 · 4 дня, 3 ночи · До 20 участников',
+  dates: '1–4 октября 2026 · 4 дня, 3 ночи · До 20 участников',
   depositAmount: '100',
   depositNote: 'Депозит €100 · Остаток за 28 дней',
   notIncluded: 'Не включено: авиабилеты, трансфер аэропорт - площадка (организуем групповой).',
